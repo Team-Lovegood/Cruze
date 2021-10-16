@@ -11,7 +11,7 @@ export default function App() {
   return (
     <>
     <View style={styles.container}>
-      {/* <LandingPage/> */}
+      <LandingPage/>
       {/* <RiderProfile /> */}
       {/* <DriverProfile /> */}
       <StatusBar style="auto" />

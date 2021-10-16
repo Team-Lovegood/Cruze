@@ -7,25 +7,23 @@ const DriverProfile = (props) => {
   // rating for rider, and car information
   return (
     <>
-    <Text style = {styles.map}>Map</Text>
-
-    <Text style={styles.profile}>
-
-      <Text style={styles.top}>
-        <Text style={styles.name}>Name</Text>
-        <Text style={styles.rating}>Rating<Text style={{color: '#B3E5FD'}}>&#9733;</Text></Text>
-      </Text>
-
-      <Text>{'\n'}</Text>
-
-      <Text style= {styles.car}>
-        <Text>Color Make Model</Text>
-        <Text>License Plate</Text>
-      </Text>
-
-
-
-    </Text>
+      <View style = {styles.map}><Text></Text></View>
+      <View style = {styles.profile}>
+        <View style = {styles.top}>
+          <Text style={{fontSize: 24}}>First Last</Text>
+          <Text style={{fontSize: 24}}>5.0<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
+        </View>
+        <View style = {styles.car}>
+          <Text style={{fontSize: 18}}>Color Make Model: </Text>
+          <Text style={{fontSize: 18}}>License Plate</Text>
+        </View>
+        <View style = {styles.car}>
+          <Text>Language</Text>
+        </View>
+        <View style = {styles.car}>
+          <Text>Theme</Text>
+        </View>
+      </View>
     </>
   )
 }
@@ -33,31 +31,24 @@ const DriverProfile = (props) => {
 const styles = StyleSheet.create({
    map:{
      flex: 2.5,
-     backgroundColor:"black"
+     width: '100%'
    },
    profile:{
-     flex: 1,
+    flex: 1,
+    width: '100%',
+    justifyContent: 'space-evenly',
    },
-
-   name:{
-    fontSize: 36,
-    // alignSelf: 'flex-start',
+   top: {
+     flexDirection: 'row',
+     justifyContent: 'space-between',
+     margin: 10,
+     marginTop: -100
    },
-   rating:{
-    fontSize: 36,
-    //alignSelf: 'flex-end',
-    // display: "flex",
-   },
-   car:{
-    fontSize: 24,
-    // alignSelf: 'flex-start'
-   },
-   top:{
-    flexDirection: "row",
-    justifyContent: 'space-evenly'
+   car: {
+    flexDirection: 'row',
+    marginTop: -100,
+    marginLeft: 10,
    }
-
-
 });
 
 export default DriverProfile;
