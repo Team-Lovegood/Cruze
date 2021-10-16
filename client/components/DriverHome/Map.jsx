@@ -1,23 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 const Map = () => {
   return (
-    <View>
-      <Text>
-        This is a map!
-      </Text>
-    </View>
+    // <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
+    // </View>
   );
 };
 
 const styles = StyleSheet.create({
-  topHalf: {
-
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  botHalf: {
-
-  }
+  map: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
 
 export default Map;
