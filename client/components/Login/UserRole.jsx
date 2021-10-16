@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Picker, StyleSheet } from "react-native";
 
-const UserRole = ({role, handleRole, RideStr, DriveStr}) => {
-  const [selectedValue, setSelectedValue] = useState(RideStr);
+const UserRole = ({role, handleRole}) => {
+  const [selectedValue, setSelectedValue] = useState('I want a ride');
   return (
     <View>
       <Picker
@@ -13,8 +13,8 @@ const UserRole = ({role, handleRole, RideStr, DriveStr}) => {
           setSelectedValue(itemValue);
         }}
       >
-        <Picker.Item label={RideStr} value="rider" />
-        <Picker.Item label={DriveStr} value="driver" />
+        <Picker.Item label='I want a ride' value="rider" />
+        <Picker.Item label='I want to drive' value="driver" />
       </Picker>
     </View>
   );
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 20,
     marginBottom: 20,
-    outlineWidth: 1,
     borderRadius: 8,
     fontSize: 12,
     height: 40,

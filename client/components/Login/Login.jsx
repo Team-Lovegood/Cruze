@@ -33,7 +33,7 @@ class Login extends React.Component {
           <Text style={styles.text}>Cruze</Text>
         </View>
 
-        <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)} RideStr='I am a rider' DriveStr='I am a driver'/>
+        {/* <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/> */}
 
         <TextInput style = {styles.input}
           placeholder = "Email"
@@ -52,7 +52,8 @@ class Login extends React.Component {
           }>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.signupText}>Don't have an account? <u onClick={this.props.signup}>Sign up</u></Text>
+
+        <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onClick={this.props.signup}>Sign up</Text></Text>
       </View>
     )
   }
@@ -73,10 +74,9 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#B3E5FD',
-    outlineColor: 'black',
+    // outlineColor: 'black',
     padding: 10,
     marginBottom: 20,
-    outlineWidth: 1,
     borderRadius: 8,
     fontSize: 12,
     height: 40,
@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
   },
   signupText: {
     alignSelf: 'center',
-    fontSize: 10
+    fontSize: 10,
+    marginTop: 5
   },
   logo: {
     width: 100,
@@ -105,6 +106,9 @@ const styles = StyleSheet.create({
   logoBox: {
     marginTop: 200,
   },
+  signup: {
+    textDecorationLine: 'underline'
+  }
 });
 
 export default Login;

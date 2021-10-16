@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-    border: "none",
+    // border: "none",
   },
   doubleInputBox: {
     marginTop: 20,
-    outlineColor: 'black',
+    // outlineColor: 'black',
     fontSize: 12,
     display: "flex",
     flexDirection: "row",
@@ -54,22 +54,23 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 12,
     marginRight: 10,
+    marginLeft: 10,
     // borderWidth: 1,
     // borderColor: "gray",
-    outlineColor: 'black',
+    // outlineColor: 'black',
     borderRadius: 8,
     backgroundColor: "#B3E5FD",
   },
   singleInputBox: {
     marginTop: 20,
-    outlineColor: 'black',
+    // outlineColor: 'black',
     fontSize: 12,
     flexDirection: "row",
     justifyContent: "center",
   },
   singleInput: {
     width: 315,
-    outlineColor: 'black',
+    // outlineColor: 'black',
     fontSize: 12,
     height: 40,
     padding: 10,
@@ -98,6 +99,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+  },
+  login: {
+    textDecorationLine: 'underline'
   },
   loginText: {
     alignSelf: 'center',
@@ -151,7 +155,7 @@ const Signup = (props) => {
         <Text style={styles.appName}>Cruze</Text>
       </View>
 
-      <View style={styles.roleSelecterBox}>
+      {/* <View style={styles.roleSelecterBox}>
         <Picker
           selectedValue={role}
           style={styles.roleSelecter}
@@ -162,7 +166,8 @@ const Signup = (props) => {
           {renderRoles()}
         </Picker>
 
-      </View>
+      </View> */}
+
       <View style={styles.doubleInputBox}>
         <TextInput
           style={styles.doubleInput}
@@ -255,7 +260,7 @@ const Signup = (props) => {
 
       <View>
         <Text style={styles.loginText}>Already have an account?
-        <u onClick={props.login}>Log in</u>
+        <Text style={styles.login} onClick={props.login}>Log in</Text>
         </Text>
       </View>
 
