@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import RiderList from './RiderList.jsx';
+import DriverMap from './DriverMap.jsx';
 
 const DriverHome = () => {
   return (
     <View style={styles.landingContainer}>
+      <DriverMap />
       <Text style={styles.title}>
         Hello, Tim
       </Text>
