@@ -18,15 +18,19 @@ class Login extends React.Component {
     this.setState({ password: text })
   }
   handleRole = (e) => {
-    this.setState({ role: e.target.value })
+    this.setState({ role: e })
   }
   login = (email, pass, role) => {
-    alert('email: ' + email + ' password: ' + pass + ' role: ' + role)
+    console.log(`email: ${email} password: ${pass} role: ${role}`)
   }
 
   render() {
     return (
       <View>
+        <img
+        style={{ height: 80, width: 80, position: 'fixed', top: 140, left: 100 }}
+        src='https://cdn4.iconfinder.com/data/icons/water-waves-design/1470/c_letter_logo_water_wave_blue_ocean-512.png'
+        />
         <Text style={styles.text}>Cruze</Text>
         <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/>
         <TextInput style = {styles.input}
@@ -55,14 +59,10 @@ class Login extends React.Component {
 const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
-    marginTop: -200,
-    marginBottom: 25,
     color: '#B3E5FD',
     fontSize: 36,
-  },
-  logo: {
-    width: 50,
-    height: 50
+    marginTop: -200,
+    marginBottom: 25,
   },
   input: {
     backgroundColor: '#B3E5FD',

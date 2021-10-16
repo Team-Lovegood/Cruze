@@ -8,7 +8,10 @@ const UserRole = ({role, handleRole}) => {
       <Picker
         selectedValue={selectedValue}
         style={styles.dropdown}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        onValueChange={(itemValue, itemIndex) => {
+          handleRole(itemValue);
+          setSelectedValue(itemValue);
+        }}
       >
         <Picker.Item label="I want a ride" value="rider" />
         <Picker.Item label="I want to drive" value="driver" />
