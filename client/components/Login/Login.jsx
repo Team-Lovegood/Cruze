@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 import UserRole from './UserRole.jsx';
 import logo from "../../../assets/logo.png";
 
@@ -29,6 +29,7 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoBox}>
+          <Image style={styles.logo} source={logo}/>
           <Text style={styles.text}>Cruze</Text>
         </View>
 
@@ -101,9 +102,12 @@ const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
+    marginBottom: 20,
+    marginRight: -55
   },
   logoBox: {
     marginTop: 200,
+    flexDirection: 'row'
   },
   signup: {
     textDecorationLine: 'underline'

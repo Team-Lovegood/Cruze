@@ -11,20 +11,23 @@ const styles = StyleSheet.create({
   },
   logoBox: {
     marginTop: 200,
+    flexDirection: 'row'
   },
   logo: {
     width: 100,
     height: 100,
+    marginBottom: 20,
+    marginRight: -55
   },
   appName: {
     color: "#B3E5FD",
     fontSize: 36,
+    alignSelf: 'center'
     // position: "absolute",
     // left: 50,
     // top: 40,
   },
   roleSelecterBox: {
-    marginTop: 20,
     width: 320,
     padding: 10,
     height: 40,
@@ -151,7 +154,7 @@ const Signup = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
-        {/* <Image style={styles.logo} source={logo} /> */}
+        <Image style={styles.logo} source={logo} />
         <Text style={styles.appName}>Cruze</Text>
       </View>
 
