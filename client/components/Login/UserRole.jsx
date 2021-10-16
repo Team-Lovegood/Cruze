@@ -22,6 +22,7 @@ const UserRole = ({role, handleRole}) => {
 
 const styles = StyleSheet.create({
   dropdown: {
+    zIndex: 1000,
     backgroundColor: '#B3E5FD',
     borderColor: 'white',
     padding: 10,

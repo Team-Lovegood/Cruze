@@ -155,7 +155,7 @@ const Signup = (props) => {
         <Text style={styles.appName}>Cruze</Text>
       </View>
 
-      {/* <View style={styles.roleSelecterBox}>
+      <View style={styles.roleSelecterBox}>
         <Picker
           selectedValue={role}
           style={styles.roleSelecter}
@@ -166,7 +166,7 @@ const Signup = (props) => {
           {renderRoles()}
         </Picker>
 
-      </View> */}
+      </View>
 
       <View style={styles.doubleInputBox}>
         <TextInput

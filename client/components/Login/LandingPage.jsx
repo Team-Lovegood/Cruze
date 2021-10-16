@@ -22,7 +22,8 @@ class LandingPage extends React.Component{
   render() {
     return (
       <>
-      {this.state.page === 'login' ? <Login signup={this.handleSignup.bind(this)}/> : <Signup login={this.handleLogin.bind(this)}/>}
+      {/* {this.state.page === 'login' ? <Login signup={this.handleSignup.bind(this)}/> : <Signup login={this.handleLogin.bind(this)}/>} */}
+      <Signup/>
       </>
     )
   }

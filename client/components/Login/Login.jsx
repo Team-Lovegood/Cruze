@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import UserRole from './UserRole.jsx';
 import logo from "../../../assets/logo.png";
 
@@ -29,7 +29,6 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoBox}>
-
           <Text style={styles.text}>Cruze</Text>
         </View>
 
@@ -54,7 +53,7 @@ class Login extends React.Component {
         </TouchableOpacity>
 
         <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onClick={this.props.signup}>Sign up</Text></Text>
-      </View>
+    </View>
     )
   }
 }
