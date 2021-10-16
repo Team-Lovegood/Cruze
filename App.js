@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LandingPage from './client/components/Login/LandingPage.jsx';
-//import profiles
+import RiderProfile from './client/components/Profiles/RiderProfile.jsx';
+import DriverProfile from './client/components/Profiles/DriverProfile.jsx';
 //import riderhome
 //import driverhome
 
@@ -11,10 +12,12 @@ export default function App() {
     <>
     <View style={styles.container}>
       <LandingPage/>
+      {/* <RiderProfile /> */}
+      {/* <DriverProfile /> */}
       <StatusBar style="auto" />
     </View>
 
-    <View style={styles.container}>
+    {/* <View style={styles.container}>
       <Text>Profiles</Text>
       <StatusBar style="auto" />
     </View>
@@ -27,7 +30,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Driver Home</Text>
       <StatusBar style="auto" />
-    </View>
+    </View> */}
     </>
   );
 }
