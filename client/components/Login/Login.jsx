@@ -36,11 +36,18 @@ class Login extends React.Component {
         {/* <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/> */}
 
         <TextInput style = {styles.input}
+          placeholder = "Role selector placeholder"
+          placeholderTextColor = "black"
+          autoCapitalize = "none"/>
+
+        <TextInput style = {styles.input}
+          textContentType='emailAddress'
           placeholder = "Email"
           placeholderTextColor = "black"
           autoCapitalize = "none"
           onChangeText = {this.handleEmail}/>
         <TextInput style = {styles.input}
+          textContentType='password'
           placeholder = "Password"
           placeholderTextColor = "black"
           autoCapitalize = "none"
@@ -66,6 +73,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
+  logoBox: {
+    marginTop: 200,
+    flexDirection: 'row'
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    marginRight: -55
+  },
   text: {
     color: '#B3E5FD',
     fontSize: 36,
@@ -74,7 +91,6 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#B3E5FD',
-    // outlineColor: 'black',
     padding: 10,
     marginBottom: 20,
     borderRadius: 8,
@@ -98,16 +114,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 10,
     marginTop: 5
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-    marginRight: -55
-  },
-  logoBox: {
-    marginTop: 200,
-    flexDirection: 'row'
   },
   signup: {
     textDecorationLine: 'underline'

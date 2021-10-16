@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Image, Picker, TouchableOpacity} from "react-native";
-// //import { Picker } from "@react-native-picker/picker";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,17 +22,12 @@ const styles = StyleSheet.create({
     color: "#B3E5FD",
     fontSize: 36,
     alignSelf: 'center'
-    // position: "absolute",
-    // left: 50,
-    // top: 40,
   },
   roleSelecterBox: {
     width: 320,
     padding: 10,
     height: 40,
-    // borderWidth: 1,
     borderRadius: 8,
-    // borderColor: "gray",
     backgroundColor: "#B3E5FD",
   },
   roleSelecter: {
@@ -41,74 +35,35 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-    // border: "none",
   },
   doubleInputBox: {
-    marginTop: 20,
-    // outlineColor: 'black',
+    marginBottom: 20,
     fontSize: 12,
-    display: "flex",
+    width: 320,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: 'space-between',
   },
   doubleInput: {
     padding: 10,
     width: 150,
     height: 40,
     fontSize: 12,
-    marginRight: 10,
-    marginLeft: 10,
-    // borderWidth: 1,
-    // borderColor: "gray",
-    // outlineColor: 'black',
     borderRadius: 8,
     backgroundColor: "#B3E5FD",
   },
   singleInputBox: {
-    marginTop: 20,
-    // outlineColor: 'black',
+    marginBottom: 20,
     fontSize: 12,
     flexDirection: "row",
     justifyContent: "center",
   },
   singleInput: {
-    width: 315,
-    // outlineColor: 'black',
+    width: 320,
     fontSize: 12,
     height: 40,
     padding: 10,
-    // borderWidth: 1,
-    // borderColor: "gray",
     borderRadius: 8,
     backgroundColor: "#B3E5FD",
-  },
-  signUpButtonBox: {
-    marginTop: 20,
-    backgroundColor:'gainsboro',
-    borderRadius: 8,
-
-  },
-  signUpButton: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'gainsboro',
-    borderRadius: 8,
-    height: 25,
-    width: 150
-  },
-  signInLinkBox: {
-    marginTop: 10,
-    width: 400,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  login: {
-    textDecorationLine: 'underline'
-  },
-  loginText: {
-    alignSelf: 'center',
-    fontSize: 10
   },
   signup: {
     justifyContent: 'center',
@@ -117,11 +72,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 30,
     width: 150,
-    marginTop: 20
   },
   signupText: {
     alignSelf: 'center',
     fontSize: 12,
+  },
+  loginText: {
+    alignSelf: 'center',
+    fontSize: 10,
+    marginTop: 5
+  },
+  login: {
+    textDecorationLine: 'underline'
   },
 });
 
@@ -129,6 +91,7 @@ const Roles = {
   rider: "rider",
   driver: "driver",
 };
+
 import logo from "../../../assets/logo.png";
 const Signup = (props) => {
   const roles = [
@@ -158,7 +121,7 @@ const Signup = (props) => {
         <Text style={styles.appName}>Cruze</Text>
       </View>
 
-      <View style={styles.roleSelecterBox}>
+      {/* <View style={styles.roleSelecterBox}>
         <Picker
           selectedValue={role}
           style={styles.roleSelecter}
@@ -168,24 +131,32 @@ const Signup = (props) => {
         >
           {renderRoles()}
         </Picker>
-
+      </View> */}
+      <View style={styles.singleInputBox}>
+        <TextInput
+          style={styles.singleInput}
+          placeholderTextColor = "black"
+          placeholder="Role selector placeholder"
+        />
       </View>
 
       <View style={styles.doubleInputBox}>
-        <TextInput
-          style={styles.doubleInput}
-          value={firstName}
-          placeholderTextColor = "black"
-          onChangeText={(text) => setFirstName(text)}
-          placeholder="First name"
-        />
-        <TextInput
-          style={styles.doubleInput}
-          value={lastName}
-          placeholderTextColor = "black"
-          onChangeText={(text) => setLastName(text)}
-          placeholder="Last name"
-        />
+
+          <TextInput
+            style={styles.doubleInput}
+            value={firstName}
+            placeholderTextColor = "black"
+            onChangeText={(text) => setFirstName(text)}
+            placeholder="First name"
+          />
+          <TextInput
+            style={styles.doubleInput}
+            value={lastName}
+            placeholderTextColor = "black"
+            onChangeText={(text) => setLastName(text)}
+            placeholder="Last name"
+          />
+
       </View>
 
       <View style={styles.singleInputBox}>
@@ -249,22 +220,14 @@ const Signup = (props) => {
         </>
       )}
 
-      {/* <View style={styles.signUpButtonBox}>
-        <Button
-          style={styles.signUpButton}
-          title="Sign Upx"
-          color='gainsboro'
-        />
-      </View> */}
       <TouchableOpacity style={styles.signup}>
         <Text style={styles.signupText}>Sign up</Text>
+        {/* Add functionality */}
       </TouchableOpacity>
 
 
       <View>
-        <Text style={styles.loginText}>Already have an account?
-        <Text style={styles.login} onClick={props.login}>Log in</Text>
-        </Text>
+        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onClick={props.login}>Log in</Text></Text>
       </View>
 
     </View>
