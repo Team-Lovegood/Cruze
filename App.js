@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-//import login
+import LandingPage from './client/components/Login/LandingPage.jsx';
 //import profiles
 //import riderhome
 //import driverhome
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <>
     <View style={styles.container}>
-      <Text>Login</Text>
+      <LandingPage/>
       <StatusBar style="auto" />
     </View>
 
