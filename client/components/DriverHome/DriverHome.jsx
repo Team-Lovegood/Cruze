@@ -1,14 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import RiderList from './RiderList.jsx';
-import DriverMap from './DriverMap.jsx';
 import Map from './Map.jsx';
 
 const DriverHome = () => {
   return (
     <>
       <View style={styles.landingContainer}>
-        {/* <DriverMap /> */}
         <Map />
       </View>
       <View style={styles.landingContainer}>
