@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import UserRole from './UserRole.jsx';
+import logo from "../../../assets/logo.png";
 
 class Login extends React.Component {
   constructor(props) {
@@ -21,18 +22,19 @@ class Login extends React.Component {
     this.setState({ role: e })
   }
   login = (email, pass, role) => {
-    console.log(`email: ${email} password: ${pass} role: ${role}`)
+    alert(`email: ${email} password: ${pass} role: ${role}`);
   }
 
   render() {
     return (
-      <View>
-        <img
-        style={{ height: 80, width: 80, position: 'fixed', top: 140, left: 100 }}
-        src='https://cdn4.iconfinder.com/data/icons/water-waves-design/1470/c_letter_logo_water_wave_blue_ocean-512.png'
-        />
-        <Text style={styles.text}>Cruze</Text>
-        <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/>
+      <View style={styles.container}>
+        <View style={styles.logoBox}>
+
+          <Text style={styles.text}>Cruze</Text>
+        </View>
+
+        <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)} RideStr='I am a rider' DriveStr='I am a driver'/>
+
         <TextInput style = {styles.input}
           placeholder = "Email"
           placeholderTextColor = "black"
@@ -50,37 +52,42 @@ class Login extends React.Component {
           }>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.signupText}>Don't have an account? <u>Sign up</u></Text>
+        <Text style={styles.signupText}>Don't have an account? <u onClick={this.props.signup}>Sign up</u></Text>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    flexDirection: "column",
+    alignItems: "center",
+  },
   text: {
-    alignSelf: 'center',
     color: '#B3E5FD',
     fontSize: 36,
-    marginTop: -200,
-    marginBottom: 25,
+    alignSelf: 'center',
+
   },
   input: {
     backgroundColor: '#B3E5FD',
     outlineColor: 'black',
-    textAlign: 'center',
-    marginBottom: 25,
+    padding: 10,
+    marginBottom: 20,
     outlineWidth: 1,
     borderRadius: 8,
     fontSize: 12,
-    height: 35,
-    width: 250
+    height: 40,
+    width: 320
   },
   login: {
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: 'gainsboro',
     borderRadius: 8,
-    height: 25,
+    height: 30,
     width: 150
   },
   loginText: {
@@ -90,7 +97,14 @@ const styles = StyleSheet.create({
   signupText: {
     alignSelf: 'center',
     fontSize: 10
-  }
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  logoBox: {
+    marginTop: 200,
+  },
 });
 
 export default Login;
