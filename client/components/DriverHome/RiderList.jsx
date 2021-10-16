@@ -2,7 +2,6 @@ import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
 const RiderList = () => {
-
   return (
     <View style={styles.container}>
       <FlatList
@@ -11,8 +10,7 @@ const RiderList = () => {
           {key: 'David'},
           {key: 'Luna'},
           {key: 'Sebastian'},
-          {key: 'Isaac'},
-          {key: 'Jin'}
+          {key: 'Isaac'}
         ]}
         renderItem={({item}) =>
           <Text
