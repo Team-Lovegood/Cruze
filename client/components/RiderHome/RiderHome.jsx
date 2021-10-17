@@ -4,6 +4,7 @@ import MapView from 'react-native-maps';
 
 import SearchTrip from './stories/SearchTrip';
 import FindingDriver from './stories/FindingDriver';
+import ToDestination from './stories/ToDestination';
 
 const RiderHome = () => {
 
@@ -11,6 +12,8 @@ const RiderHome = () => {
   const handleMap = () => {
     setShowMap(false);
   }
+
+  const [tripStatus, setTripStatus] = useState('onTheWay')
 
   return (
     <>
@@ -24,7 +27,9 @@ const RiderHome = () => {
           longitudeDelta: 0.5,
         }}
       />}
-      <SearchTrip showMap={showMap} handleMap={handleMap} />
+      {/* <SearchTrip showMap={showMap} handleMap={handleMap} /> */}
+      <ToDestination tripStatus={tripStatus} />
+
     </>
   )
 }
@@ -34,5 +39,5 @@ export default RiderHome;
 const styles = StyleSheet.create({
   map: {
     flex: 2.5
-  }
+  },
 });
