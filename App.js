@@ -13,38 +13,36 @@ import DriverProfile from './client/components/Profiles/DriverProfile.jsx';
 const AuthStack = createStackNavigator();
 
 export default function App() {
-  <NavigationContainer>
-    <AuthStack.Navigator>
-      <AuthStack.Screen name='Login' component={LoginScreen}/>
-      <AuthStack.Screen name='Signup' component={SignupScreen}/>
-    </AuthStack.Navigator>
-  </NavigationContainer>
-  // return (
-  //   <>
-  //   <View style={styles.container}>
-  //     <Text>Team Lovegood</Text>
-  //     <LandingPage/>
-  //     <RiderProfile />
-  //     <DriverProfile />
-  //     <StatusBar style="auto" />
-  //   </View>
+  return (
+    <>
+      {/* <View style={styles.container}>
+        <Text>Team Lovegood</Text>
+        <StatusBar style="auto" />
+      </View> */}
 
-  //   <View style={styles.container}>
-  //     <Text>Profiles</Text>
-  //     <StatusBar style="auto" />
-  //   </View>
+      <NavigationContainer>
+        <AuthStack.Navigator>
+          <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
+        </AuthStack.Navigator>
+      </NavigationContainer>
 
-  //   <View style={styles.container}>
-  //     <Text>Rider Home</Text>
-  //     <StatusBar style="auto" />
-  //   </View>
+      {/* <View style={styles.container}>
+        <Text>Profiles</Text>
+        <StatusBar style="auto" />
+      </View>
 
-  //   <View style={styles.container}>
-  //     <Text>Driver Home</Text>
-  //     <StatusBar style="auto" />
-  //   </View>
-  //   </>
-  // );
+      <View style={styles.container}>
+        <Text>Rider Home</Text>
+        <StatusBar style="auto" />
+      </View>
+
+      <View style={styles.container}>
+        <Text>Driver Home</Text>
+        <StatusBar style="auto" />
+      </View> */}
+    </>
+  );
 }
 
 const styles = StyleSheet.create({

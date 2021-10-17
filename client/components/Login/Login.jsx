@@ -56,7 +56,7 @@ class Login extends React.Component {
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
-        <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onClick={this.props.signup}>Sign up</Text></Text>
+        <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={this.props.signup}>Sign up</Text></Text>
     </View>
     )
   }

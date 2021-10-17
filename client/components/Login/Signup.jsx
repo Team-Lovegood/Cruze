@@ -227,7 +227,7 @@ const Signup = (props) => {
 
 
       <View>
-        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onClick={props.login}>Log in</Text></Text>
+        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onPress={props.login}>Log in</Text></Text>
       </View>
 
     </View>
