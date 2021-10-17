@@ -12,8 +12,8 @@ export default function App() {
     <>
     <View style={styles.container}>
       <Text>Team Lovegood</Text>
-      {/* <LandingPage/>
-      <RiderProfile />
+      {/* <LandingPage/> */}
+      {/* <RiderProfile />
       <DriverProfile />
       <StatusBar style="auto" /> */}
     </View>

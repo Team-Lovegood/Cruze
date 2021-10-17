@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 import UserRole from './UserRole.jsx';
 import logo from "../../../assets/logo.png";
+import SelectDropdown from 'react-native-select-dropdown';
 
 class Login extends React.Component {
   constructor(props) {
@@ -33,12 +34,7 @@ class Login extends React.Component {
           <Text style={styles.text}>Cruze</Text>
         </View>
 
-        {/* <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/> */}
-
-        <TextInput style = {styles.input}
-          placeholder = "Role selector placeholder"
-          placeholderTextColor = "black"
-          autoCapitalize = "none"/>
+        <UserRole />
 
         <TextInput style = {styles.input}
           textContentType='emailAddress'

@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
 
-const UserRole = ({role, handleRole}) => {
-  const [selectedValue, setSelectedValue] = useState('I want a ride');
+function UserRole() {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'I am a rider', value: 'ride'},
+    {label: 'I am a driver', value: 'drive'},
+  ]);
+
   return (
-    <View>
-      <Picker
-        selectedValue={selectedValue}
-        style={styles.dropdown}
-        onValueChange={(itemValue, itemIndex) => {
-          handleRole(itemValue);
-          setSelectedValue(itemValue);
-        }}
-      >
-        <Picker.Item label='I want a ride' value="rider" />
-        <Picker.Item label='I want to drive' value="driver" />
-      </Picker>
-    </View>
+    <DropDownPicker
+      style={styles.dropdown}
+      placeholder='I am a rider'
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   dropdown: {
-    zIndex: 1000,
     backgroundColor: '#B3E5FD',
     borderColor: 'white',
     padding: 10,
