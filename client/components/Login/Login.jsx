@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 import UserRole from './UserRole.jsx';
 import logo from "../../../assets/logo.png";
+import SelectDropdown from 'react-native-select-dropdown';
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,18 +30,20 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoBox}>
-
+          <Image style={styles.logo} source={logo}/>
           <Text style={styles.text}>Cruze</Text>
         </View>
 
-        {/* <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/> */}
+        <UserRole />
 
         <TextInput style = {styles.input}
+          textContentType='emailAddress'
           placeholder = "Email"
           placeholderTextColor = "black"
           autoCapitalize = "none"
           onChangeText = {this.handleEmail}/>
         <TextInput style = {styles.input}
+          textContentType='password'
           placeholder = "Password"
           placeholderTextColor = "black"
           autoCapitalize = "none"
@@ -54,7 +57,7 @@ class Login extends React.Component {
         </TouchableOpacity>
 
         <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onClick={this.props.signup}>Sign up</Text></Text>
-      </View>
+    </View>
     )
   }
 }
@@ -66,15 +69,23 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
+  logoBox: {
+    marginTop: 200,
+    flexDirection: 'row'
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    marginRight: -55
+  },
   text: {
     color: '#B3E5FD',
     fontSize: 36,
     alignSelf: 'center',
-
   },
   input: {
     backgroundColor: '#B3E5FD',
-    // outlineColor: 'black',
     padding: 10,
     marginBottom: 20,
     borderRadius: 8,
@@ -98,13 +109,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 10,
     marginTop: 5
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  logoBox: {
-    marginTop: 200,
   },
   signup: {
     textDecorationLine: 'underline'
