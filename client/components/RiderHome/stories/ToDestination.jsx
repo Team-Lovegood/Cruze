@@ -21,7 +21,8 @@ export default ToDestination;
 const styles = StyleSheet.create({
   topContainer: {
     flex: 0.5,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    marginBottom: 10
   },
 
   driverContainer: {
@@ -46,7 +47,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#B3E5FD',
-    borderRadius: 15
+    borderRadius: 15,
+    marginLeft: 15,
+    marginRight: 15,
   },
 
   carInfo: {
