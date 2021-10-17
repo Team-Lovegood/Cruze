@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { KeyboardAvoidingView } from 'react-native'
 import API from '../config.js';
-const GOOGLE_PLACES_API_KEY = 'AIzaSyCIRN4ADxtR99n6x0EZ3QSsLXiW5wLZIWU';
+
 
 const SearchTrip = ({ showMap, handleMap }) => {
 
