@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     color: '#B3E5FD',
     fontSize: 36,
     alignSelf: 'center',
-
   },
   input: {
     backgroundColor: '#B3E5FD',

@@ -11,10 +11,11 @@ export default function App() {
   return (
     <>
     <View style={styles.container}>
-      <LandingPage/>
-      {/* <RiderProfile /> */}
-      {/* <DriverProfile /> */}
-      <StatusBar style="auto" />
+      <Text>Team Lovegood</Text>
+      {/* <LandingPage/>
+      <RiderProfile />
+      <DriverProfile />
+      <StatusBar style="auto" /> */}
     </View>
 
     {/* <View style={styles.container}>
