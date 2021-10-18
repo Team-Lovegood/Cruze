@@ -27,11 +27,10 @@ export default function App() {
   </View>*/}
 
 
-    {/* <View style={styles.container}>
+    <View style={styles.container}>
       <DriverHome />
-      <Text>Driver Home</Text>
       <StatusBar style="auto" />
-    </View> */}
+    </View>
     </>
   );
 }
