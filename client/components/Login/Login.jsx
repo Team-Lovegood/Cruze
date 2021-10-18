@@ -1,65 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 import UserRole from './UserRole.jsx';
 import logo from "../../../assets/logo.png";
 import SelectDropdown from 'react-native-select-dropdown';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      role: 'rider',
-      email: '',
-      password: ''
-    }
-  }
-  handleEmail = (text) => {
-    this.setState({ email: text })
-  }
-  handlePassword = (text) => {
-    this.setState({ password: text })
-  }
-  handleRole = (e) => {
-    this.setState({ role: e })
-  }
-  login = (email, pass, role) => {
-    alert(`email: ${email} password: ${pass} role: ${role}`);
-  }
+// class Login extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       role: 'rider',
+//       email: '',
+//       password: ''
+//     }
+//   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.logoBox}>
-          <Image style={styles.logo} source={logo}/>
-          <Text style={styles.text}>Cruze</Text>
-        </View>
+//   handleEmail = (text) => {
+//     this.setState({ email: text })
+//   }
+//   handlePassword = (text) => {
+//     this.setState({ password: text })
+//   }
+//   handleRole = (e) => {
+//     this.setState({ role: e })
+//   }
+//   login = (email, pass, role) => {
+//     alert(`email: ${email} password: ${pass} role: ${role}`);
+//   }
 
-        <UserRole />
+//   render() {
+const Login = (props) => {
+  const Roles = { rider: "rider", driver: "driver",};
+  const roles = [{ value: Roles.rider, label: "I am a rider" }, { value: Roles.driver, label: "I am a driver" }];
+  const [role, setRole] = useState(Roles.rider);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-        <TextInput style = {styles.input}
-          textContentType='emailAddress'
-          placeholder = "Email"
-          placeholderTextColor = "black"
-          autoCapitalize = "none"
-          onChangeText = {this.handleEmail}/>
-        <TextInput style = {styles.input}
-          secureTextEntry={true}
-          textContentType='password'
-          placeholder = "Password"
-          placeholderTextColor = "black"
-          autoCapitalize = "none"
-          onChangeText = {this.handlePassword}/>
-        <TouchableOpacity
-          style={styles.login}
-          onPress={
-            () => this.login(this.state.email, this.state.password, this.state.role)
-          }>
-          <Text style={styles.loginText}>Login</Text>
-        </TouchableOpacity>
-        <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={this.props.signup}>Sign up</Text></Text>
-    </View>
-    )
-  }
+  return (
+    <View style={styles.container}>
+      <View style={styles.logoBox}>
+        <Image style={styles.logo} source={logo}/>
+        <Text style={styles.text}>Cruze</Text>
+      </View>
+
+      {/* <UserRole /> */}
+
+      <TextInput style = {styles.input}
+        autoCapitalize = "none"
+        placeholder = "Role placeholder"
+        placeholderTextColor = "black"
+        selectedValue={role}
+        onValueChange={(value) => {setRole(value)}}/>
+      <TextInput style = {styles.input}
+        autoCapitalize = "none"
+        textContentType='emailAddress'
+        placeholder = "Email"
+        placeholderTextColor = "black"
+        value={email}
+        onChangeText={(text) => setEmail(text)}/>
+      <TextInput style = {styles.input}
+        secureTextEntry={true}
+        textContentType='password'
+        placeholder = "Password"
+        placeholderTextColor = "black"
+        autoCapitalize = "none"
+        value={password}
+        onChangeText = {(text) => setPassword(text)}/>
+      <TouchableOpacity
+        style={styles.login}
+        onPress={() => alert(email + password + role)}>
+        <Text style={styles.loginText}>Login</Text>
+      </TouchableOpacity>
+      <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
+  </View>
+  );
 }
 
 const styles = StyleSheet.create({

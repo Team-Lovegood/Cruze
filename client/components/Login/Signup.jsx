@@ -136,7 +136,7 @@ const Signup = (props) => {
         <TextInput
           style={styles.singleInput}
           placeholderTextColor = "black"
-          placeholder="Role selector placeholder"
+          placeholder="Role placeholder"
         />
       </View>
 
@@ -161,20 +161,22 @@ const Signup = (props) => {
 
       <View style={styles.singleInputBox}>
         <TextInput
-          textContentType="emailAddress"
           style={styles.singleInput}
-          value={email}
-          placeholderTextColor = "black"
-          onChangeText={(text) => setEmail(text)}
+          textContentType="emailAddress"
+          autoCapitalize = "none"
           placeholder="Email"
+          placeholderTextColor = "black"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
       <View style={styles.singleInputBox}>
         <TextInput
+          style={styles.singleInput}
           textContentType="password"
           secureTextEntry={true}
-          style={styles.singleInput}
+          autoCapitalize = "none"
           value={password}
           placeholderTextColor = "black"
           onChangeText={(text) => setPassword(text)}
@@ -220,9 +222,10 @@ const Signup = (props) => {
         </>
       )}
 
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity
+        style={styles.signup}
+        onPress={() => alert(email + password + role)}>
         <Text style={styles.signupText}>Sign up</Text>
-        {/* Add functionality */}
       </TouchableOpacity>
 
 
