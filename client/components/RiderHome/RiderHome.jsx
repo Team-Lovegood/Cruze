@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
+import { BlurView } from 'expo-blur';
+import axios from 'axios';
 import API from './config.js';
-
-// import { BlurView } from "@react-native-community/blur";
 
 import Arrived from './stories/Arrived';
 import SearchTrip from './stories/SearchTrip';
@@ -16,6 +16,8 @@ const RiderHome = () => {
   const temp = {latitude: 40.699215, longitude: -73.999039}
   const [departure, setDeparture] = useState({latitude: 40.748817, longitude: -73.985428});
   const [destination, setDestination] = useState(temp);
+  const [distance, setDistance] = useState('');
+  const [duration, setDuration] = useState('');
 
 
   const [tripStatus, setTripStatus] = useState('onTheWay');
@@ -31,17 +33,35 @@ const RiderHome = () => {
     });
   }, [departure, destination]);
 
+  useEffect(() => {
+    if(!departure || !destination) {
+      return;
+    };
+
+    var config = {
+      method: 'get',
+      url: `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${departure.latitude.toString()},${departure.longitude.toString()}&destinations=${destination.latitude.toString()},${departure.longitude.toString()}&key=${API.API}`,
+      headers: {}
+    };
+    axios(config)
+    .then((res) => {
+      const info = res.data.rows[0].elements[0];
+      console.log(info)
+      setDistance(info.distance);
+      setDuration(info.duration);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [departure, destination]);
+
 
   return (
     <>
       <View style={styles.header}></View>
-      {/* <BlurView
-          style={styles.absolute}
-          blurType="light"
-          blurAmount={10}
-          reducedTransparencyFallbackColor="white"
-        /> */}
+      <FindingDriver tripStatus={tripStatus} />
       <MapView
+        blurRadius={4}
         ref={mapRef}
         style={styles.map}
         mapType="standard"
@@ -52,14 +72,15 @@ const RiderHome = () => {
           longitudeDelta: 0.005,
         }}
       >
+        {tripStatus === 'findDriver' && <BlurView style={styles.blurContainer} intensity={65} tint='light'></BlurView>}
         <MapView.Marker coordinate={departure} identifier="departure" />
         {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
         {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={3} strokeColor="black" mode="DRIVING" />}
       </MapView>
-      <SearchTrip />
-      {/* <FindingDriver /> */}
-      {/* <ToDestination tripStatus={tripStatus} /> */}
-      {/* <Arrived /> */}
+      {/* <SearchTrip /> */}
+      <FindingDriver tripStatus={tripStatus} />
+      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} />
+      <Arrived tripStatus={tripStatus} />
     </>
   )
 }
@@ -80,5 +101,30 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0
-  }
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    // backgroundColor: '#F5FCFF'
+  },
+  searchTrip: {
+    textAlign: 'center',
+    fontWeight: '600',
+    fontSize:24
+  },
+
+  car: {
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+
+  blurContainer: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+  },
+
+  spinnerTextStyle: {
+    color: 'black'
+  },
 });
