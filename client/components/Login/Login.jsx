@@ -1,36 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
-import UserRole from './UserRole.jsx';
 import logo from "../../../assets/logo.png";
-import SelectDropdown from 'react-native-select-dropdown';
+import DropDownPicker from "react-native-dropdown-picker";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 
-// class Login extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       role: 'rider',
-//       email: '',
-//       password: ''
-//     }
-//   }
-
-//   handleEmail = (text) => {
-//     this.setState({ email: text })
-//   }
-//   handlePassword = (text) => {
-//     this.setState({ password: text })
-//   }
-//   handleRole = (e) => {
-//     this.setState({ role: e })
-//   }
-//   login = (email, pass, role) => {
-//     alert(`email: ${email} password: ${pass} role: ${role}`);
-//   }
-
-//   render() {
 const Login = (props) => {
   const Roles = { rider: "rider", driver: "driver",};
-  const roles = [{ value: Roles.rider, label: "I am a rider" }, { value: Roles.driver, label: "I am a driver" }];
+  const [items, setItems] = useState([
+    { value: Roles.rider, label: "I am a rider" },
+    { value: Roles.driver, label: "I am a driver" },
+  ]);
+  const [open, setOpen] = useState(false);
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,14 +21,17 @@ const Login = (props) => {
         <Text style={styles.text}>Cruze</Text>
       </View>
 
-      {/* <UserRole /> */}
+      <DropDownPicker
+          style={styles.roleSelecter}
+          open={open}
+          setOpen={setOpen}
+          value={role}
+          items={items}
+          setValue={setRole}
+          setItems={setItems}
+          containerStyle={{width: 320}}
+        />
 
-      <TextInput style = {styles.input}
-        autoCapitalize = "none"
-        placeholder = "Role placeholder"
-        placeholderTextColor = "black"
-        selectedValue={role}
-        onValueChange={(value) => {setRole(value)}}/>
 
       <TextInput style = {styles.input}
         autoCapitalize = "none"
@@ -126,7 +108,18 @@ const styles = StyleSheet.create({
   },
   signup: {
     textDecorationLine: 'underline'
-  }
+  },
+  roleSelecter: {
+    overflow: "hidden",
+    marginBottom: 20,
+    zIndex: 100,
+    width: 320,
+    height: 40,
+    backgroundColor: "#B3E5FD",
+    fontSize: 12,
+    position: "relative",
+    borderColor: 'white'
+  },
 });
 
 export default Login;

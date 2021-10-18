@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button, Image, Picker, TouchableOpacity} from "react-native";
-
+import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity} from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -23,18 +23,16 @@ const styles = StyleSheet.create({
     fontSize: 36,
     alignSelf: 'center'
   },
-  roleSelecterBox: {
-    width: 320,
-    padding: 10,
-    height: 40,
-    borderRadius: 8,
-    backgroundColor: "#B3E5FD",
-  },
   roleSelecter: {
+    overflow: "hidden",
+    marginBottom: 20,
+    zIndex: 100,
+    width: 320,
     height: 40,
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
+    borderColor: 'white'
   },
   doubleInputBox: {
     marginBottom: 20,
@@ -94,11 +92,14 @@ const Roles = {
 
 import logo from "../../../assets/logo.png";
 const Signup = (props) => {
-  const roles = [
+
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([
     { value: Roles.rider, label: "I want to ride" },
     { value: Roles.driver, label: "I want to drive" },
-  ];
+  ]);
   const [role, setRole] = useState(Roles.rider);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -107,13 +108,6 @@ const Signup = (props) => {
   const [carModel, setCarModel] = useState("");
   const [carColor, setCarColor] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
-  const renderRoles = () => {
-    return roles.map((role) => {
-      return (
-        <Picker.Item key={role.value} label={role.label} value={role.value} />
-      );
-    });
-  };
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
@@ -121,25 +115,17 @@ const Signup = (props) => {
         <Text style={styles.appName}>Cruze</Text>
       </View>
 
-      {/* <View style={styles.roleSelecterBox}>
-        <Picker
-          selectedValue={role}
+      <DropDownPicker
           style={styles.roleSelecter}
-          onValueChange={(value) => {
-            setRole(value);
-          }}
-        >
-          {renderRoles()}
-        </Picker>
-      </View> */}
-
-      <View style={styles.singleInputBox}>
-        <TextInput
-          style={styles.singleInput}
-          placeholderTextColor = "black"
-          placeholder="Role placeholder"
+          open={open}
+          setOpen={setOpen}
+          value={role}
+          items={items}
+          setValue={setRole}
+          setItems={setItems}
+          containerStyle={{width: 320}}
         />
-      </View>
+
 
       <View style={styles.doubleInputBox}>
 
