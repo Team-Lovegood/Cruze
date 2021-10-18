@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 200,
+    marginTop: 100,
     flexDirection: 'row'
   },
   logo: {

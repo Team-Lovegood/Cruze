@@ -43,6 +43,7 @@ class Login extends React.Component {
           autoCapitalize = "none"
           onChangeText = {this.handleEmail}/>
         <TextInput style = {styles.input}
+          secureTextEntry={true}
           textContentType='password'
           placeholder = "Password"
           placeholderTextColor = "black"
@@ -55,7 +56,6 @@ class Login extends React.Component {
           }>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-
         <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={this.props.signup}>Sign up</Text></Text>
     </View>
     )
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 200,
+    marginTop: 100,
     flexDirection: 'row'
   },
   logo: {

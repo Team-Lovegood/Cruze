@@ -1,9 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './client/components/Login/Login.jsx';
-import Signup from './client/components/Login/Signup.jsx';
-import RiderProfile from './client/components/Profiles/RiderProfile.jsx';
-import DriverProfile from './client/components/Profiles/DriverProfile.jsx';
+import {Login, Signup, RiderProfile, DriverHome, DriverProfile} from './client/components/index.js';
 
 export const LoginScreen = ({ navigation }) => {
   return (
@@ -12,7 +9,6 @@ export const LoginScreen = ({ navigation }) => {
     </View>
   );
 };
-
 export const SignupScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -25,6 +21,14 @@ export const RiderProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <RiderProfile/>
+    </View>
+  );
+};
+
+export const DriverHomeScreen = ({ navigation }) => {
+  return (
+    <View style={styles.container}>
+      <DriverHome/>
     </View>
   );
 };
