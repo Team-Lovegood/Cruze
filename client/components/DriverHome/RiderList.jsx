@@ -14,30 +14,50 @@ const RiderList = ({ toggleRiderList, toggleRiderPickup, changeRider }) => {
       address: '134 main st',
       distance: 2.2,
       amount: 10,
+      location: {
+        latitude: 40.7309,  //washington sqs
+        longitude: -73.9973
+      }
     },
     {
       name: 'Jin',
       address: '134 main st',
       distance: 5.8,
       amount: 60,
+      location: {
+        latitude: 40.6413109,
+        longitude: -73.9928549
+      }
     },
     {
       name: 'David',
       address: '134 main st',
       distance: 2.2,
       amount: 10,
+      location: {
+        latitude: 40.6413109,
+        longitude: -73.9928549
+      }
     },
     {
       name: 'Isaac',
       address: '134 main st',
       distance: 2.2,
       amount: 10,
+      location: {
+        latitude: 40.6413109,
+        longitude: -73.9928549
+      }
     },
     {
       name: 'Sebastian',
       address: '134 main st',
       distance: 2.2,
       amount: 10,
+      location: {
+        latitude: 40.6413109,
+        longitude: -73.9928549
+      }
     },
   ]
   return (
@@ -48,8 +68,14 @@ const RiderList = ({ toggleRiderList, toggleRiderPickup, changeRider }) => {
       <FlatList
         data={dummyData}
         renderItem={({ item }) =>
-          <TouchableOpacity style={styles.btn} onPress={() =>{ handlePress(item)}}>
-            <Text style={styles.btnText}>{item.name}</Text>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => { handlePress(item) }}
+          >
+            <Text
+              style={styles.btnText}>
+                {item.name}
+            </Text>
           </TouchableOpacity>
         }
       />

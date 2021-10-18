@@ -25,17 +25,17 @@ const DriverHome = () => {
 
   return (
     <>
-      <Map />
-      {isRiderListVisible &&
-        <RiderList
-          changeRider={changeRider}
-          toggleRiderList={toggleRiderList}
-          toggleRiderPickup={toggleRiderPickup}
-      />}
-      {isDriverPickupVisible &&
-        <DriverPickup
-          rider={rider}
-      />}
+      <Map destination={rider.location}/>
+        {isRiderListVisible &&
+          <RiderList
+            changeRider={changeRider}
+            toggleRiderList={toggleRiderList}
+            toggleRiderPickup={toggleRiderPickup}
+        />}
+        {isDriverPickupVisible &&
+          <DriverPickup
+            rider={rider}
+        />}
     </>
   );
 };

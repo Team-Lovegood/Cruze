@@ -5,7 +5,7 @@ const DriverPickup = ({ rider }) => {
   return (
     <View style={styles.container}>
       <View style={styles.text}>
-        <Text style={styles.name}>
+        <Text style={styles.pickupName}>
           Picking Up: {rider.name}
         </Text>
         <Text style={styles.name}>
@@ -38,8 +38,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginTop: 10
   },
-  name: {
+  pickupName: {
     fontWeight: '600',
+    fontSize: 25
+  },
+  name: {
+    fontWeight: '300',
     fontSize: 18
   },
   address: {
