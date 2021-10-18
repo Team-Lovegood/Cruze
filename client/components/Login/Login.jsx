@@ -1,62 +1,61 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import UserRole from './UserRole.jsx';
+import React, { useState } from 'react';
 import logo from "../../../assets/logo.png";
+import DropDownPicker from "react-native-dropdown-picker";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      role: 'rider',
-      email: '',
-      password: ''
-    }
-  }
-  handleEmail = (text) => {
-    this.setState({ email: text })
-  }
-  handlePassword = (text) => {
-    this.setState({ password: text })
-  }
-  handleRole = (e) => {
-    this.setState({ role: e })
-  }
-  login = (email, pass, role) => {
-    alert(`email: ${email} password: ${pass} role: ${role}`);
-  }
+const Login = (props) => {
+  const Roles = { rider: "rider", driver: "driver",};
+  const [items, setItems] = useState([
+    { value: Roles.rider, label: "I am a rider" },
+    { value: Roles.driver, label: "I am a driver" },
+  ]);
+  const [open, setOpen] = useState(false);
+  const [role, setRole] = useState(Roles.rider);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.logoBox}>
-
-          <Text style={styles.text}>Cruze</Text>
-        </View>
-
-        {/* <UserRole role={this.state.role} handleRole={this.handleRole.bind(this)}/> */}
-
-        <TextInput style = {styles.input}
-          placeholder = "Email"
-          placeholderTextColor = "black"
-          autoCapitalize = "none"
-          onChangeText = {this.handleEmail}/>
-        <TextInput style = {styles.input}
-          placeholder = "Password"
-          placeholderTextColor = "black"
-          autoCapitalize = "none"
-          onChangeText = {this.handlePassword}/>
-        <TouchableOpacity
-          style={styles.login}
-          onPress={
-            () => this.login(this.state.email, this.state.password, this.state.role)
-          }>
-          <Text style={styles.loginText}>Login</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onClick={this.props.signup}>Sign up</Text></Text>
+  return (
+    <View style={styles.container}>
+      <View style={styles.logoBox}>
+        <Image style={styles.logo} source={logo}/>
+        <Text style={styles.text}>Cruze</Text>
       </View>
-    )
-  }
+
+      <DropDownPicker
+          style={styles.roleSelecter}
+          open={open}
+          setOpen={setOpen}
+          value={role}
+          items={items}
+          setValue={setRole}
+          setItems={setItems}
+          containerStyle={{width: 320}}
+        />
+
+
+      <TextInput style = {styles.input}
+        autoCapitalize = "none"
+        textContentType='emailAddress'
+        placeholder = "Email"
+        placeholderTextColor = "black"
+        value={email}
+        onChangeText={(text) => setEmail(text)}/>
+      <TextInput style = {styles.input}
+        secureTextEntry={true}
+        textContentType='password'
+        placeholder = "Password"
+        placeholderTextColor = "black"
+        autoCapitalize = "none"
+        value={password}
+        onChangeText = {(text) => setPassword(text)}/>
+      <TouchableOpacity
+        style={styles.login}
+        onPress={() => alert(email + password + role)}>
+        <Text style={styles.loginText}>Login</Text>
+      </TouchableOpacity>
+      <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
+  </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -66,15 +65,23 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
+  logoBox: {
+    marginTop: 100,
+    flexDirection: 'row'
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    marginRight: -55
+  },
   text: {
     color: '#B3E5FD',
     fontSize: 36,
     alignSelf: 'center',
-
   },
   input: {
     backgroundColor: '#B3E5FD',
-    // outlineColor: 'black',
     padding: 10,
     marginBottom: 20,
     borderRadius: 8,
@@ -99,16 +106,20 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 5
   },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  logoBox: {
-    marginTop: 200,
-  },
   signup: {
     textDecorationLine: 'underline'
-  }
+  },
+  roleSelecter: {
+    overflow: "hidden",
+    marginBottom: 20,
+    zIndex: 100,
+    width: 320,
+    height: 40,
+    backgroundColor: "#B3E5FD",
+    fontSize: 12,
+    position: "relative",
+    borderColor: 'white'
+  },
 });
 
 export default Login;
