@@ -9,12 +9,11 @@ const SearchTrip = ({ showMap, handleMap }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeMessage}>Hello Timothy</Text>
-      {/* <View onPress={handleMap}> */}
-      <GooglePlacesAutocomplete style={styles.search}
+      <Text style={styles.welcomeMessage}>Hello Rider</Text>
+      <View>
+      <GooglePlacesAutocomplete
         placeholder='From'
         onPress={(data, details = null) => {
-          // 'details' is provided when fetchDetails = true
           console.log(data, details);
         }}
         fetchDetails={true}
@@ -24,7 +23,7 @@ const SearchTrip = ({ showMap, handleMap }) => {
           language: 'en',
         }}
       />
-      <GooglePlacesAutocomplete style={styles.search}
+      <GooglePlacesAutocomplete
         placeholder='To'
         enablePoweredByContainer={false}
         query={{
@@ -33,7 +32,7 @@ const SearchTrip = ({ showMap, handleMap }) => {
         }}
         nearbyPlacesAPI='GooglePlacesSearch'
       />
-      {/* </View> */}
+      </View>
     </View>
   )
 }
@@ -42,14 +41,15 @@ export default SearchTrip;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1.5,
     justifyContent: 'center',
   },
   welcomeMessage: {
-    fontSize: 20
+    fontSize: 25,
+    fontWeight: 'bold',
+    padding: 15,
   },
   search: {
     borderColor: 'black',
-    paddingTop: 10
   },
 });

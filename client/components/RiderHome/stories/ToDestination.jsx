@@ -20,7 +20,7 @@ export default ToDestination;
 
 const styles = StyleSheet.create({
   topContainer: {
-    flex: 0.5,
+    flex: 1.5,
     justifyContent: 'space-evenly',
     marginBottom: 10
   },
@@ -46,10 +46,12 @@ const styles = StyleSheet.create({
     flex: 0.5,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: '#B3E5FD',
     borderRadius: 15,
     marginLeft: 15,
     marginRight: 15,
+    bottom: 20
   },
 
   carInfo: {
