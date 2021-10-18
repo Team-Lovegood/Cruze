@@ -132,6 +132,7 @@ const Signup = (props) => {
           {renderRoles()}
         </Picker>
       </View> */}
+
       <View style={styles.singleInputBox}>
         <TextInput
           style={styles.singleInput}

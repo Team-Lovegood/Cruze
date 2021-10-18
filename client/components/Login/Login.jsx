@@ -50,6 +50,7 @@ const Login = (props) => {
         placeholderTextColor = "black"
         selectedValue={role}
         onValueChange={(value) => {setRole(value)}}/>
+
       <TextInput style = {styles.input}
         autoCapitalize = "none"
         textContentType='emailAddress'
