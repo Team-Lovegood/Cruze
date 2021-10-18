@@ -117,8 +117,10 @@ const Signup = (props) => {
         const user = userCredential.user;
         user.role = role;
         console.log('Registered with: ', user.email);
-        alert('Registered with: ' + user.email + 'as a: ' + user.role);
+        alert('Registered with: ' + user.email + ' as a: ' + user.role);
       })
+      // insert into Postgres
+      // firstName, lastName, email,
       .then(user => {
         if (role  === 'rider') {
           props.riderHome();
