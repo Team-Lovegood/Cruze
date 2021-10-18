@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 200,
+    marginTop: 100,
     flexDirection: 'row'
   },
   logo: {
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
+    borderColor: 'white'
   },
   doubleInputBox: {
     marginBottom: 20,
@@ -98,7 +99,7 @@ const Signup = (props) => {
     { value: Roles.driver, label: "I want to drive" },
   ]);
   const [role, setRole] = useState(Roles.rider);
-  
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -114,7 +115,7 @@ const Signup = (props) => {
         <Text style={styles.appName}>Cruze</Text>
       </View>
 
-      <DropDownPicker 
+      <DropDownPicker
           style={styles.roleSelecter}
           open={open}
           setOpen={setOpen}
@@ -124,7 +125,7 @@ const Signup = (props) => {
           setItems={setItems}
           containerStyle={{width: 320}}
         />
-    
+
 
       <View style={styles.doubleInputBox}>
 
@@ -147,20 +148,22 @@ const Signup = (props) => {
 
       <View style={styles.singleInputBox}>
         <TextInput
-          textContentType="emailAddress"
           style={styles.singleInput}
-          value={email}
-          placeholderTextColor = "black"
-          onChangeText={(text) => setEmail(text)}
+          textContentType="emailAddress"
+          autoCapitalize = "none"
           placeholder="Email"
+          placeholderTextColor = "black"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
       <View style={styles.singleInputBox}>
         <TextInput
+          style={styles.singleInput}
           textContentType="password"
           secureTextEntry={true}
-          style={styles.singleInput}
+          autoCapitalize = "none"
           value={password}
           placeholderTextColor = "black"
           onChangeText={(text) => setPassword(text)}
@@ -206,14 +209,15 @@ const Signup = (props) => {
         </>
       )}
 
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity
+        style={styles.signup}
+        onPress={() => alert(email + password + role)}>
         <Text style={styles.signupText}>Sign up</Text>
-      
       </TouchableOpacity>
 
 
       <View>
-        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onClick={props.login}>Log in</Text></Text>
+        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onPress={props.login}>Log in</Text></Text>
       </View>
 
     </View>
