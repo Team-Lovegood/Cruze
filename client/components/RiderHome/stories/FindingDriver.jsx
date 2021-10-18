@@ -1,27 +1,40 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, Modal, ActivityIndicator, StyleSheet } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons';
 
-const FindingDriver = () => {
-  return (
-    <View style={styles.container}>
-    </View>
-  )
-}
+const FindingDriver = ({ tripStatus }) => {
+  if (tripStatus === "findDriver") {
+    return (
+      <Modal transparent={true}>
+        <View style={styles.modalContainer}>
+          <ActivityIndicator size="large" color="black" />
+          <FontAwesomeIcon style={styles.car} size={50} icon={faCar} />
+          <Text style={styles.searchTrip}>Looking for nearby drivers...</Text>
+        </View>
+      </Modal>
+    );
+  } else {
+    return null;
+  }
+};
 
 export default FindingDriver;
 
 const styles = StyleSheet.create({
-  container: {
+  modalContainer: {
     flex: 1,
-    backgroundColor: 'white',
     justifyContent: 'center',
-    alignItems: 'center'
   },
-  absolute: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0
-  }
+
+  searchTrip: {
+    textAlign: 'center',
+    fontWeight: '600',
+    fontSize:24
+  },
+
+  car: {
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
 });
