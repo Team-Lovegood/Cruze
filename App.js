@@ -21,6 +21,7 @@ export default function App() {
   return (
     <>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     {/* <View style={styles.container}>
@@ -41,19 +42,24 @@ export default function App() {
     </View>
 =======
       <View style={styles.container}>
+=======
+      {/* <View style={styles.container}>
+>>>>>>> 59d5632ab1da2906fca736873e3f3a32cc2b97f7
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
       {/* <DriverProfileScreen/> */}
       {/* <RiderProfileScreen/> */}
 
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
           <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
         </AuthStack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
 
       {/* <View style={styles.container}>
         <Text>Profiles</Text>
