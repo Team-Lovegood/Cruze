@@ -9,7 +9,7 @@ function Language() {
   const [items, setItems] = useState([
     {label: 'English', value: Languages.eng},
     {label: 'Español', value: Languages.esp},
-    {label: '中国人', value: Languages.mand}
+    {label: '中文', value: Languages.mand}
   ]);
 
   return (
