@@ -1,19 +1,28 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { auth } from './firebase';
+import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
 import {Login, Signup, RiderProfile, DriverHome, DriverProfile} from './client/components/index.js';
 
 export const LoginScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Login signup={() => navigation.push('Signup')}/>
-    </View>
+    <KeyboardAvoidingView style={styles.container}>
+      <Login
+      signup={() => navigation.push('Signup')}
+      riderHome={() => navigation.push('RiderProfile')}
+      driverHome={() => navigation.push('DriverProfile')}
+      />
+    </KeyboardAvoidingView>
   );
 };
 export const SignupScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Signup login={() => navigation.pop()}/>
-    </View>
+    <KeyboardAvoidingView style={styles.container}>
+      <Signup
+      login={() => navigation.pop()}
+      riderHome={() => navigation.push('RiderProfile')}
+      driverHome={() => navigation.push('DriverProfile')}
+      />
+    </KeyboardAvoidingView>
   );
 };
 

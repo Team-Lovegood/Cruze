@@ -1,22 +1,56 @@
-import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const RiderList = () => {
+const RiderList = ({ toggleRiderList, toggleRiderPickup }) => {
+
+  const handlePress = (item) => {
+    console.log(item.address);
+    toggleRiderList();
+    toggleRiderPickup();
+  }
+  const dummyData = [
+    {
+      name: 'Jordan',
+      address: '134 main st',
+      distance: 2.2,
+      amount: 10,
+    },
+    {
+      name: 'Jin',
+      address: '134 main st',
+      distance: 2.2,
+      amount: 10,
+    },
+    {
+      name: 'David',
+      address: '134 main st',
+      distance: 2.2,
+      amount: 10,
+    },
+    {
+      name: 'Isaac',
+      address: '134 main st',
+      distance: 2.2,
+      amount: 10,
+    },
+    {
+      name: 'Sebastian',
+      address: '134 main st',
+      distance: 2.2,
+      amount: 10,
+    },
+  ]
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>
+        Hello, Tim
+      </Text>
       <FlatList
-        data={[
-          {key: 'Jordan'},
-          {key: 'David'},
-          {key: 'Luna'},
-          {key: 'Sebastian'},
-          {key: 'Isaac'}
-        ]}
-        renderItem={({item}) =>
-          <Text
-            style={styles.item}>
-              {item.key}
-          </Text>
+        data={dummyData}
+        renderItem={({ item }) =>
+          <TouchableOpacity style={styles.btn} onPress={() =>{ handlePress(item)}}>
+            <Text style={styles.btnText}>{item.name}</Text>
+          </TouchableOpacity>
         }
       />
     </View>
@@ -25,16 +59,26 @@ const RiderList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24
+    padding: 24,
+    flex: 3
   },
-  item: {
+  title: {
+    borderColor: "#20232a",
+    color: "#20232a",
+    textAlign: "left",
+    fontSize: 30,
+    fontWeight: "bold"
+  },
+  btnText: {
+    fontSize: 18,
+  },
+  btn: {
     marginTop: 16,
     paddingVertical: 8,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
-    color: "#20232a",
-    textAlign: "left",
-    fontSize: 14,
+    // color: "red",
+    // textAlign: "left",
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,

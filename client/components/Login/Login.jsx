@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
+import { auth } from '../../../firebase';
 
 const Login = (props) => {
   const Roles = { rider: "rider", driver: "driver",};
@@ -13,6 +14,27 @@ const Login = (props) => {
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        user.role = role;
+        console.log(user.email, user.role);
+        alert('Logged in with: ' + user.email + ' as a: ' + user.role);
+      })
+      .then(user => {
+        if (role  === 'rider') {
+          props.riderHome();
+        } else if (role === 'driver') {
+          props.driverHome();
+        }
+      })
+      .catch(error => alert(error.message))
+  }
 
   return (
     <View style={styles.container}>
@@ -50,8 +72,8 @@ const Login = (props) => {
         onChangeText = {(text) => setPassword(text)}/>
       <TouchableOpacity
         style={styles.login}
-        onPress={() => alert(email + password + role)}>
-        <Text style={styles.loginText}>Login</Text>
+        onPress={handleLogin}>
+        <Text style={styles.loginText}>Log in</Text>
       </TouchableOpacity>
       <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
   </View>
@@ -66,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 100,
+    marginTop: 200,
     flexDirection: 'row'
   },
   logo: {
