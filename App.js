@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import LandingPage from './client/components/Login/LandingPage.jsx';
 import RiderProfile from './client/components/Profiles/RiderProfile.jsx';
 import DriverProfile from './client/components/Profiles/DriverProfile.jsx';
+import Signup from './client/components/Login/Signup.jsx';
+import Language from './client/components/Profiles/DropdownLanguage.jsx';
 //import riderhome
 //import driverhome
 
@@ -16,6 +18,8 @@ export default function App() {
       {/* <RiderProfile />
       <DriverProfile />
       <StatusBar style="auto" /> */}
+      <Signup />
+
     </View>
 
     {/* <View style={styles.container}>
