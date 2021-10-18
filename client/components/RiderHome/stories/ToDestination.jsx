@@ -1,19 +1,33 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons';
 
-const ToDestination = ({tripStatus}) => {
-  return (
-    <View style={styles.topContainer}>
-      <View style={styles.driverContainer}>
-        <Text style={styles.driverStatus}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Driver has arrived at pickup'}</Text>
-        <Text style={styles.bill}>$38.99</Text>
+const ToDestination = ({tripStatus, distance, duration}) => {
+  const distanceRate = 1.5;
+  const durationRate = 0.1;
+  const price = Number(distanceRate*distance.value/1000 + durationRate*duration.value/60).toFixed(2);
+  if(tripStatus === 'onTheWay' || tripStatus === 'pickUp') {
+    return (
+      <View style={styles.topContainer}>
+        <View style={styles.driverContainer}>
+          <Text style={styles.driverStatus}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Driver has arrived at pickup'}</Text>
+          <Text style={styles.bill}>${price}</Text>
+        </View>
+        <View style={styles.driverContainer}>
+          <Text style={styles.tripInfo}>{distance.text}</Text>
+          <Text style={styles.tripInfo}>{duration.text}</Text>
+        </View>
+        <View style={styles.carContainer}>
+          <Text style={styles.carInfo}>Tim E Tim{"\n"}Toyota Camry</Text>
+          <FontAwesomeIcon style={styles.car} size={40} icon={faCar} />
+          <Text style={styles.carInfo}>AE876NG9</Text>
+        </View>
       </View>
-      <View style={styles.carContainer}>
-        <Text style={styles.carInfo}>Tim E Tim{"\n"}Toyota Camry</Text>
-        <Text style={styles.carInfo}>AE876NG9</Text>
-      </View>
-    </View>
-  );
+    );
+  } else {
+    return null
+  }
 };
 
 export default ToDestination;
@@ -34,11 +48,11 @@ const styles = StyleSheet.create({
   driverStatus: {
     fontSize: 25,
     fontWeight: 'bold',
-    padding: 10
+    padding: 15
   },
 
   bill: {
-    padding: 10,
+    padding: 15,
     fontSize: 25
   },
 
@@ -56,6 +70,13 @@ const styles = StyleSheet.create({
 
   carInfo: {
     fontSize: 20,
-    padding: 10
+    padding: 15
+  },
+
+  tripInfo: {
+    paddingBottom: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    fontSize: 20
   }
 });
