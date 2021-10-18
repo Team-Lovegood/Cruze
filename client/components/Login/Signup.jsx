@@ -115,8 +115,9 @@ const Signup = (props) => {
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         const user = userCredential.user;
+        user.role = role;
         console.log('Registered with: ', user.email);
-        alert('Registered with: ', user.email);
+        alert('Registered with: ' + user.email + 'as a: ' + user.role);
       })
       .then(user => {
         if (role  === 'rider') {
