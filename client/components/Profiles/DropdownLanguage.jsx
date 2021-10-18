@@ -27,15 +27,12 @@ function Language() {
 }
 const styles = StyleSheet.create({
   dropdown: {
-    overflow: "hidden",
-    marginLeft: 105,
-    width: 105,
-    zIndex: 100,
-    height: 40,
     backgroundColor: "#B3E5FD",
+    borderColor: 'white',
+    marginLeft: 105,
+    zIndex: 1000,
+    height: 40,
     fontSize: 12,
-    position: "relative",
-    borderColor: 'white'
   }
 });
 
