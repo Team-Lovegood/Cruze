@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { auth } from '../../../firebase';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -9,7 +11,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 100,
+    marginTop: 200,
     flexDirection: 'row'
   },
   logo: {
@@ -108,6 +110,23 @@ const Signup = (props) => {
   const [carModel, setCarModel] = useState("");
   const [carColor, setCarColor] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
+  const handleSignup = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        console.log('Registered with: ', user.email);
+        alert('Registered with: ', user.email);
+      })
+      .then(user => {
+        if (role  === 'rider') {
+          props.riderHome();
+        } else if (role === 'driver') {
+          props.driverHome();
+        }
+      })
+      .catch(error => alert(error.message))
+  }
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
@@ -211,7 +230,7 @@ const Signup = (props) => {
 
       <TouchableOpacity
         style={styles.signup}
-        onPress={() => alert(email + password + role)}>
+        onPress={() => {handleSignup(); props.home();}}>
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
 

@@ -13,20 +13,22 @@ const DriverStack = createStackNavigator();
 export default function App() {
   return (
     <>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
       {/* <DriverProfileScreen/> */}
       {/* <RiderProfileScreen/> */}
 
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
           <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
         </AuthStack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
 
       {/* <View style={styles.container}>
         <Text>Profiles</Text>
