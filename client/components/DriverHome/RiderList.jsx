@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const RiderList = ({ toggleRiderList, toggleRiderPickup }) => {
+const RiderList = ({ toggleRiderList, toggleRiderPickup, changeRider }) => {
 
   const handlePress = (item) => {
-    console.log(item.address);
+    changeRider(item);
     toggleRiderList();
     toggleRiderPickup();
   }
@@ -18,8 +18,8 @@ const RiderList = ({ toggleRiderList, toggleRiderPickup }) => {
     {
       name: 'Jin',
       address: '134 main st',
-      distance: 2.2,
-      amount: 10,
+      distance: 5.8,
+      amount: 60,
     },
     {
       name: 'David',
@@ -77,8 +77,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
-    // color: "red",
-    // textAlign: "left",
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
