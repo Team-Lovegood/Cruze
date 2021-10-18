@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
      flexDirection: 'row',
      justifyContent: 'space-between',
      margin: 15,
-     marginBottom: 25
    },
    car: {
     flexDirection: 'row',
@@ -70,7 +69,6 @@ const styles = StyleSheet.create({
    plate: {
     fontSize: 18,
     marginLeft: 35,
-    marginBottom: 15
   }
 });
 

@@ -13,12 +13,12 @@ const DriverStack = createStackNavigator();
 export default function App() {
   return (
     <>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
-      {/* <DriverProfileScreen/> */}
+      <DriverProfileScreen/>
       {/* <RiderProfileScreen/> */}
 
       {/* <NavigationContainer>
