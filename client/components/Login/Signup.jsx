@@ -230,7 +230,7 @@ const Signup = (props) => {
 
       <TouchableOpacity
         style={styles.signup}
-        onPress={() => {handleSignup(); props.home();}}>
+        onPress={handleSignup}>
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
 
