@@ -9,17 +9,6 @@ const DriverProfile = (props) => {
   // rating for rider, and car information
   return (
     <>
-      <View style = {styles.map}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 0,
-            longitude: 0,
-            latitudeDelta: 0,
-            longitudeDelta: 0,
-          }}
-        />
-      </View>
       <View style = {styles.profile}>
         <View style = {styles.top}>
           <Text style={{fontSize: 24}}>First Last</Text>
@@ -44,10 +33,6 @@ const DriverProfile = (props) => {
 }
 
 const styles = StyleSheet.create({
-   map:{
-     flex: 2,
-     width: '100%'
-   },
    profile:{
     flex: 1,
     width: '100%',

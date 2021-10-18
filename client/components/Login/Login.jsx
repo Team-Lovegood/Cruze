@@ -3,6 +3,7 @@ import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 import { auth } from '../../../firebase';
+import axios from 'axios';
 
 const Login = (props) => {
   const Roles = { rider: "rider", driver: "driver",};
@@ -21,11 +22,28 @@ const Login = (props) => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(userCredential => {
+        //Sign in with firebase, pass user info for Postgres get.
         const user = userCredential.user;
         user.role = role;
-        console.log(user.email, user.role);
-        alert('Logged in with: ' + user.email + ' as a: ' + user.role);
+        return user;
       })
+      // .then(user => {
+      //   // Set params for Postgres query
+      //   var profile = {
+      //     params: {
+      //       email: user.email,
+      //       role: user.role
+      //     }
+      //   }
+        // Postgres get
+        // axios.get('http://localhost:3000/', profile)
+        //   .then((response) => {
+        //     console.log(response.data);
+        //   })
+        //   .catch(err => {
+        //     console.log(err);
+        //   })
+      // })
       .then(user => {
         if (role  === 'rider') {
           props.riderHome();
