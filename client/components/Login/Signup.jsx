@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { auth } from '../../../firebase';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
@@ -88,8 +89,8 @@ const styles = StyleSheet.create({
 });
 
 const Roles = {
-  rider: "rider",
-  driver: "driver",
+  rider: "riders",
+  driver: "drivers",
 };
 
 import logo from "../../../assets/logo.png";
@@ -115,16 +116,39 @@ const Signup = (props) => {
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         const user = userCredential.user;
+        user.firstName = firstName;
+        user.lastName = lastName;
         user.role = role;
-        console.log('Registered with: ', user.email);
-        alert('Registered with: ' + user.email + 'as a: ' + user.role);
+        if (user.role === 'drivers') {
+          user.carMake = carMake;
+          user.carModel = carModel;
+          user.carColor = carColor;
+          user.licensePlate = licensePlate
+        }
+        return user;
       })
       .then(user => {
-        if (role  === 'rider') {
-          props.riderHome();
-        } else if (role === 'driver') {
-          props.driverHome();
+        var profile = {
+          params: {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role
+          }
         }
+        if (user.role === 'driver') {
+          profile.params.carMake = user.carMake
+          profile.params.carModel = user.carModel
+          profile.params.carColor = user.carColor
+          profile.params.licensePlate = user.licensePlate
+        }
+
+        axios.post(`http://192.168.1.130:3000/${user.role}`, profile)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch(err => {
+            alert(err);
+          })
       })
       .catch(error => alert(error.message))
   }
