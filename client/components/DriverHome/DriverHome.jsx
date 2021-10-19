@@ -4,6 +4,7 @@ import RiderList from './RiderList.jsx';
 import Map from './Map.jsx';
 import DriverPickup from './DriverPickup.jsx';
 import OnTheWay from './OnTheWay.jsx';
+import * as Location from 'expo-location';
 
 const DriverHome = () => {
   const [rider, setRider] = useState({});
@@ -11,6 +12,7 @@ const DriverHome = () => {
   const [miles, setMiles] = useState('');
   const [isRiderListVisible, setIsRiderListVisible] = useState(true);
   const [status, setStatus] = useState('rideList');
+  const [driverLocation, setDriverLocation] = useState({});
 
   const changeRider = (rider) => {
     setRider(rider);
@@ -24,6 +26,12 @@ const DriverHome = () => {
   const ArrivedToDestination = () => {
     setStatus('arrived');
   }
+  Location.requestForegroundPermissionsAsync().then(() => {
+    Location.getCurrentPositionAsync({}).then(res => {
+      console.log(res)
+    })
+
+  })
 
   return (
     <>
@@ -32,7 +40,6 @@ const DriverHome = () => {
         <RiderList
           changeRider={changeRider}
       />}
-
       {status === 'pickup' &&
         <DriverPickup rider={rider} onTheWay={onTheWay}/>
       }
