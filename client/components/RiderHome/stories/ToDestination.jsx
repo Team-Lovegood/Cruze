@@ -11,7 +11,7 @@ const ToDestination = ({tripStatus, distance, duration}) => {
     return (
       <View style={styles.topContainer}>
         <View style={styles.driverContainer}>
-          <Text style={styles.driverStatus}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Driver has arrived at pickup'}</Text>
+          <Text style={styles.driverStatus}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Driver arrived at pickup'}</Text>
           <Text style={styles.bill}>${price}</Text>
         </View>
         <View style={styles.driverContainer}>
