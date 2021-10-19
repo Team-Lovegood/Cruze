@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+// import StarRating from 'react-native-star-rating';
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
-const Arrived = ({tripStatus}) => {
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faStar } from '@fortawesome/free-regular-svg-icons';
+
+const Arrived = ({tripStatus, handleStatus}) => {
+
+  const [rating, setRating] = useState(0);
+
+  useEffect(() => {
+    if (tripStatus === "pickUp") {
+      const test = setTimeout(() => handleStatus("arrived"), 5000);
+      return () => clearTimeout(test);
+    } else {
+      return;
+    }
+  }, [handleStatus]);
+
   if(tripStatus === 'arrived') {
     return (
       <View style={styles.container}>
@@ -12,11 +27,13 @@ const Arrived = ({tripStatus}) => {
         <Text style={styles.rateText}>How was your trip?</Text>
         <View style={styles.subContainer}>
           <View style={styles.stars}>
-            <FontAwesomeIcon size={30} icon={faStar} />
-            <FontAwesomeIcon size={30} icon={faStar} />
-            <FontAwesomeIcon size={30} icon={faStar} />
-            <FontAwesomeIcon size={30} icon={faStar} />
-            <FontAwesomeIcon size={30} icon={faStar} />
+            <Rating
+              type="custom"
+              ratingColor='#B3E5FD'
+              onStartRating={(rating) => setRating(rating)}
+              imageSize={35}
+              startingValue={0}
+            />
           </View>
           <View style={styles.button}>
             <Button color="black" title="SUBMIT"/>

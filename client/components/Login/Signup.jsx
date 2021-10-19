@@ -121,6 +121,7 @@ const Signup = (props) => {
   const handleSignup = () => {
     console.log("signup");
     auth
+      //Create firebase account
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         console.log("firebase", userCredential);
@@ -134,30 +135,52 @@ const Signup = (props) => {
           user.carColor = carColor;
           user.licensePlate = licensePlate;
         }
+        // return account infor for promise chaining
         return user;
       })
-      .then((user) => {
+      // we get user info, insert into postgres based on role
+      .then(user => {
         var profile = {
           params: {
             firstName: user.firstName,
             lastName: user.lastName,
-            role: user.role,
-          },
-        };
-        if (user.role === Roles.driver) {
-          profile.params.carMake = user.carMake;
-          profile.params.carModel = user.carModel;
-          profile.params.carColor = user.carColor;
-          profile.params.licensePlate = user.licensePlate;
+            email: user.email,
+            role: user.role
+          }
         }
-        axios
-          .post(`http://192.168.1.173:3000/${role}`, profile)
+        // if user is driver, add user car information
+        if (user.role === Roles.driver) {
+          profile.params.carMake = user.carMake
+          profile.params.carModel = user.carModel
+          profile.params.carColor = user.carColor
+          profile.params.licensePlate = user.licensePlate
+        }
+        //axios post
+        axios.post(`http://192.168.1.130:3000/${user.role}`, profile)
           .then((response) => {
-            console.log(response.data);
+            // return profile to render next page
+            return profile;
           })
-          .catch((err) => {
-            alert(err);
-          });
+          .then((profile) => {
+            // get user information with matching email.
+            axios.get('http://192.168.1.130:3000/profile', profile)
+            .then((response) => {
+              response.data[0].role = role;
+              // return postgres data
+              return response.data[0];
+            })
+            .then(data => {
+              //render next page according to profile role
+              if (data.role  === 'riders') {
+                props.riderHome();
+              } else if (data.role === 'drivers') {
+                props.driverHome();
+              }
+            })
+            .catch(err => {
+              alert(err);
+            })
+        })
       })
       .catch((error) => {
         console.log("firebase err", error);

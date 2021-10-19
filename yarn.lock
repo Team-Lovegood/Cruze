@@ -2704,7 +2704,11 @@
   "resolved" "https://registry.npmjs.org/chardet/-/chardet-0.4.2.tgz"
   "version" "0.4.2"
 
+<<<<<<< HEAD
 "chokidar@^3.2.2":
+=======
+"chokidar@^3.2.2", "chokidar@>=3.0.0 <4.0.0":
+>>>>>>> origin
   "integrity" "sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ=="
   "resolved" "https://registry.npmjs.org/chokidar/-/chokidar-3.5.2.tgz"
   "version" "3.5.2"
@@ -3456,7 +3460,11 @@
     "path-browserify" "^1.0.0"
     "url-parse" "^1.4.4"
 
+<<<<<<< HEAD
 "expo-blur@^9.0.3":
+=======
+"expo-blur@~9.0.3":
+>>>>>>> origin
   "integrity" "sha512-7jMqzo53eg5t9Uc1Tg+yGu9lKL9the4CWAQO0kC6YMhrsDiB13mwOUesC+IScHDTSUKNMGcHI8kN+OmvEWfPig=="
   "resolved" "https://registry.npmjs.org/expo-blur/-/expo-blur-9.0.3.tgz"
   "version" "9.0.3"
@@ -3496,6 +3504,14 @@
   "integrity" "sha512-R5jAx5j3MqrhKFB307FBpaHtYSYeVIFX/rVforBF5inKonYjXRWVhjGoBjolF4geAryNamC3NKhMfxyaaB0W6Q=="
   "resolved" "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-9.2.0.tgz"
   "version" "9.2.0"
+
+"expo-location@~12.1.2":
+  "integrity" "sha512-6P/JR8xkw7UjifiDhyvgYtGZ1iKSLjmAcb0Ksirh3jA3Sao7dbz5ykPu44+UnUZ/SLVqaScJoyMkGclFrtzu8Q=="
+  "resolved" "https://registry.npmjs.org/expo-location/-/expo-location-12.1.2.tgz"
+  "version" "12.1.2"
+  dependencies:
+    "@expo/config-plugins" "^3.0.0"
+    "expo-modules-core" "~0.2.0"
 
 "expo-modules-autolinking@^0.0.3":
   "integrity" "sha512-azkCRYj/DxbK4udDuDxA9beYzQTwpJ5a9QA0bBgha2jHtWdFGF4ZZWSY+zNA5mtU3KqzYt8jWHfoqgSvKyu1Aw=="
@@ -6167,7 +6183,7 @@
     "lodash.isequal" "^4.5.0"
     "prop-types" "^15.6.0"
 
-"react-native-maps@^0.29.3", "react-native-maps@>=0.12.1":
+"react-native-maps@>=0.12.1", "react-native-maps@0.29.3":
   "integrity" "sha512-742ipC71NdGHXmrCHPY9SEGDuKoSx2l0RMC1W9WXe/jd6+Eg5OllRBcR6Y+ORnzvuYZrd0Hj6q6bK3QR5ZL8sA=="
   "resolved" "https://registry.npmjs.org/react-native-maps/-/react-native-maps-0.29.3.tgz"
   "version" "0.29.3"
@@ -6539,6 +6555,13 @@
     "micromatch" "^3.1.4"
     "minimist" "^1.1.1"
     "walker" "~1.0.5"
+
+"sass@^1.43.2":
+  "integrity" "sha512-DncYhjl3wBaPMMJR0kIUaH3sF536rVrOcqqVGmTZHQRRzj7LQlyGV7Mb8aCKFyILMr5VsPHwRYtyKpnKYlmQSQ=="
+  "resolved" "https://registry.npmjs.org/sass/-/sass-1.43.2.tgz"
+  "version" "1.43.2"
+  dependencies:
+    "chokidar" ">=3.0.0 <4.0.0"
 
 "sax@^1.2.1", "sax@>=0.6.0":
   "integrity" "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="

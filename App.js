@@ -8,18 +8,32 @@ import RiderHome from './client/components/RiderHome/RiderHome.jsx';
 import DriverHome from './client/components/DriverHome/DriverHome.jsx';
 
 
-// const AuthStack = createStackNavigator();
-
+const AuthStack = createStackNavigator();
 
 export default function App() {
   return (
     <>
+<<<<<<< HEAD
 
       <View style={styles.container}>
+=======
+      {/* <View style={styles.container}>
+>>>>>>> origin
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
+      {/* <NavigationContainer>
+        <AuthStack.Navigator>
+          <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
+        </AuthStack.Navigator>
+      </NavigationContainer> */}
+
+
+<<<<<<< HEAD
     {/* <NavigationContainer>
       <AuthStack.Navigator>
         <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
@@ -29,16 +43,18 @@ export default function App() {
       </AuthStack.Navigator>
     </NavigationContainer> */}
 
+=======
+>>>>>>> origin
     {/*<View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
 
 
-    {/*<View style={styles.container}>
+    <View style={styles.driverView}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View>
 
     </>
   );
@@ -47,8 +63,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+<<<<<<< HEAD
     backgroundColor: "#fff",
     // alignItems: 'center',
     // justifyContent: 'center',
+=======
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+>>>>>>> origin
   },
+  driverView: {
+    flex: 1,
+    backgroundColor: '#fff',
+
+  }
 });

@@ -1,16 +1,4 @@
-//login routes
-//firebase to sign in
-//user.role === rider || driver
-// get information from user.role table where firebase email matches given email, get all ratings and format them to decimal
-// pass information to home page
-
-//sign up routes
-// user.role === rider || driver
-// insert all data into user.role table
-// need conditional for no ratings, maybe start everyone at 5? --sounds good
-//
-
-const Pool = require("pg").Pool;
+const Pool = require('pg').Pool;
 const pool = new Pool({
   user: "postgres",
   password: "dyk960830",
@@ -40,21 +28,20 @@ const Login = (req, res) => {
 };
 
 const RiderSignup = (req, res) => {
-  const { firstName, lastName, email, phone } = req.body.params;
+  const { firstName, lastName, email} = req.body.params;
+  console.log(firstName, lastName, email);
 
-  let queryStr =
-    "insert into riders(firstname, lastname, email, phone) values ($1, $2, $3, $4)";
-  let queryParams = [firstName, lastName, email, phone];
-  pool
-    .query(queryStr, queryParams)
-    .then((response) => {
+  let queryStr = 'insert into riders(firstname, lastname, email) values ($1, $2, $3)';
+  let queryParams = [firstName, lastName, email];
+
+  pool.query(queryStr, queryParams)
+    .then(response => {
       res.sendStatus(201);
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err);
-    });
-};
+    .catch(error => {
+      res.status(500).send(error);
+    })
+}
 const DriverSignup = (req, res) => {
   const {
     firstName,
@@ -65,20 +52,11 @@ const DriverSignup = (req, res) => {
     carColor: carcolor,
     licensePlate: plate,
   } = req.body.params;
-  let queryStr =
-    "insert into drivers(firstname, lastname, email, carmake, carmodel, carcolor, licenseplate) values ($1, $2, $3, $4, $5, $6, $7)";
-  let queryParams = [
-    firstName,
-    lastName,
-    email,
-    carmake,
-    carmodel,
-    carcolor,
-    plate,
-  ];
-  pool
-    .query(queryStr, queryParams)
-    .then((response) => {
+
+  let queryStr = 'insert into drivers(firstname, lastname, email, carmake, carmodel, carcolor, licenseplate) values ($1, $2, $3, $4, $5, $6, $7)';
+  let queryParams = [firstName, lastName, email, carmake, carmodel, carcolor, plate];
+  pool.query(queryStr, queryParams)
+    .then(response => {
       res.sendStatus(201);
     })
     .catch((err) => {
