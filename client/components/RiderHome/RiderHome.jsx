@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { BlurView } from 'expo-blur';
 import axios from 'axios';
 import API from './config.js';
 
+import WhereTo from './stories/WhereTo';
 import Arrived from './stories/Arrived';
 import SearchTrip from './stories/SearchTrip';
 import FindingDriver from './stories/FindingDriver';
@@ -20,7 +21,7 @@ const RiderHome = () => {
   const [duration, setDuration] = useState('');
 
 
-  const [tripStatus, setTripStatus] = useState('onTheWay');
+  const [tripStatus, setTripStatus] = useState('arrived');
   const mapRef = useRef(null);
 
 
@@ -57,8 +58,7 @@ const RiderHome = () => {
 
 
   return (
-    <>
-      <View style={styles.header}></View>
+    <SafeAreaView style={styles.container}>
       <FindingDriver tripStatus={tripStatus} />
       <MapView
         blurRadius={4}
@@ -77,23 +77,23 @@ const RiderHome = () => {
         {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
         {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={3} strokeColor="black" mode="DRIVING" />}
       </MapView>
-      {/* <SearchTrip /> */}
+      <WhereTo tripStatus={tripStatus} />
+      <SearchTrip tripStatus={tripStatus} />
       <FindingDriver tripStatus={tripStatus} />
       <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} />
       <Arrived tripStatus={tripStatus} />
-    </>
+    </SafeAreaView>
   )
 }
 
 export default RiderHome;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   map: {
     flex: 5,
-  },
-  header: {
-    height: 50,
-    backgroundColor: 'white'
   },
   absolute: {
     position: "absolute",
