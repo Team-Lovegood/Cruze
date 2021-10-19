@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const DriverPickup = ({ rider, onTheWay }) => {
+const OnTheWay = ({ rider, ArrivedToDestination }) => {
 
-  const handleOnTheWayPress = () => {
-    onTheWay();
+  const handleArrivedPress = () => {
+    ArrivedToDestination();
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.text}>
         <Text style={styles.pickupName}>
-          Picking Up: {rider.name}
-        </Text>
-        <Text style={styles.name}>
-          $ {rider.amount}
+          On the way
         </Text>
         <Text style={styles.name}>
           {rider.distance} mi
@@ -25,7 +22,7 @@ const DriverPickup = ({ rider, onTheWay }) => {
           {rider.address}
         </Text>
         <TouchableOpacity
-          onPress={handleOnTheWayPress}
+          onPress={handleArrivedPress}
           style={styles.hereBtn}>
         </TouchableOpacity>
       </View>
@@ -46,10 +43,6 @@ const styles = StyleSheet.create({
   pickupName: {
     fontWeight: '600',
     fontSize: 25
-  },
-  name: {
-    fontWeight: '300',
-    fontSize: 18
   },
   address: {
     width: '80%',
@@ -84,4 +77,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DriverPickup;
+export default OnTheWay;
