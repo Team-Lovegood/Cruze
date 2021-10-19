@@ -13,10 +13,10 @@ const AuthStack = createStackNavigator();
 export default function App() {
   return (
     <>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
       {/* <NavigationContainer>
         <AuthStack.Navigator>
@@ -31,13 +31,13 @@ export default function App() {
     {/*<View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
 
 
-    {/*<View style={styles.container}>
+    <View style={styles.driverView}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View>
 
     </>
   );
@@ -50,4 +50,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  driverView: {
+    flex: 1,
+    backgroundColor: '#fff',
+
+  }
 });
