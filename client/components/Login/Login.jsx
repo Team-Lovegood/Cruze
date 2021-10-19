@@ -6,7 +6,7 @@ import { auth } from '../../../firebase';
 import axios from 'axios';
 
 const Login = (props) => {
-  const Roles = { rider: "rider", driver: "driver",};
+  const Roles = { rider: "riders", driver: "drivers",};
   const [items, setItems] = useState([
     { value: Roles.rider, label: "I am a rider" },
     { value: Roles.driver, label: "I am a driver" },
@@ -15,8 +15,6 @@ const Login = (props) => {
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
 
   const handleLogin = () => {
     auth
@@ -27,29 +25,28 @@ const Login = (props) => {
         user.role = role;
         return user;
       })
-      // .then(user => {
-      //   // Set params for Postgres query
-      //   var profile = {
-      //     params: {
-      //       email: user.email,
-      //       role: user.role
-      //     }
-      //   }
-        // Postgres get
-        // axios.get('http://localhost:3000/', profile)
-        //   .then((response) => {
-        //     console.log(response.data);
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //   })
-      // })
       .then(user => {
-        if (role  === 'rider') {
-          props.riderHome();
-        } else if (role === 'driver') {
-          props.driverHome();
+        var profile = {
+          params: {
+            role: user.role,
+            email: user.email
+          }
         }
+        axios.get('http://192.168.1.130:3000/profile', profile)
+        .then((response) => {
+          response.data[0].role = role;
+          return response.data[0];
+        })
+        .then(data => {
+          if (data.role  === 'riders') {
+            props.riderHome();
+          } else if (data.role === 'drivers') {
+            props.driverHome();
+          }
+        })
+        .catch(err => {
+          alert(err);
+        })
       })
       .catch(error => alert(error.message))
   }
