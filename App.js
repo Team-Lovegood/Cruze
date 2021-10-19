@@ -9,7 +9,7 @@ import DriverHome from './client/components/DriverHome/DriverHome.jsx';
 
 
 // const AuthStack = createStackNavigator();
-// const DriverStack = createStackNavigator();
+
 
 export default function App() {
   return (
