@@ -23,6 +23,7 @@ const Login = (props) => {
         //Sign in with firebase, pass user info for Postgres get.
         const user = userCredential.user;
         user.role = role;
+        // return user information for promise chaining
         return user;
       })
       .then(user => {
@@ -32,12 +33,16 @@ const Login = (props) => {
             email: user.email
           }
         }
+        // get postgres user information where firebase email matches postgres email
         axios.get('http://192.168.1.130:3000/profile', profile)
         .then((response) => {
+          console.log(response.data[0]);
           response.data[0].role = role;
+          // return postgres information for more chaining
           return response.data[0];
         })
         .then(data => {
+          // render next page according to profile role
           if (data.role  === 'riders') {
             props.riderHome();
           } else if (data.role === 'drivers') {

@@ -1,17 +1,19 @@
 import React from 'react';
 import { Text, StyleSheet, Modal, View, SafeAreaView, TextInput, Pressable } from 'react-native';
 
-const WhereTo = ({tripStatus}) => {
+const WhereTo = ({tripStatus, handleStatus }) => {
   if(tripStatus === 'whereTo') {
     return (
-      <View style={styles.container} pointerEvents="none">
+      <View style={styles.container}>
         <Text style={styles.welcomeMessage}>Hello Rider</Text>
-        <Pressable onPress={() => alert('Hi!')}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Where to ?"
-          />
-        </Pressable>
+        <Pressable onPress={() => handleStatus('searchTrip')}>
+          <View pointerEvents="none">
+              <TextInput
+                style={styles.textInput}
+                placeholder="Where to ?"
+              />
+            </View>
+          </Pressable>
       </View>
     )
   } else {
