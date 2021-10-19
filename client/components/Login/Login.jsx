@@ -15,7 +15,23 @@ const Login = (props) => {
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+
+
+  const getProfile = async () => {
+    fetch('http://192.168.1.130:3000/profile')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setData(responseJson[0]);
+        console.warn(responseJson[0]);
+      })
+      .catch(err => {
+        alert(err);
+      })
+  }
 
 
   const handleLogin = () => {
@@ -27,23 +43,6 @@ const Login = (props) => {
         user.role = role;
         return user;
       })
-      // .then(user => {
-      //   // Set params for Postgres query
-      //   var profile = {
-      //     params: {
-      //       email: user.email,
-      //       role: user.role
-      //     }
-      //   }
-        // Postgres get
-        // axios.get('http://localhost:3000/', profile)
-        //   .then((response) => {
-        //     console.log(response.data);
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //   })
-      // })
       .then(user => {
         if (role  === 'rider') {
           props.riderHome();
@@ -90,7 +89,7 @@ const Login = (props) => {
         onChangeText = {(text) => setPassword(text)}/>
       <TouchableOpacity
         style={styles.login}
-        onPress={handleLogin}>
+        onPress={getProfile}>
         <Text style={styles.loginText}>Log in</Text>
       </TouchableOpacity>
       <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
