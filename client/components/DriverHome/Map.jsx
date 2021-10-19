@@ -1,24 +1,54 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import config from '../../../config.js';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons';
 
-const Map = ({ destination }) => {
+const Map = ({ destination, driverLocation }) => {
+  console.log('this is driver location', driverLocation)
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    // if (!driverLocation || !destination) {
+    //   return;
+    // }
+    console.log('changing')
+    mapRef.current.fitToSuppliedMarkers(['departure', 'destination'], {
+      edgePadding: { top: 35, right: 35, bottom: 35, left: 35}
+    });
+  }, [driverLocation, destination]);
+
   return (
     <MapView
+      mapType="standard"
+      ref={mapRef}
       style={styles.map}
       initialRegion={{
-        latitude: 40.6414929,
-        longitude: -73.9927213,
+        latitude: driverLocation.latitude,
+        longitude: driverLocation.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      }}
+      region={{
+        latitude: driverLocation.latitude,
+        longitude: driverLocation.longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       }}
     >
+      <MapView.Marker coordinate={{
+        latitude: driverLocation.latitude,
+        longitude: driverLocation.longitude,
+        identifier: 'origin',
+      }}
+      // image={{uri: '../../assets/car-xxl.png'}}
+      />
       {destination && <MapViewDirections
         origin={{
-          latitude: 40.6414929,
-          longitude: -73.9927213
+          latitude: driverLocation.latitude,
+          longitude: driverLocation.longitude
         }}
         destination={{
           latitude: destination.latitude,
@@ -30,9 +60,9 @@ const Map = ({ destination }) => {
       />}
 
       {destination && <MapView.Marker coordinate={{
-        latitude: 40.6414929,
-        longitude: -73.9927213,
-        identifier: 'origin'
+        latitude: driverLocation.latitude,
+        longitude: driverLocation.longitude,
+        identifier: 'departure'
       }}
       />}
 
@@ -42,7 +72,6 @@ const Map = ({ destination }) => {
         identifier: 'destination'
       }}
       />}
-
     </MapView>
   );
 };

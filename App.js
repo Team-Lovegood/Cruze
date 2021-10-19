@@ -8,37 +8,36 @@ import RiderHome from './client/components/RiderHome/RiderHome.jsx';
 import DriverHome from './client/components/DriverHome/DriverHome.jsx';
 
 
-// const AuthStack = createStackNavigator();
-
+const AuthStack = createStackNavigator();
 
 export default function App() {
   return (
     <>
-      
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
-    {/* <NavigationContainer>
-      <AuthStack.Navigator>
-        <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
-        <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
-        <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
-        <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
-      </AuthStack.Navigator>
-    </NavigationContainer> */}
-    
+      {/* <NavigationContainer>
+        <AuthStack.Navigator>
+          <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
+        </AuthStack.Navigator>
+      </NavigationContainer> */}
+
+
     {/*<View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
 
 
-    {/*<View style={styles.container}>
+    <View style={styles.driverView}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View>
 
     </>
   );
@@ -48,7 +47,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  driverView: {
+    flex: 1,
+    backgroundColor: '#fff',
+
+  }
 });
