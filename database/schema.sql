@@ -108,8 +108,8 @@ ALTER TABLE driver_ratings ADD FOREIGN KEY (driverId) REFERENCES drivers (id);
 -- Test Data
 -- ---
 
--- INSERT INTO riders (firstName,lastName,email,phone) VALUES
--- ('Isaac','Favila','isaac@test.com', 1234567890);
+INSERT INTO riders (firstName,lastName,email,phone) VALUES
+('Isaac','Favila','isaac@test.com', 1234567890);
 -- INSERT INTO drivers (firstName,lastName,email,carMake,carModel,carColor,licensePlate) VALUES
 -- ('Isaac','Favila','isaac@test.com','Honda','Accord','Black','plate123');
 -- INSERT INTO orders (`id`,`riderId`,`driverId`,`status`,`cost`,`departure`,`destination`) VALUES

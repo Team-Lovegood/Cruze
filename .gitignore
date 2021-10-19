@@ -15,3 +15,4 @@ config.js
 ./package-lock.json
 # Rider Home Google API
 client/components/RiderHome/config.js
+./config.js
