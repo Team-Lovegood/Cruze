@@ -13,12 +13,7 @@ const AuthStack = createStackNavigator();
 export default function App() {
   return (
     <>
-<<<<<<< HEAD
-
-      <View style={styles.container}>
-=======
       {/* <View style={styles.container}>
->>>>>>> origin
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
       </View> */}
@@ -33,18 +28,6 @@ export default function App() {
       </NavigationContainer> */}
 
 
-<<<<<<< HEAD
-    {/* <NavigationContainer>
-      <AuthStack.Navigator>
-        <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
-        <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
-        <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
-        <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
-      </AuthStack.Navigator>
-    </NavigationContainer> */}
-
-=======
->>>>>>> origin
     {/*<View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
@@ -63,15 +46,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-<<<<<<< HEAD
-    backgroundColor: "#fff",
-    // alignItems: 'center',
-    // justifyContent: 'center',
-=======
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
->>>>>>> origin
   },
   driverView: {
     flex: 1,
