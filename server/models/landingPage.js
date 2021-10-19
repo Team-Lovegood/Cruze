@@ -28,8 +28,8 @@ pool.connect(err => {
 
 
 const Login = (req, res) => {
-  let role = 'drivers';
-  let email = 'isaac@test.com';
+  let role = req.query.role;
+  let email = req.query.email;
   pool.query(`select * from ${role} where email = '${email}'`)
     .then(({rows}) => {
       res.status(200).send(rows);
@@ -40,6 +40,7 @@ const Login = (req, res) => {
 }
 
 const RiderSignup = (req, res) => {
+  console.log(req, req.query, req.params);
   let firstName = 'David';
   let lastName = 'Du';
   let email = 'david@postman.com';
