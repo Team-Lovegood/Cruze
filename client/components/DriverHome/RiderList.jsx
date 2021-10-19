@@ -75,6 +75,7 @@ const RiderList = ({ changeRider }) => {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => { handlePress(item) }}
+            key={item.name}
           >
             <Text
               style={styles.btnText}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import RiderList from './RiderList.jsx';
 import Map from './Map.jsx';
@@ -12,7 +12,8 @@ const DriverHome = () => {
   const [miles, setMiles] = useState('');
   const [isRiderListVisible, setIsRiderListVisible] = useState(true);
   const [status, setStatus] = useState('rideList');
-  const [driverLocation, setDriverLocation] = useState({});
+  const [driverLocation, setDriverLocation] = useState({latitude: 70.6414929,
+    longitude: -73.9927213});
 
   const changeRider = (rider) => {
     setRider(rider);
@@ -26,16 +27,23 @@ const DriverHome = () => {
   const ArrivedToDestination = () => {
     setStatus('arrived');
   }
-  Location.requestForegroundPermissionsAsync().then(() => {
-    Location.getCurrentPositionAsync({}).then(res => {
-      console.log(res)
-    })
 
-  })
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+      let {coords} = await Location.getCurrentPositionAsync({});
+      setDriverLocation({latitude: coords.latitude, longitude: coords.longitude});
+    })();
+  }, [setDriverLocation]);
+
 
   return (
     <>
-      <Map destination={rider.location}/>
+      <Map destination={rider.location} driverLocation={driverLocation}/>
       {status === 'rideList' &&
         <RiderList
           changeRider={changeRider}

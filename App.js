@@ -14,11 +14,11 @@ import DriverHome from './client/components/DriverHome/DriverHome.jsx';
 export default function App() {
   return (
     <>
-      
-      <View style={styles.container}>
+
+      {/* <View style={styles.container}>
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
     {/* <NavigationContainer>
       <AuthStack.Navigator>
@@ -28,17 +28,17 @@ export default function App() {
         <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
       </AuthStack.Navigator>
     </NavigationContainer> */}
-    
-    {/*<View style={styles.container}>
+
+    {/* <View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
 
 
-    {/*<View style={styles.container}>
+    <View style={styles.container}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View>
 
     </>
   );
