@@ -1,10 +1,13 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+
 // import LandingPage from './client/components/Login/LandingPage.jsx';
-import RiderProfile from './client/components/Profiles/RiderProfile.jsx';
-import DriverProfile from './client/components/Profiles/DriverProfile.jsx';
-import DriverHome from './client/components/DriverHome/DriverHome.jsx';
+import RiderProfile from "./client/components/Profiles/RiderProfile.jsx";
+import DriverProfile from "./client/components/Profiles/DriverProfile.jsx";
+// import DriverHome from "./client/components/DriverHome/DriverHome.jsx";
+import Signup from "./client/components/Login/Signup";
+import Login from "./client/components/Login/Login";
 //import riderhome
 //import driverhome
 
@@ -14,9 +17,7 @@ import DriverHome from './client/components/DriverHome/DriverHome.jsx';
 export default function App() {
   return (
     <>
-
-
-    {/* <View style={styles.container}>
+      {/* <View style={styles.container}>
       <Text>Profiles</Text>
       <StatusBar style="auto" />
     </View>
@@ -26,11 +27,11 @@ export default function App() {
       <StatusBar style="auto" />
   </View>*/}
 
-
-    <View style={styles.container}>
-      <DriverHome />
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+        {/* <DriverHome /> */}
+       <Signup />
+                <StatusBar style="auto" />
+      </View>
     </>
   );
 }
@@ -38,7 +39,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     // alignItems: 'center',
     // justifyContent: 'center',
   },

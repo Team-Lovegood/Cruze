@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity} from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import { auth } from '../../../firebase';
-import axios from 'axios';
+import { auth } from "../../../firebase";
+import axios from "axios";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,18 +21,18 @@ const styles = StyleSheet.create({
   },
   logoBox: {
     marginTop: 200,
-    flexDirection: 'row'
+    flexDirection: "row",
   },
   logo: {
     width: 100,
     height: 100,
     marginBottom: 20,
-    marginRight: -55
+    marginRight: -55,
   },
   appName: {
     color: "#B3E5FD",
     fontSize: 36,
-    alignSelf: 'center'
+    alignSelf: "center",
   },
   roleSelecter: {
     overflow: "hidden",
@@ -35,14 +43,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-    borderColor: 'white'
+    borderColor: "white",
   },
   doubleInputBox: {
     marginBottom: 20,
     fontSize: 12,
     width: 320,
     flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   doubleInput: {
     padding: 10,
@@ -67,24 +75,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
   },
   signup: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'gainsboro',
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: "gainsboro",
     borderRadius: 8,
     height: 30,
     width: 150,
   },
   signupText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 12,
   },
   loginText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 10,
-    marginTop: 5
+    marginTop: 5,
   },
   login: {
-    textDecorationLine: 'underline'
+    textDecorationLine: "underline",
   },
 });
 
@@ -95,7 +103,6 @@ const Roles = {
 
 import logo from "../../../assets/logo.png";
 const Signup = (props) => {
-
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     { value: Roles.rider, label: "I want to ride" },
@@ -112,46 +119,50 @@ const Signup = (props) => {
   const [carColor, setCarColor] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
   const handleSignup = () => {
+    console.log("signup");
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
+      .then((userCredential) => {
+        console.log("firebase", userCredential);
         const user = userCredential.user;
         user.firstName = firstName;
         user.lastName = lastName;
         user.role = role;
-        if (user.role === 'drivers') {
+        if (user.role === "drivers") {
           user.carMake = carMake;
           user.carModel = carModel;
           user.carColor = carColor;
-          user.licensePlate = licensePlate
+          user.licensePlate = licensePlate;
         }
         return user;
       })
-      .then(user => {
+      .then((user) => {
         var profile = {
           params: {
             firstName: user.firstName,
             lastName: user.lastName,
-            role: user.role
-          }
+            role: user.role,
+          },
+        };
+        if (user.role === Roles.driver) {
+          profile.params.carMake = user.carMake;
+          profile.params.carModel = user.carModel;
+          profile.params.carColor = user.carColor;
+          profile.params.licensePlate = user.licensePlate;
         }
-        if (user.role === 'driver') {
-          profile.params.carMake = user.carMake
-          profile.params.carModel = user.carModel
-          profile.params.carColor = user.carColor
-          profile.params.licensePlate = user.licensePlate
-        }
-
-        axios.post(`http://192.168.1.130:3000/${user.role}`, profile)
+        axios
+          .post(`http://192.168.1.173:3000/${role}`, profile)
           .then((response) => {
             console.log(response.data);
           })
-          .catch(err => {
+          .catch((err) => {
             alert(err);
-          })
+          });
       })
-      .catch(error => alert(error.message))
-  }
+      .catch((error) => {
+        console.log("firebase err", error);
+      });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
@@ -160,43 +171,40 @@ const Signup = (props) => {
       </View>
 
       <DropDownPicker
-          style={styles.roleSelecter}
-          open={open}
-          setOpen={setOpen}
-          value={role}
-          items={items}
-          setValue={setRole}
-          setItems={setItems}
-          containerStyle={{width: 320}}
-        />
-
+        style={styles.roleSelecter}
+        open={open}
+        setOpen={setOpen}
+        value={role}
+        items={items}
+        setValue={setRole}
+        setItems={setItems}
+        containerStyle={{ width: 320 }}
+      />
 
       <View style={styles.doubleInputBox}>
-
-          <TextInput
-            style={styles.doubleInput}
-            value={firstName}
-            placeholderTextColor = "black"
-            onChangeText={(text) => setFirstName(text)}
-            placeholder="First name"
-          />
-          <TextInput
-            style={styles.doubleInput}
-            value={lastName}
-            placeholderTextColor = "black"
-            onChangeText={(text) => setLastName(text)}
-            placeholder="Last name"
-          />
-
+        <TextInput
+          style={styles.doubleInput}
+          value={firstName}
+          placeholderTextColor="black"
+          onChangeText={(text) => setFirstName(text)}
+          placeholder="First name"
+        />
+        <TextInput
+          style={styles.doubleInput}
+          value={lastName}
+          placeholderTextColor="black"
+          onChangeText={(text) => setLastName(text)}
+          placeholder="Last name"
+        />
       </View>
 
       <View style={styles.singleInputBox}>
         <TextInput
           style={styles.singleInput}
           textContentType="emailAddress"
-          autoCapitalize = "none"
+          autoCapitalize="none"
           placeholder="Email"
-          placeholderTextColor = "black"
+          placeholderTextColor="black"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
@@ -207,9 +215,9 @@ const Signup = (props) => {
           style={styles.singleInput}
           textContentType="password"
           secureTextEntry={true}
-          autoCapitalize = "none"
+          autoCapitalize="none"
           value={password}
-          placeholderTextColor = "black"
+          placeholderTextColor="black"
           onChangeText={(text) => setPassword(text)}
           placeholder="Password"
         />
@@ -221,14 +229,14 @@ const Signup = (props) => {
             <TextInput
               style={styles.doubleInput}
               value={carMake}
-              placeholderTextColor = "black"
+              placeholderTextColor="black"
               onChangeText={(text) => setCarMake(text)}
               placeholder="Car make"
             />
             <TextInput
               style={styles.doubleInput}
               value={carModel}
-              placeholderTextColor = "black"
+              placeholderTextColor="black"
               onChangeText={(text) => setCarModel(text)}
               placeholder="Car model"
             />
@@ -238,7 +246,7 @@ const Signup = (props) => {
             <TextInput
               style={styles.doubleInput}
               value={carColor}
-              placeholderTextColor = "black"
+              placeholderTextColor="black"
               onChangeText={(text) => setCarColor(text)}
               placeholder="Car color"
             />
@@ -246,24 +254,25 @@ const Signup = (props) => {
               style={styles.doubleInput}
               value={licensePlate}
               onChangeText={(text) => setLicensePlate(text)}
-              placeholderTextColor = "black"
+              placeholderTextColor="black"
               placeholder="License Plate"
             />
           </View>
         </>
       )}
 
-      <TouchableOpacity
-        style={styles.signup}
-        onPress={handleSignup}>
+      <TouchableOpacity style={styles.signup} onPress={handleSignup}>
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
 
-
       <View>
-        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onPress={props.login}>Log in</Text></Text>
+        <Text style={styles.loginText}>
+          Already have an account?{" "}
+          <Text style={styles.login} onPress={props.login}>
+            Log in
+          </Text>
+        </Text>
       </View>
-
     </View>
   );
 };
