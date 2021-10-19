@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const RiderList = ({ toggleRiderList, toggleRiderPickup, changeRider }) => {
+const RiderList = ({ changeRider }) => {
 
   const handlePress = (item) => {
     changeRider(item);
-    toggleRiderList();
-    toggleRiderPickup();
+    // toggleRiderList();
+    // toggleRiderPickup();
   }
   const dummyData = [
     {
@@ -15,6 +15,10 @@ const RiderList = ({ toggleRiderList, toggleRiderPickup, changeRider }) => {
       distance: 2.2,
       amount: 10,
       location: {
+        latitude: 40.7309,  //washington sqs
+        longitude: -73.9973
+      },
+      destination: {
         latitude: 40.7309,  //washington sqs
         longitude: -73.9973
       }

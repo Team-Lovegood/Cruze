@@ -5,7 +5,6 @@ import MapViewDirections from 'react-native-maps-directions';
 import config from '../../../config.js';
 
 const Map = ({ destination }) => {
-  // console.log(destination.latitude)
   return (
     <MapView
       style={styles.map}
