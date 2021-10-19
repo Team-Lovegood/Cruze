@@ -35,11 +35,9 @@ const RiderSignup = (req, res) => {
 
   pool.query(queryStr, queryParams)
     .then(response => {
-      console.log(response);
       res.sendStatus(201);
     })
     .catch(error => {
-      // console.log(error);
       res.status(500).send(error);
     })
 }
