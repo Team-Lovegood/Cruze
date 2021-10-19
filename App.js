@@ -4,8 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen, SignupScreen, RiderProfileScreen, DriverHomeScreen, DriverProfileScreen } from './Screens.js';
-//import riderhome
-//import driverhome
+import RiderHome from './client/components/RiderHome/RiderHome.jsx';
+import DriverHome from './client/components/DriverHome/DriverHome.jsx';
+
 
 const AuthStack = createStackNavigator();
 
@@ -26,20 +27,18 @@ export default function App() {
         </AuthStack.Navigator>
       </NavigationContainer> */}
 
-      {/* <View style={styles.container}>
-        <Text>Profiles</Text>
-        <StatusBar style="auto" />
-      </View>
 
-      <View style={styles.container}>
-        <Text>Rider Home</Text>
+    {/*<View style={styles.container}>
+        <RiderHome />
         <StatusBar style="auto" />
-      </View>
+      </View>*/}
 
-      <View style={styles.container}>
-        <Text>Driver Home</Text>
+
+    {/*<View style={styles.container}>
+        <DriverHome />
         <StatusBar style="auto" />
-      </View> */}
+      </View>*/}
+
     </>
   );
 }
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });

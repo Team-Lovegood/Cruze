@@ -1,38 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import RiderList from './RiderList.jsx';
 import Map from './Map.jsx';
+import DriverPickup from './DriverPickup.jsx';
+import OnTheWay from './OnTheWay.jsx';
 
 const DriverHome = () => {
+  const [rider, setRider] = useState({});
+  const [dollarAmount, setDollarAmount] = useState('');
+  const [miles, setMiles] = useState('');
+  const [isRiderListVisible, setIsRiderListVisible] = useState(true);
+  const [status, setStatus] = useState('rideList');
+
+  const changeRider = (rider) => {
+    setRider(rider);
+    setStatus('pickup')
+  }
+
+  const onTheWay = () => {
+    setStatus('onTheWay');
+  }
+
+  const ArrivedToDestination = () => {
+    setStatus('arrived');
+  }
+
   return (
     <>
-      <View style={styles.landingContainer}>
-        <Map />
-      </View>
-      <View style={styles.landingContainer}>
-        <Text style={styles.title}>
-          Hello, Tim
-        </Text>
-          <RiderList />
-        </View>
+      <Map destination={rider.location}/>
+      {status === 'rideList' &&
+        <RiderList
+          changeRider={changeRider}
+      />}
+
+      {status === 'pickup' &&
+        <DriverPickup rider={rider} onTheWay={onTheWay}/>
+      }
+      {status === 'onTheWay' &&
+        <OnTheWay rider={rider} ArrivedToDestination={ArrivedToDestination} />
+      }
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  landingContainer: {
-    flex: 1
+  mapView: {
+    flex: 5
   },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    paddingLeft: 25,
-    borderColor: "#20232a",
-    color: "#20232a",
-    textAlign: "left",
-    fontSize: 30,
-    fontWeight: "bold"
+  driverPick: {
+    flex: 1
   }
-})
+});
 
 export default DriverHome;
