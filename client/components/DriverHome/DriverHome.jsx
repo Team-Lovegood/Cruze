@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import RiderList from './RiderList.jsx';
 import Map from './Map.jsx';
 import DriverPickup from './DriverPickup.jsx';
+import DriverArrived from './DriverArrived.jsx';
 import OnTheWay from './OnTheWay.jsx';
 import * as Location from 'expo-location';
 
@@ -53,6 +54,9 @@ const DriverHome = () => {
       }
       {status === 'onTheWay' &&
         <OnTheWay rider={rider} ArrivedToDestination={ArrivedToDestination} />
+      }
+      {status === 'arrived' &&
+        <DriverArrived rider={rider} />
       }
     </>
   );
