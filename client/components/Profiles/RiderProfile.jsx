@@ -10,42 +10,27 @@ const RiderProfile = (props) => {
     // Rating
   return (
     <>
-      <View style = {styles.map}>
-        <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: 0,
-              longitude: 0,
-              latitudeDelta: 0,
-              longitudeDelta: 0,
-            }}
-          />
-      </View>
-      <View style = {styles.profile}>
-        <View style = {styles.top}>
-          <Text style={{fontSize: 24}}>First Last</Text>
-          <Text style={{fontSize: 24}}>5.0<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
+    <View style = {styles.profile}>
+      <View style = {styles.top}>
+        <Text style={{fontSize: 24}}>First Last</Text>
+        <Text style={{fontSize: 24}}>5.0<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
 
-        </View>
-        <View style = {styles.optional}>
-          <Text style={styles.text}>Language</Text>
-          <Language />
-        </View>
-        <View style = {styles.optional}>
-          <Text style={styles.text}>Dark mode</Text>
-          <Theme />
-        </View>
       </View>
+      <View style = {styles.optional}>
+        <Text style={styles.text}>Language</Text>
+        <Language />
+      </View>
+      <View style = {styles.optional}>
+        <Text style={styles.text}>Dark mode</Text>
+        <Theme />
+      </View>
+    </View>
     </>
   )
 }
 
 
 const styles = StyleSheet.create({
-   map:{
-     flex: 2,
-     width: '100%'
-   },
    profile:{
     flex: 1,
     width: '100%',

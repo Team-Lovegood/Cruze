@@ -3,9 +3,10 @@ import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
 import { auth } from '../../../firebase';
+import axios from 'axios';
 
 const Login = (props) => {
-  const Roles = { rider: "rider", driver: "driver",};
+  const Roles = { rider: "riders", driver: "drivers",};
   const [items, setItems] = useState([
     { value: Roles.rider, label: "I am a rider" },
     { value: Roles.driver, label: "I am a driver" },
@@ -14,24 +15,38 @@ const Login = (props) => {
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
 
   const handleLogin = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(userCredential => {
+        //Sign in with firebase, pass user info for Postgres get.
         const user = userCredential.user;
         user.role = role;
-        console.log(user.email, user.role);
-        alert('Logged in with: ' + user.email + ' as a: ' + user.role);
+        return user;
       })
       .then(user => {
-        if (role  === 'rider') {
-          props.riderHome();
-        } else if (role === 'driver') {
-          props.driverHome();
+        var profile = {
+          params: {
+            role: user.role,
+            email: user.email
+          }
         }
+        axios.get('http://192.168.1.130:3000/profile', profile)
+        .then((response) => {
+          response.data[0].role = role;
+          return response.data[0];
+        })
+        .then(data => {
+          if (data.role  === 'riders') {
+            props.riderHome();
+          } else if (data.role === 'drivers') {
+            props.driverHome();
+          }
+        })
+        .catch(err => {
+          alert(err);
+        })
       })
       .catch(error => alert(error.message))
   }
