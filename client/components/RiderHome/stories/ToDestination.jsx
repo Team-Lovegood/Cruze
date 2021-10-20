@@ -8,14 +8,14 @@ const ToDestination = ({tripStatus, distance, duration, handleStatus}) => {
   const durationRate = 0.1;
   const price = Number(distanceRate*distance.value/1000 + durationRate*duration.value/60).toFixed(2);
 
-  useEffect(() => {
-    if (tripStatus === "onTheWay") {
-      const test = setTimeout(() => handleStatus("pickUp"), 5000);
-      return () => clearTimeout(test);
-    } else {
-      return;
-    }
-  }, [handleStatus]);
+  // useEffect(() => {
+  //   if (tripStatus === "onTheWay") {
+  //     const test = setTimeout(() => handleStatus("pickUp"), 5000);
+  //     return () => clearTimeout(test);
+  //   } else {
+  //     return;
+  //   }
+  // }, [handleStatus]);
 
 
   if(tripStatus === 'onTheWay' || tripStatus === 'pickUp') {

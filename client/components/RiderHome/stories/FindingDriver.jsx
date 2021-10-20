@@ -5,14 +5,14 @@ import { faCar } from '@fortawesome/free-solid-svg-icons';
 
 const FindingDriver = ({ tripStatus, handleStatus }) => {
 
-    useEffect(() => {
-      if (tripStatus === "findDriver") {
-        const test = setTimeout(() => handleStatus("onTheWay"), 5000);
-        return () => clearTimeout(test);
-      } else {
-        return;
-      }
-    }, [handleStatus]);
+    // useEffect(() => {
+    //   if (tripStatus === "findDriver") {
+    //     const test = setTimeout(() => handleStatus("onTheWay"), 5000);
+    //     return () => clearTimeout(test);
+    //   } else {
+    //     return;
+    //   }
+    // }, [handleStatus]);
 
   if (tripStatus === "findDriver") {
     return (

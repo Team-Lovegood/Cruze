@@ -34,11 +34,10 @@ export default function App() {
       </ThemeProvider>
       </AppearanceProvider>
 
-      {/* <View style={styles.container}>
-          <RiderHome />
-          <StatusBar style="auto" />
-      </View> */}
-
+      <View style={styles.container}>
+        <RiderHome />
+        <StatusBar style="auto" />
+      </View>
 
     {/*<View style={styles.container}>
         <DriverHome />
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
