@@ -14,9 +14,8 @@ import ToDestination from './stories/ToDestination';
 
 const RiderHome = () => {
 
-  const temp = {latitude: 40.699215, longitude: -73.999039}
   const [departure, setDeparture] = useState({latitude: 40.748817, longitude: -73.985428});
-  const [destination, setDestination] = useState(temp);
+  const [destination, setDestination] = useState(departure);
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
 
@@ -29,18 +28,14 @@ const RiderHome = () => {
   }
 
   const handleTrip = (departure, destination) => {
-    if (Object.values(departure).length !== 0) {
-      setDeparture(departure);
-    }
-    if (Object.values(destination).length !== 0) {
-      setDestination(destination);
-    }
+
     if(Object.values(departure).length !== 0 && Object.values(destination).length !== 0) {
+      setDeparture(departure);
+      setDestination(destination);
       setTripStatus('findDriver');
     } else {
       setTripStatus('whereTo');
     }
-
   }
 
   useEffect(() => {
@@ -77,7 +72,6 @@ const RiderHome = () => {
   return (
     <SafeAreaView style={styles.container}>
       <MapView
-        blurRadius={4}
         style={StyleSheet.absoluteFillObject}
         scrollEnabled={true}
         ref={mapRef}
