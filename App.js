@@ -3,7 +3,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { AppearanceProvider } from 'react-native-appearance';
 import { LoginScreen, SignupScreen, RiderProfileScreen, DriverProfileScreen } from './Screens.js';
+import { ThemeProvider } from './theme/themeProvider.js';
 import RiderHome from './client/components/RiderHome/RiderHome.jsx';
 import DriverHome from './client/components/DriverHome/DriverHome.jsx';
 
@@ -18,7 +20,8 @@ export default function App() {
         <StatusBar style="auto" />
       </View> */}
 
-
+      <AppearanceProvider>
+      <ThemeProvider>
       <NavigationContainer>
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
@@ -27,6 +30,8 @@ export default function App() {
           <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
         </AuthStack.Navigator>
       </NavigationContainer>
+      </ThemeProvider>
+      </AppearanceProvider>
 
       {/* <View style={styles.container}>
           <RiderHome />

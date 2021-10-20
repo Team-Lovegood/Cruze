@@ -1,19 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const RiderProfile = (props) => {
-  return (
-  <SafeAreaView style={{flex: 1}}>
-    <View style={styles.map}></View>
-    <View style = {styles.profile}>
-      <View style = {styles.top}>
-        <Text style={{fontSize: 24}}>Tim E Tim</Text>
-        <Text style={{fontSize: 24}}>4.9<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
+  const { children } = props;
+  const { colors, isDark } = useTheme();
 
+  const textStyle = {
+    fontSize: 24,
+    color: colors.text
+  };
+  const safeStyle = {
+    flex: 1,
+    backgroundColor: colors.background
+  }
+
+  return (
+  <SafeAreaView style={safeStyle}>
+    <View style={styles.map}></View>
+    <View style = {safeStyle}>
+      <View style = {styles.top}>
+        <Text style={textStyle}>Tim E Tim</Text>
+        <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
       </View>
-      <View style = {styles.optional}>
-        <Text style={styles.text}>Dark mode</Text>
+      <View style = {styles.top}>
+        <Text style={textStyle}>Dark mode</Text>
         <Theme />
       </View>
     </View>
@@ -24,26 +36,14 @@ const RiderProfile = (props) => {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 3,
+    flex: 4,
     backgroundColor: '#B3E5FD'
   },
-   profile:{
-    flex: 1,
-   },
    top: {
      flexDirection: 'row',
-     justifyContent: 'space-between',
-     margin: 15,
-     marginBottom: 25,
-   },
-   optional: {
-    flexDirection: 'row',
-    marginLeft: 15,
-    marginBottom: 25
-   },
-   text: {
-    fontSize: 18,
-  },
+     justifyContent: 'space-evenly',
+     margin: 25,
+   }
 });
 
 
