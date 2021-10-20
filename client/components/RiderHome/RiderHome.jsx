@@ -6,6 +6,7 @@ import { BlurView } from 'expo-blur';
 import axios from 'axios';
 import io from 'socket.io-client';
 import API from './config.js';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import WhereTo from './stories/WhereTo';
 import Arrived from './stories/Arrived';
@@ -94,6 +95,9 @@ const RiderHome = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.menu}>
+        <FontAwesome name='bars' size={30} color={'black'} />
+      </View>
       <MapView
         style={StyleSheet.absoluteFillObject}
         scrollEnabled={true}
@@ -139,7 +143,12 @@ const styles = StyleSheet.create({
     top: 100,
     left: 50
   },
-
+  menu: {
+    position: 'absolute',
+    top: 80,
+    left: 20,
+    zIndex: 1
+  },
   absolute: {
     position: "absolute",
     top: 0,
