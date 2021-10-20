@@ -28,7 +28,7 @@ const DriverProfile = (props) => {
           <Text style={textStyle}>Intern101</Text>
         </View>
         <View style = {styles.top}>
-          <Text style={textStyle}>Dark mode</Text>
+          <Text style={textStyle}>Theme</Text>
           <Theme />
         </View>
       </View>

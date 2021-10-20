@@ -4,6 +4,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
 import { auth } from '../../../firebase';
 import axios from 'axios';
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const Login = (props) => {
   const Roles = { rider: "riders", driver: "drivers",};
@@ -16,6 +17,16 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [profile, setProfile] = useState({});
+
+  const { children } = props;
+  const { colors, isDark } = useTheme();
+
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background
+  }
 
 
   const handleLogin = () => {
@@ -60,7 +71,7 @@ const Login = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, safeStyle]}>
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo}/>
         <Text style={styles.text}>Cruze</Text>
@@ -79,14 +90,14 @@ const Login = (props) => {
         autoCapitalize = "none"
         textContentType='emailAddress'
         placeholder = "Email"
-        placeholderTextColor = "black"
+        placeholderTextColor = 'black'
         value={email}
         onChangeText={(text) => setEmail(text)}/>
       <TextInput style = {styles.input}
         secureTextEntry={true}
         textContentType='password'
         placeholder = "Password"
-        placeholderTextColor = "black"
+        placeholderTextColor = 'black'
         autoCapitalize = "none"
         value={password}
         onChangeText = {(text) => setPassword(text)}/>
@@ -95,7 +106,7 @@ const Login = (props) => {
         onPress={handleLogin}>
         <Text style={styles.loginText}>Log in</Text>
       </TouchableOpacity>
-      <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
+      <Text style={[styles.signupText, textStyle]}>Don't have an account? <Text style={[styles.signup, textStyle]} onPress={props.signup}>Sign up</Text></Text>
     </SafeAreaView>
   );
 }

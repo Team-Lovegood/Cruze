@@ -25,7 +25,7 @@ const RiderProfile = (props) => {
         <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
       </View>
       <View style = {styles.top}>
-        <Text style={textStyle}>Dark mode</Text>
+        <Text style={textStyle}>Theme</Text>
         <Theme />
       </View>
     </View>

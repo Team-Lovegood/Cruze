@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity, Sa
 import DropDownPicker from "react-native-dropdown-picker";
 import { auth } from '../../../firebase';
 import axios from 'axios';
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const styles = StyleSheet.create({
   container: {
@@ -110,6 +111,15 @@ const Signup = (props) => {
   const [carColor, setCarColor] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
   const [profile, setProfile] = useState({});
+  const { children } = props;
+  const { colors, isDark } = useTheme();
+
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background
+  }
 
   const handleSignup = () => {
     auth
@@ -177,7 +187,7 @@ const Signup = (props) => {
       .catch(error => alert(error.message))
   }
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, safeStyle]}>
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo} />
         <Text style={styles.appName}>Cruze</Text>
@@ -273,7 +283,7 @@ const Signup = (props) => {
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
       <View>
-        <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onPress={props.login}>Log in</Text></Text>
+        <Text style={[styles.loginText, textStyle]}>Already have an account? <Text style={[styles.login, textStyle]} onPress={props.login}>Log in</Text></Text>
       </View>
     </SafeAreaView>
   );
