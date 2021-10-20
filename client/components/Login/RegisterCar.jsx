@@ -158,7 +158,8 @@ const RegisterCar = (props) => {
 
       <TouchableOpacity
         style={styles.signup}
-        onPress={console.warn('poo')}>
+        onPress={console.warn('test')}
+        >
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
       <View>

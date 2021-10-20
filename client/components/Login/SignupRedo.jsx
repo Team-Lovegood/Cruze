@@ -105,6 +105,7 @@ const SignupRedo = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [carMake, setCarMake] = useState("");
   const [carModel, setCarModel] = useState("");
@@ -115,7 +116,6 @@ const SignupRedo = (props) => {
   const [profile, setProfile] = useState({});
   const { children } = props;
   const { colors, isDark } = useTheme();
-
   const textStyle = {
     color: colors.text
   };
@@ -131,7 +131,7 @@ const SignupRedo = (props) => {
         const user = userCredential.user;
         user.firstName = firstName;
         user.lastName = lastName;
-        user.role = role;
+        user.phone = phone;
         // return account infor for promise chaining
         return user;
       })
@@ -142,7 +142,7 @@ const SignupRedo = (props) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            role: user.role
+            phone: user.phone,
           }
         }
         //axios post to riders table
@@ -155,13 +155,12 @@ const SignupRedo = (props) => {
             // get user information with matching email.
             axios.get('http://192.168.1.130:3000/profile', profile)
             .then((response) => {
-              response.data[0].role = role;
               // return postgres data
               setProfile(response.data[0]);
               return response.data[0];
             })
             .then(data => {
-              //render next page according to profile role
+              //render rider page
               props.riderHome();
             })
             .catch(err => {
@@ -177,102 +176,62 @@ const SignupRedo = (props) => {
         <Image style={styles.logo} source={logo} />
         <Text style={styles.appName}>Cruze</Text>
       </View>
-
-      {!next ?
-        <View>
-          <DropDownPicker
-              style={styles.roleSelecter}
-              open={open}
-              setOpen={setOpen}
-              value={role}
-              items={items}
-              setValue={setRole}
-              setItems={setItems}
-              containerStyle={{width: 320}}
-            />
-          <View style={styles.doubleInputBox}>
-              <TextInput
-                style={styles.doubleInput}
-                value={firstName}
-                placeholderTextColor = "black"
-                onChangeText={(text) => setFirstName(text)}
-                placeholder="First name"
-              />
-              <TextInput
-                style={styles.doubleInput}
-                value={lastName}
-                placeholderTextColor = "black"
-                onChangeText={(text) => setLastName(text)}
-                placeholder="Last name"
-              />
-          </View>
-          <View style={styles.singleInputBox}>
-            <TextInput
-              style={styles.singleInput}
-              textContentType="emailAddress"
-              autoCapitalize = "none"
-              placeholder="Email"
-              placeholderTextColor = "black"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
-          </View>
-          <View style={styles.singleInputBox}>
-            <TextInput
-              style={styles.singleInput}
-              textContentType="password"
-              secureTextEntry={true}
-              autoCapitalize = "none"
-              value={password}
-              placeholderTextColor = "black"
-              onChangeText={(text) => setPassword(text)}
-              placeholder="Password"
-            />
-          </View>
-      </View>
-      :
-        <View>
-          <View style={styles.doubleInputBox}>
+        <DropDownPicker
+            style={styles.roleSelecter}
+            open={open}
+            setOpen={setOpen}
+            value={role}
+            items={items}
+            setValue={setRole}
+            setItems={setItems}
+            containerStyle={{width: 320}}
+          />
+        <View style={styles.doubleInputBox}>
             <TextInput
               style={styles.doubleInput}
-              value={carMake}
+              value={firstName}
               placeholderTextColor = "black"
-              onChangeText={(text) => setCarMake(text)}
-              placeholder="Car make"
+              onChangeText={(text) => setFirstName(text)}
+              placeholder="First name"
             />
             <TextInput
               style={styles.doubleInput}
-              value={carModel}
+              value={lastName}
               placeholderTextColor = "black"
-              onChangeText={(text) => setCarModel(text)}
-              placeholder="Car model"
+              onChangeText={(text) => setLastName(text)}
+              placeholder="Last name"
             />
-          </View>
-          <View style={styles.doubleInputBox}>
-            <TextInput
-              style={styles.doubleInput}
-              value={carColor}
-              placeholderTextColor = "black"
-              onChangeText={(text) => setCarColor(text)}
-              placeholder="Car color"
-            />
+        </View>
+        <View style={styles.doubleInputBox}>
           <TextInput
-              style={styles.doubleInput}
-              value={carCapacity}
-              onChangeText={(text) => setCapacity(text)}
-              placeholderTextColor = "black"
-              placeholder="Car capacity"
-            />
-          </View>
-          <TextInput
-            style={styles.singleInput}
-            value={licensePlate}
-            onChangeText={(text) => setLicensePlate(text)}
+            style={styles.doubleInput}
+            textContentType="emailAddress"
+            autoCapitalize = "none"
+            placeholder="Email"
             placeholderTextColor = "black"
-            placeholder="License plate"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <TextInput
+            style={styles.doubleInput}
+            placeholder="Phone"
+            placeholderTextColor = "black"
+            value={phone}
+            onChangeText={(text) => setPhone(text)}
           />
         </View>
-        }
+        <View style={styles.singleInputBox}>
+          <TextInput
+            style={styles.singleInput}
+            textContentType="password"
+            secureTextEntry={true}
+            autoCapitalize = "none"
+            value={password}
+            placeholderTextColor = "black"
+            onChangeText={(text) => setPassword(text)}
+            placeholder="Password"
+          />
+        </View>
 
       {role === Roles.rider ?
         <TouchableOpacity
@@ -282,8 +241,9 @@ const SignupRedo = (props) => {
         </TouchableOpacity>
       :
         <TouchableOpacity
-        style={styles.signup}
-        onPress={setNext(true)}>
+          style={styles.signup}
+          onPress={props.car}
+        >
         <Text style={styles.signupText}>Next</Text>
         </TouchableOpacity>
       }

@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 30,
     width: 150,
+    marginTop: 20
   },
   signupText: {
     alignSelf: 'center',
@@ -105,10 +106,12 @@ const Signup = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState();
   const [password, setPassword] = useState("");
   const [carMake, setCarMake] = useState("");
   const [carModel, setCarModel] = useState("");
   const [carColor, setCarColor] = useState("");
+  const [carCapacity, setCarCapacity] = useState();
   const [licensePlate, setLicensePlate] = useState("");
   const [profile, setProfile] = useState({});
   const { children } = props;
@@ -129,12 +132,15 @@ const Signup = (props) => {
         const user = userCredential.user;
         user.firstName = firstName;
         user.lastName = lastName;
+        user.phone = phone;
         user.role = role;
+
         if (user.role === 'drivers') {
           user.carMake = carMake;
           user.carModel = carModel;
           user.carColor = carColor;
-          user.licensePlate = licensePlate
+          user.licensePlate = licensePlate;
+          user.carCapacity = carCapacity;
         }
         // return account infor for promise chaining
         return user;
@@ -146,6 +152,7 @@ const Signup = (props) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
+            phone: user.phone,
             role: user.role
           }
         }
@@ -155,6 +162,7 @@ const Signup = (props) => {
           profile.params.carModel = user.carModel
           profile.params.carColor = user.carColor
           profile.params.licensePlate = user.licensePlate
+          profile.params.carCapacity = user.carCapacity
         }
         //axios post
         axios.post(`http://192.168.1.130:3000/${user.role}`, profile)
@@ -218,15 +226,22 @@ const Signup = (props) => {
             placeholder="Last name"
           />
       </View>
-      <View style={styles.singleInputBox}>
+      <View style={styles.doubleInputBox}>
         <TextInput
-          style={styles.singleInput}
+          style={styles.doubleInput}
           textContentType="emailAddress"
           autoCapitalize = "none"
           placeholder="Email"
           placeholderTextColor = "black"
           value={email}
           onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          style={styles.doubleInput}
+          placeholder="Phone"
+          placeholderTextColor = "black"
+          value={phone}
+          onChangeText={(text) => setPhone(text)}
         />
       </View>
       <View style={styles.singleInputBox}>
@@ -269,12 +284,19 @@ const Signup = (props) => {
             />
             <TextInput
               style={styles.doubleInput}
+              value={carCapacity}
+              onChangeText={(text) => setCarCapacity(text)}
+              placeholderTextColor = "black"
+              placeholder="Car capacity"
+            />
+          </View>
+          <TextInput
+              style={styles.singleInput}
               value={licensePlate}
               onChangeText={(text) => setLicensePlate(text)}
               placeholderTextColor = "black"
-              placeholder="License Plate"
+              placeholder="License plate"
             />
-          </View>
         </>
       )}
       <TouchableOpacity

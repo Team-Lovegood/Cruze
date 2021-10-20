@@ -12,7 +12,7 @@ export const LoginScreen = ({ navigation }) => {
 };
 export const SignupScreen = ({ navigation }) => {
   return (
-    <SignupRedo
+    <Signup
     login={() => navigation.pop()}
     car={() => navigation.push('Car')}
     riderHome={() => navigation.push('RiderProfile')}
