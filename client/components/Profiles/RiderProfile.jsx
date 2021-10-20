@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
 import { useTheme } from '../../../theme/themeProvider.js';
+import Language from '../Login/DropdownLanguage.jsx';
 
 const RiderProfile = (props) => {
   const { children } = props;
