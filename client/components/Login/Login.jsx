@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, Image, LogBox } from 'react-native';
 import { auth } from '../../../firebase';
 import axios from 'axios';
 import { useTheme } from '../../../theme/themeProvider.js';
+import { LanguageContext } from "../../languages/index";
+import LanguageSelecter from "../Login/DropdownLanguage";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { macIP } from '../../../ip.js';
 
 const Login = (props) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const Roles = { rider: "riders", driver: "drivers",};
+  const riderTip = languagePackages?.IAmARider;
+  const driverTip = languagePackages?.IAmADriver;
   const [items, setItems] = useState([
-    { value: Roles.rider, label: "I am a rider" },
-    { value: Roles.driver, label: "I am a driver" },
+    { value: Roles.rider, label: riderTip },
+    { value: Roles.driver, label: driverTip },
   ]);
   const [open, setOpen] = useState(false);
   const [role, setRole] = useState(Roles.rider);
@@ -27,6 +34,19 @@ const Login = (props) => {
   const safeStyle = {
     backgroundColor: colors.background
   }
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, [])
+
+  useEffect(() => {
+    setItems([
+      { value: Roles.rider, label: languagePackages?.IAmARider },
+      {
+        value: Roles.driver,
+        label: languagePackages?.IAmADriver,
+      },
+    ]);
+  }, [languagePackages]);
 
 
   const handleLogin = () => {
@@ -47,7 +67,7 @@ const Login = (props) => {
           }
         }
         // get postgres user information where firebase email matches postgres email
-        axios.get('http://192.168.1.130:3000/profile', profile)
+        axios.get(`http://${macIP}:3000/profile`, profile)
         .then((response) => {
           response.data[0].role = role;
           // return postgres information for more chaining
@@ -72,10 +92,14 @@ const Login = (props) => {
 
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
+        <LanguageSelecter />
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo}/>
         <Text style={styles.text}>Cruze</Text>
       </View>
+      <KeyboardAwareScrollView keyboardShouldPersistTaps={'always'}
+          style={{flex:1}}
+          showsVerticalScrollIndicator={false}>
       <DropDownPicker
           style={styles.roleSelecter}
           open={open}
@@ -89,14 +113,14 @@ const Login = (props) => {
       <TextInput style = {styles.input}
         autoCapitalize = "none"
         textContentType='emailAddress'
-        placeholder = "Email"
+        placeholder={languagePackages?.Email}
         placeholderTextColor = 'black'
         value={email}
         onChangeText={(text) => setEmail(text)}/>
       <TextInput style = {styles.input}
         secureTextEntry={true}
         textContentType='password'
-        placeholder = "Password"
+        placeholder={languagePackages?.Password}
         placeholderTextColor = 'black'
         autoCapitalize = "none"
         value={password}
@@ -104,9 +128,15 @@ const Login = (props) => {
       <TouchableOpacity
         style={styles.login}
         onPress={handleLogin}>
-        <Text style={styles.loginText}>Log in</Text>
+        <Text style={styles.loginText}>{languagePackages?.LogIn}</Text>
       </TouchableOpacity>
-      <Text style={[styles.signupText, textStyle]}>Don't have an account? <Text style={[styles.signup, textStyle]} onPress={props.signup}>Sign up</Text></Text>
+      <Text style={styles.signupText}>
+        {languagePackages?.DonnotHaveAnAccount}{" "}
+        <Text style={styles.signup} onPress={props.signup}>
+          {languagePackages?.Signup}
+        </Text>
+      </Text>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }

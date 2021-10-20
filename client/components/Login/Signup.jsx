@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity, SafeAreaView, KeyboardAvoidingView} from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity, SafeAreaView, LogBox} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { auth } from '../../../firebase';
 import axios from 'axios';
 import { useTheme } from '../../../theme/themeProvider.js';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { macIP } from '../../../ip.js';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +17,7 @@ const styles = StyleSheet.create({
   },
   logoBox: {
     marginTop: 100,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   logo: {
     width: 100,
@@ -124,6 +127,10 @@ const Signup = (props) => {
     backgroundColor: colors.background
   }
 
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, [])
+
   const handleSignup = () => {
     auth
       //Create firebase account
@@ -165,14 +172,16 @@ const Signup = (props) => {
           profile.params.carCapacity = user.carCapacity
         }
         //axios post
-        axios.post(`http://192.168.1.130:3000/${user.role}`, profile)
+        let macIP = '192.168.1.130';
+
+        axios.post(`http://${macIP}:3000/${user.role}`, profile)
           .then((response) => {
             // return profile to render next page
             return profile;
           })
           .then((profile) => {
             // get user information with matching email.
-            axios.get('http://192.168.1.130:3000/profile', profile)
+            axios.get(`http://${macIP}:3000/profile`, profile)
             .then((response) => {
               response.data[0].role = role;
               // return postgres data
@@ -190,123 +199,130 @@ const Signup = (props) => {
             .catch(err => {
               alert(err);
             })
-        })
+          })
+          .catch(err => {
+            alert(err);
+          })
       })
       .catch(error => alert(error.message))
   }
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
-      <View style={styles.logoBox}>
-        <Image style={styles.logo} source={logo} />
-        <Text style={styles.appName}>Cruze</Text>
-      </View>
-      <DropDownPicker
-          style={styles.roleSelecter}
-          open={open}
-          setOpen={setOpen}
-          value={role}
-          items={items}
-          setValue={setRole}
-          setItems={setItems}
-          containerStyle={{width: 320}}
-        />
-      <View style={styles.doubleInputBox}>
+        <View style={styles.logoBox}>
+          <Image style={styles.logo} source={logo} />
+          <Text style={styles.appName}>Cruze</Text>
+        </View>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps={'always'}
+          style={{flex:1}}
+          showsVerticalScrollIndicator={false}>
+        <DropDownPicker
+            style={styles.roleSelecter}
+            open={open}
+            setOpen={setOpen}
+            value={role}
+            items={items}
+            setValue={setRole}
+            setItems={setItems}
+            containerStyle={{width: 320}}
+          />
+        <View style={styles.doubleInputBox}>
+            <TextInput
+              style={styles.doubleInput}
+              value={firstName}
+              placeholderTextColor = "black"
+              onChangeText={(text) => setFirstName(text)}
+              placeholder="First name"
+            />
+            <TextInput
+              style={styles.doubleInput}
+              value={lastName}
+              placeholderTextColor = "black"
+              onChangeText={(text) => setLastName(text)}
+              placeholder="Last name"
+            />
+        </View>
+        <View style={styles.doubleInputBox}>
           <TextInput
             style={styles.doubleInput}
-            value={firstName}
+            textContentType="emailAddress"
+            autoCapitalize = "none"
+            placeholder="Email"
             placeholderTextColor = "black"
-            onChangeText={(text) => setFirstName(text)}
-            placeholder="First name"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <TextInput
             style={styles.doubleInput}
-            value={lastName}
+            placeholder="Phone"
             placeholderTextColor = "black"
-            onChangeText={(text) => setLastName(text)}
-            placeholder="Last name"
+            value={phone}
+            onChangeText={(text) => setPhone(text)}
           />
-      </View>
-      <View style={styles.doubleInputBox}>
-        <TextInput
-          style={styles.doubleInput}
-          textContentType="emailAddress"
-          autoCapitalize = "none"
-          placeholder="Email"
-          placeholderTextColor = "black"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={styles.doubleInput}
-          placeholder="Phone"
-          placeholderTextColor = "black"
-          value={phone}
-          onChangeText={(text) => setPhone(text)}
-        />
-      </View>
-      <View style={styles.singleInputBox}>
-        <TextInput
-          style={styles.singleInput}
-          textContentType="password"
-          secureTextEntry={true}
-          autoCapitalize = "none"
-          value={password}
-          placeholderTextColor = "black"
-          onChangeText={(text) => setPassword(text)}
-          placeholder="Password"
-        />
-      </View>
-      {role === Roles.driver && (
-        <>
-          <View style={styles.doubleInputBox}>
-            <TextInput
-              style={styles.doubleInput}
-              value={carMake}
-              placeholderTextColor = "black"
-              onChangeText={(text) => setCarMake(text)}
-              placeholder="Car make"
-            />
-            <TextInput
-              style={styles.doubleInput}
-              value={carModel}
-              placeholderTextColor = "black"
-              onChangeText={(text) => setCarModel(text)}
-              placeholder="Car model"
-            />
-          </View>
-          <View style={styles.doubleInputBox}>
-            <TextInput
-              style={styles.doubleInput}
-              value={carColor}
-              placeholderTextColor = "black"
-              onChangeText={(text) => setCarColor(text)}
-              placeholder="Car color"
-            />
-            <TextInput
-              style={styles.doubleInput}
-              value={carCapacity}
-              onChangeText={(text) => setCarCapacity(text)}
-              placeholderTextColor = "black"
-              placeholder="Car capacity"
-            />
-          </View>
+        </View>
+        <View style={styles.singleInputBox}>
           <TextInput
-              style={styles.singleInput}
-              value={licensePlate}
-              onChangeText={(text) => setLicensePlate(text)}
-              placeholderTextColor = "black"
-              placeholder="License plate"
-            />
-        </>
-      )}
-      <TouchableOpacity
-        style={styles.signup}
-        onPress={handleSignup}>
-        <Text style={styles.signupText}>Sign up</Text>
-      </TouchableOpacity>
-      <View>
-        <Text style={[styles.loginText, textStyle]}>Already have an account? <Text style={[styles.login, textStyle]} onPress={props.login}>Log in</Text></Text>
-      </View>
+            style={styles.singleInput}
+            textContentType="password"
+            secureTextEntry={true}
+            autoCapitalize = "none"
+            value={password}
+            placeholderTextColor = "black"
+            onChangeText={(text) => setPassword(text)}
+            placeholder="Password"
+          />
+        </View>
+        {role === Roles.driver && (
+          <>
+            <View style={styles.doubleInputBox}>
+              <TextInput
+                style={styles.doubleInput}
+                value={carMake}
+                placeholderTextColor = "black"
+                onChangeText={(text) => setCarMake(text)}
+                placeholder="Car make"
+              />
+              <TextInput
+                style={styles.doubleInput}
+                value={carModel}
+                placeholderTextColor = "black"
+                onChangeText={(text) => setCarModel(text)}
+                placeholder="Car model"
+              />
+            </View>
+            <View style={styles.doubleInputBox}>
+              <TextInput
+                style={styles.doubleInput}
+                value={carColor}
+                placeholderTextColor = "black"
+                onChangeText={(text) => setCarColor(text)}
+                placeholder="Car color"
+              />
+              <TextInput
+                style={styles.doubleInput}
+                value={carCapacity}
+                onChangeText={(text) => setCarCapacity(text)}
+                placeholderTextColor = "black"
+                placeholder="Car capacity"
+              />
+            </View>
+            <TextInput
+                style={styles.singleInput}
+                value={licensePlate}
+                onChangeText={(text) => setLicensePlate(text)}
+                placeholderTextColor = "black"
+                placeholder="License plate"
+              />
+          </>
+        )}
+        <TouchableOpacity
+          style={styles.signup}
+          onPress={handleSignup}>
+          <Text style={styles.signupText}>Sign up</Text>
+        </TouchableOpacity>
+        <View>
+          <Text style={[styles.loginText, textStyle]}>Already have an account? <Text style={[styles.login, textStyle]} onPress={props.login}>Log in</Text></Text>
+        </View>
+        </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
