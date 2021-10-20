@@ -1,19 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
 import Language from './DropdownLanguage.jsx';
 
 const RiderProfile = (props) => {
-  // Props is user profile
-    // First and Last name
-    // Rating
   return (
-    <>
+  <SafeAreaView style={{flex: 1}}>
+    <View style={styles.map}></View>
     <View style = {styles.profile}>
       <View style = {styles.top}>
-        <Text style={{fontSize: 24}}>First Last</Text>
-        <Text style={{fontSize: 24}}>5.0<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
+        <Text style={{fontSize: 24}}>Tim E Tim</Text>
+        <Text style={{fontSize: 24}}>4.9<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
 
       </View>
       <View style = {styles.optional}>
@@ -25,16 +22,18 @@ const RiderProfile = (props) => {
         <Theme />
       </View>
     </View>
-    </>
+  </SafeAreaView>
   )
 }
 
 
 const styles = StyleSheet.create({
+  map: {
+    flex: 2,
+    backgroundColor: 'gray'
+  },
    profile:{
     flex: 1,
-    width: '100%',
-    justifyContent: 'flex-start',
    },
    top: {
      flexDirection: 'row',

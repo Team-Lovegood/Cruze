@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity} from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Image,  TouchableOpacity, SafeAreaView, KeyboardAvoidingView} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { auth } from '../../../firebase';
 import axios from 'axios';
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 200,
+    marginTop: 100,
     flexDirection: 'row'
   },
   logo: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-    borderColor: 'white'
+    borderWidth: 0
   },
   doubleInputBox: {
     marginBottom: 20,
@@ -95,14 +95,12 @@ const Roles = {
 
 import logo from "../../../assets/logo.png";
 const Signup = (props) => {
-
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     { value: Roles.rider, label: "I want to ride" },
     { value: Roles.driver, label: "I want to drive" },
   ]);
   const [role, setRole] = useState(Roles.rider);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -111,6 +109,8 @@ const Signup = (props) => {
   const [carModel, setCarModel] = useState("");
   const [carColor, setCarColor] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
+  const [profile, setProfile] = useState({});
+
   const handleSignup = () => {
     auth
       //Create firebase account
@@ -158,6 +158,7 @@ const Signup = (props) => {
             .then((response) => {
               response.data[0].role = role;
               // return postgres data
+              setProfile(response.data[0]);
               return response.data[0];
             })
             .then(data => {
@@ -176,12 +177,11 @@ const Signup = (props) => {
       .catch(error => alert(error.message))
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo} />
         <Text style={styles.appName}>Cruze</Text>
       </View>
-
       <DropDownPicker
           style={styles.roleSelecter}
           open={open}
@@ -192,10 +192,7 @@ const Signup = (props) => {
           setItems={setItems}
           containerStyle={{width: 320}}
         />
-
-
       <View style={styles.doubleInputBox}>
-
           <TextInput
             style={styles.doubleInput}
             value={firstName}
@@ -210,9 +207,7 @@ const Signup = (props) => {
             onChangeText={(text) => setLastName(text)}
             placeholder="Last name"
           />
-
       </View>
-
       <View style={styles.singleInputBox}>
         <TextInput
           style={styles.singleInput}
@@ -224,7 +219,6 @@ const Signup = (props) => {
           onChangeText={(text) => setEmail(text)}
         />
       </View>
-
       <View style={styles.singleInputBox}>
         <TextInput
           style={styles.singleInput}
@@ -237,7 +231,6 @@ const Signup = (props) => {
           placeholder="Password"
         />
       </View>
-
       {role === Roles.driver && (
         <>
           <View style={styles.doubleInputBox}>
@@ -256,7 +249,6 @@ const Signup = (props) => {
               placeholder="Car model"
             />
           </View>
-
           <View style={styles.doubleInputBox}>
             <TextInput
               style={styles.doubleInput}
@@ -275,19 +267,15 @@ const Signup = (props) => {
           </View>
         </>
       )}
-
       <TouchableOpacity
         style={styles.signup}
         onPress={handleSignup}>
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
-
-
       <View>
         <Text style={styles.loginText}>Already have an account? <Text style={styles.login} onPress={props.login}>Log in</Text></Text>
       </View>
-
-    </View>
+    </SafeAreaView>
   );
 };
 export default Signup;

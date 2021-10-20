@@ -1,23 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
 import Language from './DropdownLanguage.jsx';
 
 const DriverProfile = (props) => {
-  // props is a user profile include First, last name
-  // rating for rider, and car information
   return (
-    <>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.map}></View>
       <View style = {styles.profile}>
         <View style = {styles.top}>
-          <Text style={{fontSize: 24}}>First Last</Text>
-          <Text style={{fontSize: 24}}>5.0<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
+          <Text style={{fontSize: 24}}>Jake E Jake</Text>
+          <Text style={{fontSize: 24}}>4.8<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
 
         </View>
-        <View style = {styles.car}>
-          <Text style={styles.text}>Color Make Model </Text>
-          <Text style={styles.plate}>License plate</Text>
+        <View style={styles.car}>
+          <Text style={styles.text}>Green Kia Soul</Text>
+          <Text style={styles.plate}>Intern101</Text>
         </View>
         <View style = {styles.car}>
           <Text style={styles.text}>Language</Text>
@@ -28,30 +26,32 @@ const DriverProfile = (props) => {
           <Theme />
         </View>
       </View>
-    </>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-   profile:{
+  map: {
+    flex: 2,
+    backgroundColor: 'gray'
+  },
+  profile:{
     flex: 1,
-    width: '100%',
-    justifyContent: 'flex-start',
-   },
-   top: {
-     flexDirection: 'row',
-     justifyContent: 'space-between',
-     margin: 15,
-   },
-   car: {
+  },
+  top: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 15,
+  },
+  car: {
     flexDirection: 'row',
     marginLeft: 15,
     marginBottom: 25
-   },
-   text: {
+  },
+  text: {
     fontSize: 18,
   },
-   plate: {
+  plate: {
     fontSize: 18,
     marginLeft: 35,
   }

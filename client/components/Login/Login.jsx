@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
 import { auth } from '../../../firebase';
 import axios from 'axios';
 
@@ -15,6 +15,8 @@ const Login = (props) => {
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [profile, setProfile] = useState({});
+
 
   const handleLogin = () => {
     auth
@@ -36,10 +38,11 @@ const Login = (props) => {
         // get postgres user information where firebase email matches postgres email
         axios.get('http://192.168.1.130:3000/profile', profile)
         .then((response) => {
-          console.log(response.data[0]);
           response.data[0].role = role;
           // return postgres information for more chaining
+          setProfile(response.data[0]);
           return response.data[0];
+          // console.warn(props.auth);
         })
         .then(data => {
           // render next page according to profile role
@@ -57,12 +60,11 @@ const Login = (props) => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo}/>
         <Text style={styles.text}>Cruze</Text>
       </View>
-
       <DropDownPicker
           style={styles.roleSelecter}
           open={open}
@@ -73,8 +75,6 @@ const Login = (props) => {
           setItems={setItems}
           containerStyle={{width: 320}}
         />
-
-
       <TextInput style = {styles.input}
         autoCapitalize = "none"
         textContentType='emailAddress'
@@ -96,7 +96,7 @@ const Login = (props) => {
         <Text style={styles.loginText}>Log in</Text>
       </TouchableOpacity>
       <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
-  </View>
+    </SafeAreaView>
   );
 }
 
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 200,
+    marginTop: 100,
     flexDirection: 'row'
   },
   logo: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-    borderColor: 'white'
+    borderWidth: 0
   },
 });
 
