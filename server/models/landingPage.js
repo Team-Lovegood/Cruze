@@ -27,11 +27,9 @@ const Login = (req, res) => {
 }
 
 const RiderSignup = (req, res) => {
-  const { firstName, lastName, email} = req.body.params;
-  console.log(firstName, lastName, email);
-
-  let queryStr = 'insert into riders(firstname, lastname, email) values ($1, $2, $3)';
-  let queryParams = [firstName, lastName, email];
+  const { firstName, lastName, email, phone} = req.body.params;
+  let queryStr = 'insert into riders(firstname, lastname, email, phone) values ($1, $2, $3, $4)';
+  let queryParams = [firstName, lastName, email, phone];
 
   pool.query(queryStr, queryParams)
     .then(response => {
@@ -46,14 +44,16 @@ const DriverSignup = (req, res) => {
     firstName,
     lastName,
     email,
-    carMake: carmake,
-    carModel: carmodel,
-    carColor: carcolor,
-    licensePlate: plate,
+    phone,
+    carMake,
+    carModel,
+    carColor,
+    carCapacity,
+    licensePlate,
   } = req.body.params;
 
-  let queryStr = 'insert into drivers(firstname, lastname, email, carmake, carmodel, carcolor, licenseplate) values ($1, $2, $3, $4, $5, $6, $7)';
-  let queryParams = [firstName, lastName, email, carmake, carmodel, carcolor, plate];
+  let queryStr = 'insert into drivers(firstname, lastname, email, phone, carmake, carmodel, carcolor, carcapacity, licenseplate) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+  let queryParams = [firstName, lastName, email, phone, carMake, carModel, carColor, carCapacity, licensePlate];
   pool.query(queryStr, queryParams)
     .then(response => {
       res.sendStatus(201);
