@@ -28,8 +28,6 @@ const Login = (req, res) => {
 
 const RiderSignup = (req, res) => {
   const { firstName, lastName, email} = req.body.params;
-  console.log(firstName, lastName, email);
-
   let queryStr = 'insert into riders(firstname, lastname, email) values ($1, $2, $3)';
   let queryParams = [firstName, lastName, email];
 
