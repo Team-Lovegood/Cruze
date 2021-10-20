@@ -21,18 +21,27 @@ const RiderHome = () => {
   const [duration, setDuration] = useState('');
 
 
-  const [tripStatus, setTripStatus] = useState('arrived');
+  const [tripStatus, setTripStatus] = useState('whereTo');
   const mapRef = useRef(null);
 
+  const handleStatus = (status) => {
+    setTripStatus(status);
+  }
+
+  const handleTrip = (departure, destination) => {
+    setDeparture(departure);
+    setDestination(destination);
+    setTripStatus('findDriver');
+  }
 
   useEffect(() => {
     if(!departure || !destination) {
       return;
     }
     mapRef.current.fitToSuppliedMarkers(['departure', 'destination'], {
-      edgePadding: { top: 35, right: 35, bottom: 35, left: 35}
+      edgePadding: { top: 50, right: 50, bottom: 50, left: 50}
     });
-  }, [departure, destination]);
+  }, [departure, destination, tripStatus]);
 
   useEffect(() => {
     if(!departure || !destination) {
@@ -47,7 +56,6 @@ const RiderHome = () => {
     axios(config)
     .then((res) => {
       const info = res.data.rows[0].elements[0];
-      console.log(info)
       setDistance(info.distance);
       setDuration(info.duration);
     })
@@ -59,9 +67,10 @@ const RiderHome = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FindingDriver tripStatus={tripStatus} />
       <MapView
         blurRadius={4}
+        style={StyleSheet.absoluteFillObject}
+        scrollEnabled={true}
         ref={mapRef}
         style={styles.map}
         mapType="standard"
@@ -72,16 +81,20 @@ const RiderHome = () => {
           longitudeDelta: 0.005,
         }}
       >
-        {tripStatus === 'findDriver' && <BlurView style={styles.blurContainer} intensity={65} tint='light'></BlurView>}
-        <MapView.Marker coordinate={departure} identifier="departure" />
-        {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
-        {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={3} strokeColor="black" mode="DRIVING" />}
+        {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={2} strokeColor="black" mode="DRIVING" />}
+        {/* <BlurView style={styles.blurContainer} intensity={tripStatus === 'findDriver' ? 60 : 0} tint='light'/> */}
+        <View style={styles.markerContainer}>
+          <MapView.Marker coordinate={departure} identifier="departure" />
+          {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
+          {/* {tripStatus === 'findDriver' && <BlurView style={styles.blurContainer} intensity={60} tint='light'/>} */}
+        </View>
       </MapView>
-      <WhereTo tripStatus={tripStatus} />
-      <SearchTrip tripStatus={tripStatus} />
-      <FindingDriver tripStatus={tripStatus} />
-      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} />
-      <Arrived tripStatus={tripStatus} />
+      {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
+      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} />
+      <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip}/>
+      <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
+      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} />
+      <Arrived tripStatus={tripStatus} handleStatus={handleStatus} />
     </SafeAreaView>
   )
 }
@@ -95,6 +108,12 @@ const styles = StyleSheet.create({
   map: {
     flex: 5,
   },
+  markerContainer: {
+    position: 'absolute',
+    top: 100,
+    left: 50
+  },
+
   absolute: {
     position: "absolute",
     top: 0,
@@ -105,7 +124,6 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
-    // backgroundColor: '#F5FCFF'
   },
   searchTrip: {
     textAlign: 'center',
@@ -116,12 +134,6 @@ const styles = StyleSheet.create({
   car: {
     marginLeft: 'auto',
     marginRight: 'auto'
-  },
-
-  blurContainer: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
   },
 
   spinnerTextStyle: {

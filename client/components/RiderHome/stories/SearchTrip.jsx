@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Modal, SafeAreaView, Button } from 'react-native';
+import { Text, View, StyleSheet, Modal, SafeAreaView, Button, Pressable } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import PlaceRow from '../components/PlaceRow.jsx';
 import API from '../config.js';
 
 
-const SearchTrip = ({ tripStatus }) => {
+const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
+
+  let departure = {}
+  let destination = {}
+
   if(tripStatus === 'searchTrip') {
     return (
       <Modal>
@@ -34,7 +38,11 @@ const SearchTrip = ({ tripStatus }) => {
             }}
             placeholder='From'
             onPress={(data, details = null) => {
-              // console.log(data, details);
+              console.log(details.geometry.location);
+              departure = {
+                latitude: details.geometry.location.lat,
+                longitude: details.geometry.location.lng,
+              }
             }}
             debounce={400}
             fetchDetails={true}
@@ -70,7 +78,11 @@ const SearchTrip = ({ tripStatus }) => {
             }}
             placeholder='To'
             onPress={(data, details = null) => {
-              console.log(data, details);
+              // console.log(data, details);
+              destination = {
+                latitude: details.geometry.location.lat,
+                longitude: details.geometry.location.lng,
+              }
             }}
             debounce={400}
             fetchDetails={true}
@@ -84,8 +96,8 @@ const SearchTrip = ({ tripStatus }) => {
             }}
           />
         </View>
-        <View style={styles.button}>
-          <Button color="black" title="SUBMIT" />
+        <View style={styles.button} >
+          <Button color="black" title="SUBMIT" onPress={() => handleTrip(departure, destination)} />
         </View>
       </Modal>
     )
