@@ -4,11 +4,11 @@ const cors = require("cors");
 app.use(expresss.json());
 app.use(cors());
 
-const landingPage = require('./routes/landingPage.js');
-app.use('/', landingPage);
+const landingPage = require("./routes/landingPage.js");
+app.use("/", landingPage);
 
-
-
+const languageRouter = require("./languages/routes");
+app.use("/languages", languageRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

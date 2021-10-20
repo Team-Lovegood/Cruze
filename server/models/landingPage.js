@@ -1,7 +1,14 @@
-const Pool = require('pg').Pool;
+const Pool = require("pg").Pool;
+// const pool = new Pool({
+//   user: "postgres",
+//   password: "dyk960830",
+//   database: "cruze",
+//   host: "",
+//   port: 5432,
+// });
 const pool = new Pool({
   user: "postgres",
-  password: "dyk960830",
+  password: "root",
   database: "cruze",
   host: "",
   port: 5432,
@@ -28,20 +35,22 @@ const Login = (req, res) => {
 };
 
 const RiderSignup = (req, res) => {
-  const { firstName, lastName, email} = req.body.params;
+  const { firstName, lastName, email } = req.body.params;
   console.log(firstName, lastName, email);
 
-  let queryStr = 'insert into riders(firstname, lastname, email) values ($1, $2, $3)';
+  let queryStr =
+    "insert into riders(firstname, lastname, email) values ($1, $2, $3)";
   let queryParams = [firstName, lastName, email];
 
-  pool.query(queryStr, queryParams)
-    .then(response => {
+  pool
+    .query(queryStr, queryParams)
+    .then((response) => {
       res.sendStatus(201);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).send(error);
-    })
-}
+    });
+};
 const DriverSignup = (req, res) => {
   const {
     firstName,
@@ -53,10 +62,20 @@ const DriverSignup = (req, res) => {
     licensePlate: plate,
   } = req.body.params;
 
-  let queryStr = 'insert into drivers(firstname, lastname, email, carmake, carmodel, carcolor, licenseplate) values ($1, $2, $3, $4, $5, $6, $7)';
-  let queryParams = [firstName, lastName, email, carmake, carmodel, carcolor, plate];
-  pool.query(queryStr, queryParams)
-    .then(response => {
+  let queryStr =
+    "insert into drivers(firstname, lastname, email, carmake, carmodel, carcolor, licenseplate) values ($1, $2, $3, $4, $5, $6, $7)";
+  let queryParams = [
+    firstName,
+    lastName,
+    email,
+    carmake,
+    carmodel,
+    carcolor,
+    plate,
+  ];
+  pool
+    .query(queryStr, queryParams)
+    .then((response) => {
       res.sendStatus(201);
     })
     .catch((err) => {

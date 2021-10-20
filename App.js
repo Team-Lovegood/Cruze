@@ -1,18 +1,25 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { LoginScreen, SignupScreen, RiderProfileScreen, DriverHomeScreen, DriverProfileScreen } from './Screens.js';
-import RiderHome from './client/components/RiderHome/RiderHome.jsx';
-import DriverHome from './client/components/DriverHome/DriverHome.jsx';
-
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import {
+  LoginScreen,
+  SignupScreen,
+  RiderProfileScreen,
+  DriverHomeScreen,
+  DriverProfileScreen,
+} from "./Screens.js";
+import RiderHome from "./client/components/RiderHome/RiderHome.jsx";
+import DriverHome from "./client/components/DriverHome/DriverHome.jsx";
+import axios from "axios";
+import { LanguageWrapper } from "./client/languages/index";
 
 const AuthStack = createStackNavigator();
 
 export default function App() {
   return (
-    <>
+    <LanguageWrapper>
       {/* <View style={styles.container}>
         <Text>Team Lovegood</Text>
         <StatusBar style="auto" />
@@ -27,32 +34,29 @@ export default function App() {
         </AuthStack.Navigator>
       </NavigationContainer> */}
 
-
-    {/*<View style={styles.container}>
+      {/*<View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
       </View> */}
 
-
-    <View style={styles.driverView}>
-        <DriverHome />
+      <View style={styles.driverView}>
+        {/* <DriverHome /> */}
+        <LoginScreen />
         <StatusBar style="auto" />
       </View>
-
-    </>
+    </LanguageWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   driverView: {
     flex: 1,
-    backgroundColor: '#fff',
-
-  }
+    backgroundColor: "#fff",
+  },
 });
