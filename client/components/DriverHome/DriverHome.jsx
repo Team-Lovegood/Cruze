@@ -37,8 +37,8 @@ const DriverHome = () => {
     setStatus('arrived');
   }
 
-  const backToHomePage = () => {
-    setStatus('rideList');
+  const backToRideList = () => {
+    setStatus('backToRiderList');
   }
 
   const getCurrentLocation = async () => {
@@ -78,7 +78,12 @@ const DriverHome = () => {
         <OnTheWay rider={rider} arrivedToDestination={arrivedToDestination} />
       }
       {status === 'arrived' &&
-        <DriverArrived backToHomePage={backToHomePage} />
+        <DriverArrived backToRideList={backToRideList} />
+      }
+      {status === 'backToRiderList' &&
+        <RiderList
+          changeRider={changeRider}
+        />
       }
     </>
   );
