@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
-import Language from './DropdownLanguage.jsx';
 
 const DriverProfile = (props) => {
   return (
@@ -15,11 +14,7 @@ const DriverProfile = (props) => {
         </View>
         <View style={styles.car}>
           <Text style={styles.text}>Green Kia Soul</Text>
-          <Text style={styles.plate}>Intern101</Text>
-        </View>
-        <View style = {styles.car}>
-          <Text style={{fontSize: 18, marginRight: 105}}>Language</Text>
-          <Language />
+          <Text style={styles.plate}>License Plate: Intern101</Text>
         </View>
         <View style = {styles.car}>
           <Text style={styles.text}>Dark mode</Text>
@@ -32,8 +27,8 @@ const DriverProfile = (props) => {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 2,
-    backgroundColor: 'gray'
+    flex: 3,
+    backgroundColor: '#B3E5FD'
   },
   profile:{
     flex: 1,
@@ -46,14 +41,14 @@ const styles = StyleSheet.create({
   car: {
     flexDirection: 'row',
     marginLeft: 15,
-    marginBottom: 25
+    marginBottom: 25,
   },
   text: {
     fontSize: 18,
   },
   plate: {
     fontSize: 18,
-    marginLeft: 35,
+    marginRight: -50,
   }
 });
 

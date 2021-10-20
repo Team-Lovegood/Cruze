@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
-import Language from './DropdownLanguage.jsx';
 
 const RiderProfile = (props) => {
   return (
@@ -12,10 +11,6 @@ const RiderProfile = (props) => {
         <Text style={{fontSize: 24}}>Tim E Tim</Text>
         <Text style={{fontSize: 24}}>4.9<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
 
-      </View>
-      <View style = {styles.optional}>
-        <Text style={{fontSize: 18, marginRight: 105}}>Language</Text>
-        <Language />
       </View>
       <View style = {styles.optional}>
         <Text style={styles.text}>Dark mode</Text>
@@ -29,8 +24,8 @@ const RiderProfile = (props) => {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 2,
-    backgroundColor: 'gray'
+    flex: 3,
+    backgroundColor: '#B3E5FD'
   },
    profile:{
     flex: 1,
