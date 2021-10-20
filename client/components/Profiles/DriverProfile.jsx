@@ -18,7 +18,7 @@ const DriverProfile = (props) => {
           <Text style={styles.plate}>Intern101</Text>
         </View>
         <View style = {styles.car}>
-          <Text style={styles.text}>Language</Text>
+          <Text style={{fontSize: 18, marginRight: 105}}>Language</Text>
           <Language />
         </View>
         <View style = {styles.car}>

@@ -14,7 +14,7 @@ const RiderProfile = (props) => {
 
       </View>
       <View style = {styles.optional}>
-        <Text style={styles.text}>Language</Text>
+        <Text style={{fontSize: 18, marginRight: 105}}>Language</Text>
         <Language />
       </View>
       <View style = {styles.optional}>
