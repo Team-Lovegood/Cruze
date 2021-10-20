@@ -4,6 +4,7 @@ import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { BlurView } from 'expo-blur';
 import axios from 'axios';
+import io from 'socket.io-client';
 import API from './config.js';
 
 import WhereTo from './stories/WhereTo';
@@ -14,11 +15,11 @@ import ToDestination from './stories/ToDestination';
 
 const RiderHome = () => {
 
-  const temp = {latitude: 40.699215, longitude: -73.999039}
-  const [departure, setDeparture] = useState({latitude: 40.748817, longitude: -73.985428});
-  const [destination, setDestination] = useState(temp);
+  const [departure, setDeparture] = useState({name:'Empire State Building',latitude: 40.748817, longitude: -73.985428});
+  const [destination, setDestination] = useState(departure);
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
+  const [socket, setSocket] = useState('')
 
 
   const [tripStatus, setTripStatus] = useState('whereTo');
@@ -26,13 +27,39 @@ const RiderHome = () => {
 
   const handleStatus = (status) => {
     setTripStatus(status);
-  }
+  };
 
   const handleTrip = (departure, destination) => {
-    setDeparture(departure);
-    setDestination(destination);
-    setTripStatus('findDriver');
-  }
+
+    if(Object.values(departure).length !== 0 && Object.values(destination).length !== 0) {
+      setDeparture(departure);
+      setDestination(destination);
+      socket.emit('new trip', {
+        name: 'Tim E Tim',
+        departure: departure,
+        destination: destination
+      });
+      socket.emit('tripStatus', tripStatus);
+      setTripStatus('findDriver');
+    } else {
+      setTripStatus('whereTo');
+    }
+  };
+
+  useEffect(() => {
+      setSocket(io('http://127.0.0.1:3000'));
+  },[]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("tripStatus", (status) => {
+        if (status !== "searchTrip") {
+          console.log(status);
+          setTripStatus(status);
+        }
+      });
+    }
+  });
 
   useEffect(() => {
     if(!departure || !destination) {
@@ -68,7 +95,6 @@ const RiderHome = () => {
   return (
     <SafeAreaView style={styles.container}>
       <MapView
-        blurRadius={4}
         style={StyleSheet.absoluteFillObject}
         scrollEnabled={true}
         ref={mapRef}
