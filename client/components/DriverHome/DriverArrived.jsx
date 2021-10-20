@@ -58,6 +58,14 @@ const styles = StyleSheet.create({
   },
   starRating: {
     flexDirection: 'row'
+  },
+  btnContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: 16,
+    paddingVertical: 8,
+    paddingLeft: 20
   }
 });
 
