@@ -29,6 +29,10 @@ const DriverHome = () => {
     setStatus('arrived');
   }
 
+  const backToRideList = () => {
+    setStatus('backToRiderList');
+  }
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -56,7 +60,10 @@ const DriverHome = () => {
         <OnTheWay rider={rider} ArrivedToDestination={ArrivedToDestination} />
       }
       {status === 'arrived' &&
-        <DriverArrived rider={rider} />
+        <DriverArrived backToRideList={backToRideList} />
+      }
+      {status === 'backToRiderList' &&
+        <RiderList />
       }
     </>
   );

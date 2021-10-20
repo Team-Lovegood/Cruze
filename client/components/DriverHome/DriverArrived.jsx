@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
-const DriverArrived = () => {
+const DriverArrived = ({ backToRideList }) => {
+  const [rating, setRating] = useState(0);
+  const handleArrived = () => {
+    backToRideList();
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.pickupName}>Arrived at destination</Text>
-        <Text style={styles.text}>How was your trip?</Text>
+      <Text style={styles.pickupName}>Arrived at destination</Text>
+      <Text style={styles.text}>How was your trip?</Text>
+      <View style={styles.starContainer}>
         <View style={styles.starRating}>
-          <FontAwesomeIcon size={30} icon={faStar} />
-          <FontAwesomeIcon size={30} icon={faStar} />
-          <FontAwesomeIcon size={30} icon={faStar} />
-          <FontAwesomeIcon size={30} icon={faStar} />
-          <FontAwesomeIcon size={30} icon={faStar} />
+          <Rating
+            type="custom"
+            ratingColor='#B3E5FD'
+            onStartRating={(rating) => setRating(rating)}
+            imageSize={30}
+            startingValue={0}
+          />
         </View>
         <View style={styles.submitBtn}>
-          <Button color="black" title="SUBMIT"/>
+          <Button color="black" onPress={handleArrived} title="SUBMIT"/>
         </View>
       </View>
     </View>
@@ -27,6 +33,14 @@ const DriverArrived = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  starContainer: {
+    marginTop: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   text: {
     display: 'flex',
