@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 30,
     width: 150,
-    marginTop: 20
   },
   signupText: {
     alignSelf: "center",
@@ -309,6 +308,7 @@ const Signup = (props) => {
                 placeholder="Car capacity"
               />
             </View>
+            <View style={styles.singleInputBox}>
             <TextInput
                 style={styles.singleInput}
                 value={licensePlate}
@@ -316,6 +316,7 @@ const Signup = (props) => {
                 placeholderTextColor = "black"
                 placeholder="License plate"
               />
+            </View>
           </>
         )}
         <TouchableOpacity

@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { LanguageContext } from "../../languages/index";
 import axios from "axios";
+import { macIP } from '../../../ip.js';
 
 function Language() {
   const { setLanguagesPackages } = React.useContext(LanguageContext);
@@ -47,7 +48,7 @@ function Language() {
     }
     const fetchLanguagePackage = async () => {
       const res = await axios.get(
-        `http://192.168.1.130:3000/languages/${lan}`
+        `http://${macIP}:3000/languages/${lan}`
       );
       if (res && res.data && res.data.data) {
         if (setLanguagesPackages) {
@@ -67,7 +68,7 @@ function Language() {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-      containerStyle={{ width: 105 }}
+      containerStyle={{width: 105, marginLeft: 215}}
     />
   );
 }
@@ -75,11 +76,6 @@ const styles = StyleSheet.create({
   dropdown: {
     backgroundColor: "#B3E5FD",
     borderColor: "white",
-<<<<<<< HEAD:client/components/Profiles/DropdownLanguage.jsx
-    marginLeft: 105,
-=======
-
->>>>>>> origin:client/components/Login/DropdownLanguage.jsx
     zIndex: 1000,
     height: 40,
     fontSize: 12,
