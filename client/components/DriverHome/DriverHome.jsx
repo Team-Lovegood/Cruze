@@ -6,6 +6,8 @@ import DriverPickup from './DriverPickup.jsx';
 import DriverArrived from './DriverArrived.jsx';
 import OnTheWay from './OnTheWay.jsx';
 import * as Location from 'expo-location';
+import io from 'socket.io-client';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const DriverHome = () => {
   const [rider, setRider] = useState({});
@@ -16,6 +18,22 @@ const DriverHome = () => {
     longitude: -73.9927213});
   const [origin, setOrigin] = useState({});
   const [destination, setDestination] = useState(null);
+
+  useEffect(() => {
+    // const requestingRider = () => {
+    //   socket.emit('new trip', {
+    //     origin: origin,
+    //     destination: destination
+    //   });
+
+    // };
+    const socket = io('http://127.0.0.1:3000');
+    socket.emit('tripStatus', status);
+    socket.on('tripStatus', status => {
+      console.log(status);
+    })
+  }, []);
+
   const changeRider = async (rider) => {
     setRider(rider);
     // getCurrentLocation().then((loc) => {
@@ -66,6 +84,9 @@ const DriverHome = () => {
 
   return (
     <>
+      <View style={styles.menu}>
+        <FontAwesome name='bars' size={30} color={'black'} />
+      </View>
       <Map destination={destination} origin={origin} driverLocation={driverLocation}/>
       {(status === 'rideList' || status === 'backToRiderList') &&
         <RiderList
@@ -95,6 +116,12 @@ const styles = StyleSheet.create({
   },
   driverPick: {
     flex: 1
+  },
+  menu: {
+    position: 'absolute',
+    top: 80,
+    left: 20,
+    zIndex: 1
   }
 });
 

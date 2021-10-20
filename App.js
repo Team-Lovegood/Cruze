@@ -28,16 +28,16 @@ export default function App() {
       </NavigationContainer> */}
 
 
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <RiderHome />
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
-{/*
+
     <View style={styles.driverView}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View> */}
+      </View>
 
     </>
   );
