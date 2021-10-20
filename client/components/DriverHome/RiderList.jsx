@@ -5,8 +5,6 @@ const RiderList = ({ changeRider }) => {
 
   const handlePress = (item) => {
     changeRider(item);
-    // toggleRiderList();
-    // toggleRiderPickup();
   }
   const dummyData = [
     {
@@ -19,8 +17,8 @@ const RiderList = ({ changeRider }) => {
         longitude: -73.9973
       },
       destination: {
-        latitude: 40.7309,  //washington sqs
-        longitude: -73.9973
+        latitude: 40.7653266,  //central park
+        longitude: -73.9760929
       }
     },
     {
@@ -29,8 +27,12 @@ const RiderList = ({ changeRider }) => {
       distance: 5.8,
       amount: 60,
       location: {
-        latitude: 40.6413109,
-        longitude: -73.9928549
+        latitude: 40.6318468,  //fort hamilton
+        longitude: -73.9986357
+      },
+      destination: {
+        latitude: 40.7579593,  //time sq
+        longitude: -73.9855378
       }
     },
     {
@@ -39,8 +41,12 @@ const RiderList = ({ changeRider }) => {
       distance: 2.2,
       amount: 10,
       location: {
-        latitude: 40.6413109,
-        longitude: -73.9928549
+        latitude: 40.7309,  //washington sqs
+        longitude: -73.9973
+      },
+      destination: {
+        latitude: 40.7579593,  //time sq
+        longitude: -73.9855378
       }
     },
     {
@@ -49,8 +55,12 @@ const RiderList = ({ changeRider }) => {
       distance: 2.2,
       amount: 10,
       location: {
-        latitude: 40.6413109,
-        longitude: -73.9928549
+        latitude: 40.7309,  //washington sqs
+        longitude: -73.9973
+      },
+      destination: {
+        latitude: 40.7579593,  //time sq
+        longitude: -73.9855378
       }
     },
     {
@@ -59,8 +69,12 @@ const RiderList = ({ changeRider }) => {
       distance: 2.2,
       amount: 10,
       location: {
-        latitude: 40.6413109,
-        longitude: -73.9928549
+        latitude: 40.7309,  //washington sqs
+        longitude: -73.9973
+      },
+      destination: {
+        latitude: 40.7579593,  //time sq
+        longitude: -73.9855378
       }
     },
   ]
@@ -71,11 +85,11 @@ const RiderList = ({ changeRider }) => {
       </Text>
       <FlatList
         data={dummyData}
+        keyExtractor={(item) => item.name}
         renderItem={({ item }) =>
           <TouchableOpacity
             style={styles.btn}
             onPress={() => { handlePress(item) }}
-            key={item.name}
           >
             <Text
               style={styles.btnText}>
@@ -108,6 +122,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
+    borderRadius: 4,
+    overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,

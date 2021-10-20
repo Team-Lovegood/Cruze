@@ -5,25 +5,25 @@ import MapViewDirections from 'react-native-maps-directions';
 import config from '../../../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
+const Map = ({ destination, driverLocation, origin }) => {
+  // let mapRef = useRef(null);
+  let mapView = null;
+  const { width, height } = Dimensions.get('window');
 
-const Map = ({ destination, driverLocation }) => {
-  console.log('this is driver location', driverLocation)
-  const mapRef = useRef(null);
-
-  useEffect(() => {
-    // if (!driverLocation || !destination) {
-    //   return;
-    // }
-    console.log('changing')
-    mapRef.current.fitToSuppliedMarkers(['departure', 'destination'], {
-      edgePadding: { top: 35, right: 35, bottom: 35, left: 35}
-    });
-  }, [driverLocation, destination]);
+  // useEffect(() => {
+  //   // if (!driverLocation || !destination) {
+  //   //   return;
+  //   // }
+  //   console.log('changing')
+  //   mapRef.current.fitToSuppliedMarkers(['departure', 'destination'], {
+  //     edgePadding: { top: 35, right: 35, bottom: 35, left: 35}
+  //   });
+  // }, [driverLocation, destination]);
 
   return (
     <MapView
       mapType="standard"
-      ref={mapRef}
+      ref={c => mapView = c}
       style={styles.map}
       initialRegion={{
         latitude: driverLocation.latitude,
@@ -57,11 +57,21 @@ const Map = ({ destination, driverLocation }) => {
         apikey={config.google_api} // insert your API Key here
         strokeWidth={4}
         strokeColor="#4A89F3"
+        onReady={result => {
+          mapView.fitToCoordinates(result.coordinates, {
+            edgePadding: {
+              right: (width / 20),
+              bottom: (height / 20),
+              left: (width / 20),
+              top: (height / 20),
+            }
+          });
+        }}
       />}
 
       {destination && <MapView.Marker coordinate={{
-        latitude: driverLocation.latitude,
-        longitude: driverLocation.longitude,
+        latitude: origin.latitude,
+        longitude: origin.longitude,
         identifier: 'departure'
       }}
       />}
