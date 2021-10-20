@@ -67,7 +67,7 @@ const DriverHome = () => {
   return (
     <>
       <Map destination={destination} origin={origin} driverLocation={driverLocation}/>
-      {status === 'rideList' &&
+      {(status === 'rideList' || status === 'backToRiderList') &&
         <RiderList
           changeRider={changeRider}
       />}
@@ -80,11 +80,11 @@ const DriverHome = () => {
       {status === 'arrived' &&
         <DriverArrived backToRideList={backToRideList} />
       }
-      {status === 'backToRiderList' &&
+      {/* {status === 'backToRiderList' &&
         <RiderList
           changeRider={changeRider}
         />
-      }
+      } */}
     </>
   );
 };
