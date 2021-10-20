@@ -29,9 +29,18 @@ const RiderHome = () => {
   }
 
   const handleTrip = (departure, destination) => {
-    setDeparture(departure);
-    setDestination(destination);
-    setTripStatus('findDriver');
+    if (Object.values(departure).length !== 0) {
+      setDeparture(departure);
+    }
+    if (Object.values(destination).length !== 0) {
+      setDestination(destination);
+    }
+    if(Object.values(departure).length !== 0 && Object.values(destination).length !== 0) {
+      setTripStatus('findDriver');
+    } else {
+      setTripStatus('whereTo');
+    }
+
   }
 
   useEffect(() => {

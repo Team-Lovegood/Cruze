@@ -38,7 +38,7 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
             }}
             placeholder='From'
             onPress={(data, details = null) => {
-              console.log(details.geometry.location);
+              // console.log(details.geometry.location);
               departure = {
                 latitude: details.geometry.location.lat,
                 longitude: details.geometry.location.lng,
