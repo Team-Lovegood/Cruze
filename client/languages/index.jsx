@@ -13,7 +13,7 @@ export const LanguageWrapper = ({ children }) => {
   const langaugeState = useLangages();
   React.useEffect(() => {
     const fetchLanguagePackage = async () => {
-      const res = await axios.get("http://172.24.180.195:3000/languages/en");
+      const res = await axios.get("http://192.168.1.130:3000/languages/en");
       if (res && res.data && res.data.data) {
         if (langaugeState && langaugeState.setLanguagesPackages) {
           langaugeState.setLanguagesPackages(res.data.data);

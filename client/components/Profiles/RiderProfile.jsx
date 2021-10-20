@@ -1,55 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
-import Language from './DropdownLanguage.jsx';
+import { useTheme } from '../../../theme/themeProvider.js';
+import Language from '../Login/DropdownLanguage.jsx';
 
 const RiderProfile = (props) => {
-  // Props is user profile
-    // First and Last name
-    // Rating
-  return (
-    <>
-    <View style = {styles.profile}>
-      <View style = {styles.top}>
-        <Text style={{fontSize: 24}}>First Last</Text>
-        <Text style={{fontSize: 24}}>5.0<Text style={{color: '#B3E5FD', fontSize: 12}}>&#9733;</Text></Text>
+  const { children } = props;
+  const { colors, isDark } = useTheme();
 
+  const textStyle = {
+    fontSize: 24,
+    color: colors.text
+  };
+  const safeStyle = {
+    flex: 1,
+    backgroundColor: colors.background
+  }
+
+  return (
+  <SafeAreaView style={safeStyle}>
+    <View style={styles.map}></View>
+    <View style = {safeStyle}>
+      <View style = {styles.top}>
+        <Text style={textStyle}>Tim E Tim</Text>
+        <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
       </View>
-      <View style = {styles.optional}>
-        <Text style={styles.text}>Language</Text>
-        <Language />
-      </View>
-      <View style = {styles.optional}>
-        <Text style={styles.text}>Dark mode</Text>
+      <View style = {styles.top}>
+        <Text style={textStyle}>Theme</Text>
         <Theme />
       </View>
     </View>
-    </>
+  </SafeAreaView>
   )
 }
 
 
 const styles = StyleSheet.create({
-   profile:{
-    flex: 1,
-    width: '100%',
-    justifyContent: 'flex-start',
-   },
+  map: {
+    flex: 4,
+    backgroundColor: '#B3E5FD'
+  },
    top: {
      flexDirection: 'row',
-     justifyContent: 'space-between',
-     margin: 15,
-     marginBottom: 25,
-   },
-   optional: {
-    flexDirection: 'row',
-    marginLeft: 15,
-    marginBottom: 25
-   },
-   text: {
-    fontSize: 18,
-  },
+     justifyContent: 'space-evenly',
+     margin: 25,
+   }
 });
 
 
