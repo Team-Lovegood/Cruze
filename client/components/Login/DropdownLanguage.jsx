@@ -25,7 +25,7 @@ function Language() {
     }
     const fetchLanguagePackage = async () => {
       const res = await axios.get(
-        `http://172.24.180.195:3000/languages/${lan}`
+        `http:/192.168.1.130:3000/languages/${lan}`
       );
       if (res && res.data && res.data.data) {
         if (setLanguagesPackages) {

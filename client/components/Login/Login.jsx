@@ -77,27 +77,6 @@ const Login = (props) => {
           },
         };
         // get postgres user information where firebase email matches postgres email
-<<<<<<< HEAD
-        axios
-          .get("http://192.168.1.130:3000/profile", profile)
-          .then((response) => {
-            console.log(response.data[0]);
-            response.data[0].role = role;
-            // return postgres information for more chaining
-            return response.data[0];
-          })
-          .then((data) => {
-            // render next page according to profile role
-            if (data.role === "riders") {
-              props.riderHome();
-            } else if (data.role === "drivers") {
-              props.driverHome();
-            }
-          })
-          .catch((err) => {
-            alert(err);
-          });
-=======
         axios.get(`http://${macIP}:3000/profile`, profile)
         .then((response) => {
           response.data[0].role = role;
@@ -117,7 +96,6 @@ const Login = (props) => {
         .catch(err => {
           alert(err);
         })
->>>>>>> origin
       })
       .catch((error) => alert(error.message));
   };
