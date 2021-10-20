@@ -16,7 +16,7 @@ const DriverArrived = ({ backToRideList }) => {
         <View style={styles.starRating}>
           <Rating
             type="custom"
-            ratingColor='#B3E5FD'
+            ratingColor='#FDCC0D'
             onStartRating={(rating) => setRating(rating)}
             imageSize={30}
             startingValue={0}
@@ -32,12 +32,14 @@ const DriverArrived = ({ backToRideList }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1.3,
+    marginTop: 10,
+    marginLeft: 30,
   },
   starContainer: {
     marginTop: 10,
-    marginLeft: 30,
-    marginRight: 30,
+    // marginLeft: 30,
+    // marginRight: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -46,26 +48,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginTop: 10
+    marginTop: 10,
+    fontSize: 20
   },
   pickupName: {
     fontWeight: '600',
     fontSize: 25
   },
   submitBtn: {
+    marginRight: 30,
     backgroundColor: '#B3E5FD',
     borderRadius: 10,
   },
   starRating: {
     flexDirection: 'row'
-  },
-  btnContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    marginTop: 16,
-    paddingVertical: 8,
-    paddingLeft: 20
   }
 });
 

@@ -81,7 +81,9 @@ const DriverHome = () => {
         <DriverArrived backToRideList={backToRideList} />
       }
       {status === 'backToRiderList' &&
-        <RiderList />
+        <RiderList
+          changeRider={changeRider}
+        />
       }
     </>
   );
