@@ -20,9 +20,10 @@ export default function App() {
         <StatusBar style="auto" />
       </View> */}
 
-      <AppearanceProvider>
+    {/* <AppearanceProvider>
       <ThemeProvider>
       <NavigationContainer>
+    
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
           <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
@@ -30,20 +31,21 @@ export default function App() {
           <AuthStack.Screen name='RiderProfile' component={RiderProfileScreen} options={{headerShown: false}}/>
           <AuthStack.Screen name='DriverProfile' component={DriverProfileScreen} options={{headerShown: false}}/>
         </AuthStack.Navigator>
+
       </NavigationContainer>
       </ThemeProvider>
-      </AppearanceProvider>
+      </AppearanceProvider> */}
 
       {/* <View style={styles.container}>
           <RiderHome />
-          <StatusBar style="auto" />
-      </View> */}
+          <StatusBar style="auto" /> */}
 
 
-    {/*<View style={styles.container}>
+
+    <View style={styles.driverView}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View>
 
     </>
   );
@@ -56,4 +58,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  driverView: {
+    flex: 1,
+    backgroundColor: '#fff',
+
+  }
 });

@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 
-const ToDestination = ({tripStatus, distance, duration}) => {
+const ToDestination = ({tripStatus, distance, duration, handleStatus}) => {
   const distanceRate = 1.5;
   const durationRate = 0.1;
   const price = Number(distanceRate*distance.value/1000 + durationRate*duration.value/60).toFixed(2);
+
+  useEffect(() => {
+    if (tripStatus === "onTheWay") {
+      const test = setTimeout(() => handleStatus("pickUp"), 5000);
+      return () => clearTimeout(test);
+    } else {
+      return;
+    }
+  }, [handleStatus]);
+
+
   if(tripStatus === 'onTheWay' || tripStatus === 'pickUp') {
     return (
       <View style={styles.topContainer}>
         <View style={styles.driverContainer}>
-          <Text style={styles.driverStatus}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Driver arrived at pickup'}</Text>
+          <Text style={styles.driverStatus}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Heading to destination'}</Text>
           <Text style={styles.bill}>${price}</Text>
         </View>
         <View style={styles.driverContainer}>
