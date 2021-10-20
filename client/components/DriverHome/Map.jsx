@@ -6,20 +6,8 @@ import config from '../../../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 const Map = ({ destination, driverLocation, origin }) => {
-  // let mapRef = useRef(null);
   let mapView = null;
   const { width, height } = Dimensions.get('window');
-
-  // useEffect(() => {
-  //   // if (!driverLocation || !destination) {
-  //   //   return;
-  //   // }
-  //   console.log('changing')
-  //   mapRef.current.fitToSuppliedMarkers(['departure', 'destination'], {
-  //     edgePadding: { top: 35, right: 35, bottom: 35, left: 35}
-  //   });
-  // }, [driverLocation, destination]);
-
   return (
     <MapView
       mapType="standard"
