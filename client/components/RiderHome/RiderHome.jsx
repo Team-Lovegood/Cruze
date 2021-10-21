@@ -14,9 +14,10 @@ import SearchTrip from './stories/SearchTrip';
 import FindingDriver from './stories/FindingDriver';
 import ToDestination from './stories/ToDestination';
 
-const RiderHome = () => {
+const RiderHome = ({ communication }) => {
 
-  const [departure, setDeparture] = useState({name:'Empire State Building',latitude: 40.748817, longitude: -73.985428});
+  const defaultAddress = {name:'Empire State Building',latitude: 40.748817, longitude: -73.985428};
+  const [departure, setDeparture] = useState(defaultAddress);
   const [destination, setDestination] = useState(departure);
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
@@ -27,7 +28,13 @@ const RiderHome = () => {
   const mapRef = useRef(null);
 
   const handleStatus = (status) => {
-    setTripStatus(status);
+    if(status === 'whereTo') {
+      setDeparture(defaultAddress);
+      setDestination(defaultAddress);
+      setTripStatus(status);
+    } else {
+      setTripStatus(status);
+    }
   };
 
   const handleTrip = (departure, destination) => {
@@ -112,11 +119,9 @@ const RiderHome = () => {
         }}
       >
         {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={2} strokeColor="black" mode="DRIVING" />}
-        {/* <BlurView style={styles.blurContainer} intensity={tripStatus === 'findDriver' ? 60 : 0} tint='light'/> */}
         <View style={styles.markerContainer}>
           <MapView.Marker coordinate={departure} identifier="departure" />
           {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
-          {/* {tripStatus === 'findDriver' && <BlurView style={styles.blurContainer} intensity={60} tint='light'/>} */}
         </View>
       </MapView>
       {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}

@@ -36,7 +36,7 @@ const Arrived = ({tripStatus, handleStatus}) => {
             />
           </View>
           <View style={styles.button}>
-            <Button color="black" title="SUBMIT"/>
+            <Button color="black" title="SUBMIT" onPress={() => handleStatus('whereTo')}/>
           </View>
         </View>
       </View>
