@@ -20,7 +20,7 @@ const DriverHome = ({userProfile}) => {
   const [origin, setOrigin] = useState({});
   const [destination, setDestination] = useState(null);
   const [trip, setTrip] = useState({});
-  const socket = io('http://127.0.0.1:3000');
+  const socket = io('http://18.216.63.227');
   const [profileToggle, setProfileToggle] = useState(false);
 
   useEffect(() => {

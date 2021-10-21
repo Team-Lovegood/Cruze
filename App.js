@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppearanceProvider } from 'react-native-appearance';
@@ -23,6 +23,9 @@ export default function App() {
   const handleCommunication = () => {
     setCommunication(!communication);
   }
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested', 'Unhandled promise rejection: Error: timeout exceeded', 'Unhandled promise rejection: Error: Network Error']);
+  }, [])
 
 
   return (

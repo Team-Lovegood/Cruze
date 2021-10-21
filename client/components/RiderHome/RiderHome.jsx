@@ -57,7 +57,7 @@ const RiderHome = ({ communication }) => {
   };
 
   useEffect(() => {
-      setSocket(io('http://127.0.0.1:3000'));
+      setSocket(io('http://18.216.63.227'));
   },[]);
 
   useEffect(() => {
