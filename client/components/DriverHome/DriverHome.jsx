@@ -8,7 +8,6 @@ import OnTheWay from './OnTheWay.jsx';
 import DriverProfile from '../Profiles/DriverProfile.jsx';
 import * as Location from 'expo-location';
 import io from 'socket.io-client';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const DriverHome = () => {
@@ -61,18 +60,9 @@ const DriverHome = () => {
     setStatus('backToRiderList');
   }
 
-  const myButton = (
-    <Icon.Button
-      name="bars"
-      backgroundColor="black"
-      onPress={toDriverProfile}
-    >
-    </Icon.Button>
-  );
-
   const toDriverProfile = () => {
     setProfileToggle(!profileToggle);
-    setStatus('driverProfile');
+    // setStatus('driverProfile');
   }
 
   const getCurrentLocation = async () => {
@@ -101,47 +91,38 @@ const DriverHome = () => {
   return (
     <>
       <View style={styles.menu}>
-        <Icon.Button
+        <Icon
           name="bars"
-          backgroundColor="black"
+          size={28}
           onPress={toDriverProfile}
         >
-        </Icon.Button>
+        </Icon>
       </View>
       <Map destination={destination} origin={origin} driverLocation={driverLocation}/>
-      {(status === 'rideList' || status === 'backToRiderList') &&
+      {(status === 'rideList' || status === 'backToRiderList') && !profileToggle &&
         <RiderList
           changeRider={changeRider}
           trip={trip}
       />}
-      {status === 'pickup' &&
+      {status === 'pickup' && !profileToggle &&
         <DriverPickup rider={rider} onTheWay={onTheWay}/>
       }
-      {status === 'onTheWay' &&
+      {status === 'onTheWay' && !profileToggle &&
         <OnTheWay rider={rider} arrivedToDestination={arrivedToDestination} />
       }
-      {status === 'arrived' &&
+      {status === 'arrived' && !profileToggle &&
         <DriverArrived backToRideList={backToRideList} />
       }
-      {status === 'driverProfile' && profileToggle &&
-        <View style={styles.driverProfile}>
+      {profileToggle &&
+        <View style={{flex: 3}}>
           <DriverProfile />
         </View>
-      }
-      {status === 'driverProfile' && !profileToggle &&
-        <RiderList
-          changeRider={changeRider}
-          trip={trip}
-      />
       }
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  mapView: {
-    flex: 5
-  },
   driverPick: {
     flex: 1
   },
@@ -151,9 +132,6 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 1
   },
-  driverProfile: {
-    flex: 2
-  }
 });
 
 export default DriverHome;

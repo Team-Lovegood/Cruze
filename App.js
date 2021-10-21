@@ -22,7 +22,7 @@ export default function App() {
         <StatusBar style="auto" />
       </View> */}
 
-      <AppearanceProvider>
+      {/* <AppearanceProvider>
       <ThemeProvider>
       <NavigationContainer>
         <AuthStack.Navigator>
@@ -33,7 +33,7 @@ export default function App() {
         </AuthStack.Navigator>
       </NavigationContainer>
       </ThemeProvider>
-      </AppearanceProvider>
+      </AppearanceProvider> */}
 
       {/* <View style={styles.container}>
         <RiderHome />
@@ -41,10 +41,10 @@ export default function App() {
       </View> */}
 
 
-    {/*<View style={styles.container}>
+    {/* <View style={styles.container}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
     </LanguageWrapper>
     </>
   );

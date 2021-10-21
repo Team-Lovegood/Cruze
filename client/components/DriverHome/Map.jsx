@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, Dimensions, Image, SafeAreaView } from 'react-n
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import config from '../../../config.js';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCar } from '@fortawesome/free-solid-svg-icons';
 
 const Map = ({ destination, driverLocation, origin }) => {
   let mapView = null;
