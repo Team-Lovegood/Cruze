@@ -101,15 +101,8 @@ const Login = (props) => {
   };
 
   return (
-<<<<<<< HEAD
-    <View style={styles.container}>
-      <View style={styles.lan}>
-        <LanguageSelecter />
-      </View>
-=======
     <SafeAreaView style={[styles.container, safeStyle]}>
         <LanguageSelecter />
->>>>>>> origin
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo} />
         <Text style={styles.text}>Cruze</Text>
@@ -118,24 +111,6 @@ const Login = (props) => {
           style={{flex:1}}
           showsVerticalScrollIndicator={false}>
       <DropDownPicker
-<<<<<<< HEAD
-        style={styles.roleSelecter}
-        open={open}
-        setOpen={setOpen}
-        value={role}
-        items={items}
-        setValue={setRole}
-        setItems={setItems}
-        containerStyle={{ width: 320 }}
-      />
-
-      <TextInput
-        style={styles.input}
-        autoCapitalize="none"
-        textContentType="emailAddress"
-        placeholder={languagePackages?.Email}
-        placeholderTextColor="black"
-=======
           style={styles.roleSelecter}
           open={open}
           setOpen={setOpen}
@@ -150,23 +125,12 @@ const Login = (props) => {
         textContentType='emailAddress'
         placeholder={languagePackages?.Email}
         placeholderTextColor = 'black'
->>>>>>> origin
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         style={styles.input}
         secureTextEntry={true}
-<<<<<<< HEAD
-        textContentType="password"
-        placeholder={languagePackages?.Password}
-        placeholderTextColor="black"
-        autoCapitalize="none"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-      />
-      <TouchableOpacity style={styles.login} onPress={handleLogin}>
-=======
         textContentType='password'
         placeholder={languagePackages?.Password}
         placeholderTextColor = 'black'
@@ -176,7 +140,6 @@ const Login = (props) => {
       <TouchableOpacity
         style={styles.login}
         onPress={handleLogin}>
->>>>>>> origin
         <Text style={styles.loginText}>{languagePackages?.LogIn}</Text>
       </TouchableOpacity>
       <Text style={styles.signupText}>
@@ -185,12 +148,8 @@ const Login = (props) => {
           {languagePackages?.Signup}
         </Text>
       </Text>
-<<<<<<< HEAD
-    </View>
-=======
       </KeyboardAwareScrollView>
     </SafeAreaView>
->>>>>>> origin
   );
 };
 
@@ -207,13 +166,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-<<<<<<< HEAD
-    marginTop: 200,
-    flexDirection: "row",
-=======
     marginTop: 100,
     flexDirection: 'row'
->>>>>>> origin
   },
   logo: {
     width: 100,
@@ -264,11 +218,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-<<<<<<< HEAD
-    borderColor: "white",
-=======
     borderWidth: 0
->>>>>>> origin
   },
 });
 
