@@ -109,7 +109,7 @@ const Signup = (props) => {
     { value: Roles.rider, label: riderTip },
     { value: Roles.driver, label: driverTip },
   ]);
-  const [role, setRole] = useState(Roles.rider);
+  const [role, setRole] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -120,10 +120,18 @@ const Signup = (props) => {
   const [carColor, setCarColor] = useState("");
   const [carCapacity, setCarCapacity] = useState();
   const [licensePlate, setLicensePlate] = useState("");
-  const [profile, setProfile] = useState({});
+  const [userLoggedIn, setLoggedIn] = useState({});
+
+  useEffect(() => {
+    if (role === 'riders') {
+      props.riderHome();
+    } else if (role === 'drivers') {
+      props.driverHome();
+    }
+  }, [userLoggedIn])
+
   const { children } = props;
   const { colors, isDark } = useTheme();
-
   const textStyle = {
     color: colors.text
   };
@@ -195,19 +203,10 @@ const Signup = (props) => {
           .then((profile) => {
             // get user information with matching email.
             axios.get(`http://${macIP}:3000/profile`, profile)
-            .then((response) => {
-              response.data[0].role = role;
-              // return postgres data
-              setProfile(response.data[0]);
-              return response.data[0];
-            })
-            .then(data => {
-              //render next page according to profile role
-              if (data.role  === 'riders') {
-                props.riderHome();
-              } else if (data.role === 'drivers') {
-                props.driverHome();
-              }
+            .then(({data}) => {
+              data[0].role = role;
+              props.updateProfile(data[0]);
+              setLoggedIn(data[0]);
             })
             .catch(err => {
               alert(err);
@@ -232,14 +231,15 @@ const Signup = (props) => {
           style={{flex:1}}
           showsVerticalScrollIndicator={false}>
         <DropDownPicker
-            style={styles.roleSelecter}
-            open={open}
-            setOpen={setOpen}
-            value={role}
-            items={items}
-            setValue={setRole}
-            setItems={setItems}
-            containerStyle={{width: 320}}
+          placeholder={languagePackages?.SelectARole}
+          style={styles.roleSelecter}
+          open={open}
+          setOpen={setOpen}
+          value={role}
+          items={items}
+          setValue={setRole}
+          setItems={setItems}
+          containerStyle={{width: 320}}
           />
         <View style={styles.doubleInputBox}>
             <TextInput

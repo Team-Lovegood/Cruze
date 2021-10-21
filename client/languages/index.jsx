@@ -1,5 +1,27 @@
 import React from "react";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { macIP } from "../../ip";
+
+export const setLanToLocal = async (lan) => {
+  try {
+    await AsyncStorage.setItem("@language", lan);
+  } catch (err) {
+    alert("save lan error" + err);
+  }
+};
+
+export const getLanFromLocal = async () => {
+  try {
+    const value = await AsyncStorage.getItem("@language");
+    return value || "en";
+  } catch (err) {
+    alert(err);
+    return "en";
+  }
+};
+
+
 const useLangages = () => {
   const [languagePackages, setLanguagesPackages] = React.useState();
   return {
@@ -13,11 +35,18 @@ export const LanguageWrapper = ({ children }) => {
   const langaugeState = useLangages();
   React.useEffect(() => {
     const fetchLanguagePackage = async () => {
-      const res = await axios.get("http://192.168.1.130:3000/languages/en");
-      if (res && res.data && res.data.data) {
-        if (langaugeState && langaugeState.setLanguagesPackages) {
-          langaugeState.setLanguagesPackages(res.data.data);
+      try {
+        const localLan = await getLanFromLocal();
+        const res = await axios.get(
+          `http://${macIP}:3000/languages/${localLan}`
+        );
+        if (res && res.data && res.data.data) {
+          if (langaugeState && langaugeState.setLanguagesPackages) {
+            langaugeState.setLanguagesPackages(res.data.data);
+          }
         }
+      } catch (err) {
+        alert(err.message);
       }
     };
     fetchLanguagePackage();

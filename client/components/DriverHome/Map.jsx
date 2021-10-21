@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-// import config from '../../../config.js';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCar } from '@fortawesome/free-solid-svg-icons';
+import config from '../../../config.js';
+
 const Map = ({ destination, driverLocation, origin }) => {
   let mapView = null;
   const { width, height } = Dimensions.get('window');
+
   return (
     <MapView
       mapType="standard"

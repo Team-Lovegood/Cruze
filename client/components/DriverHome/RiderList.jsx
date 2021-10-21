@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const RiderList = ({ changeRider }) => {
+const RiderList = ({ changeRider, trip }) => {
 
   const handlePress = (item) => {
     changeRider(item);
@@ -78,6 +78,17 @@ const RiderList = ({ changeRider }) => {
       }
     },
   ]
+  if (trip.name) {
+    const temp = {
+      name: trip.name,
+      address: trip.destination.name,
+      distance: 2.2,
+      amount: 10,
+      location: trip.departure,
+      destination: trip.destination
+    }
+    dummyData[0] = temp;
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
