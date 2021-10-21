@@ -22,6 +22,7 @@ const DriverHome = () => {
   const [destination, setDestination] = useState(null);
   const [trip, setTrip] = useState({});
   const socket = io('http://127.0.0.1:3000');
+  const [profileToggle, setProfileToggle] = useState(false);
 
   useEffect(() => {
     socket.on('new trip', trip => {
@@ -70,6 +71,7 @@ const DriverHome = () => {
   );
 
   const toDriverProfile = () => {
+    setProfileToggle(!profileToggle);
     setStatus('driverProfile');
   }
 
@@ -121,12 +123,17 @@ const DriverHome = () => {
       {status === 'arrived' &&
         <DriverArrived backToRideList={backToRideList} />
       }
-      {status === 'driverProfile' &&
-        <View style={styles.DriverProfile}>
+      {status === 'driverProfile' && profileToggle &&
+        <View style={styles.driverProfile}>
           <DriverProfile />
         </View>
       }
-
+      {status === 'driverProfile' && !profileToggle &&
+        <RiderList
+          changeRider={changeRider}
+          trip={trip}
+      />
+      }
     </>
   );
 };
@@ -144,7 +151,7 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 1
   },
-  DriverProfile: {
+  driverProfile: {
     flex: 2
   }
 });
