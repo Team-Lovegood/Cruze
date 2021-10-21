@@ -102,12 +102,12 @@ const Roles = {
 import logo from "../../../assets/logo.png";
 const Signup = (props) => {
   const { languagePackages } = React.useContext(LanguageContext);
-  const riderTip = languagePackages?.IAmARider;
-  const driverTip = languagePackages?.IAmADriver;
+  const riderTip = languagePackages?.IWantToRide;
+  const driverTip = languagePackages?.IWantToDrive;
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
-    { value: Roles.rider, label: "I want to ride" },
-    { value: Roles.driver, label: "I want to drive" },
+    { value: Roles.rider, label: riderTip },
+    { value: Roles.driver, label: driverTip },
   ]);
   const [role, setRole] = useState(Roles.rider);
   const [firstName, setFirstName] = useState("");
@@ -139,8 +139,7 @@ const Signup = (props) => {
     setItems([
       { value: Roles.rider, label: languagePackages?.IWantToRide },
       {
-        value: Roles.driver,
-        label: languagePackages?.IWantToDrive,
+        value: Roles.driver,label: languagePackages?.IWantToDrive
       },
     ]);
   }, [languagePackages]);
@@ -292,14 +291,14 @@ const Signup = (props) => {
                 value={carMake}
                 placeholderTextColor = "black"
                 onChangeText={(text) => setCarMake(text)}
-                placeholder={languagePackages?.carMake}
+                placeholder={languagePackages?.CarMake}
               />
               <TextInput
                 style={styles.doubleInput}
                 value={carModel}
                 placeholderTextColor = "black"
                 onChangeText={(text) => setCarModel(text)}
-                placeholder={languagePackages?.carModel}
+                placeholder={languagePackages?.CarModel}
               />
             </View>
             <View style={styles.doubleInputBox}>
@@ -308,14 +307,14 @@ const Signup = (props) => {
                 value={carColor}
                 placeholderTextColor = "black"
                 onChangeText={(text) => setCarColor(text)}
-                placeholder={languagePackages?.carColor}
+                placeholder={languagePackages?.CarColor}
               />
               <TextInput
                 style={styles.doubleInput}
                 value={carCapacity}
                 onChangeText={(text) => setCarCapacity(text)}
                 placeholderTextColor = "black"
-                placeholder={languagePackages?.carCapacity}
+                placeholder={languagePackages?.CarCapacity}
               />
             </View>
             <View style={styles.singleInputBox}>
@@ -324,7 +323,7 @@ const Signup = (props) => {
                 value={licensePlate}
                 onChangeText={(text) => setLicensePlate(text)}
                 placeholderTextColor = "black"
-                placeholder={languagePackages?.licensePlate}
+                placeholder={languagePackages?.LicensePlate}
               />
             </View>
           </>

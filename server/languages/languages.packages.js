@@ -13,7 +13,7 @@ const Languages = {
     Signup: "Signup", // Reuse Signup page
     // Sign up page
     IWantToRide: "IWantToRide",
-    IWantToDrive: "IWanToDrive",
+    IWantToDrive: "IWantToDrive",
     FirstName: "FirstName",
     LastName: "LastName",
     Phone: "Phone",
@@ -45,10 +45,7 @@ const Languages = {
     [LanguagePackages.CarModel]: "Car model",
     [LanguagePackages.CarColor]: "Car color",
     [LanguagePackages.CarCapacity]: "Car capacity",
-    [LanguagePackages.LicenseLicensePlate]: "License plate",
-
-
-
+    [LanguagePackages.LicensePlate]: "License plate",
 
   };
 
@@ -70,7 +67,7 @@ const Languages = {
     [LanguagePackages.CarModel]: "汽车型号",
     [LanguagePackages.CarColor]: "汽车颜色",
     [LanguagePackages.CarCapacity]: "汽车载客量",
-    [LanguagePackages.LicenseLicensePlate]: "汽车牌照",
+    [LanguagePackages.LicensePlate]: "汽车牌照",
 
   };
 
@@ -92,7 +89,7 @@ const Languages = {
     [LanguagePackages.CarModel]: "Modelo del coche",
     [LanguagePackages.CarColor]: "Color del coche",
     [LanguagePackages.CarCapacity]: "Capacidad del coche",
-    [LanguagePackages.LicenseLicensePlate]: "Placa",
+    [LanguagePackages.LicensePlate]: "Placa",
   };
 
   module.exports = {

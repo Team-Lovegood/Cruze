@@ -42,8 +42,7 @@ const Login = (props) => {
     setItems([
       { value: Roles.rider, label: languagePackages?.IAmARider },
       {
-        value: Roles.driver,
-        label: languagePackages?.IAmADriver,
+        value: Roles.driver, label: languagePackages?.IAmADriver
       },
     ]);
   }, [languagePackages]);
@@ -132,9 +131,9 @@ const Login = (props) => {
         onPress={handleLogin}>
         <Text style={styles.loginText}>{languagePackages?.LogIn}</Text>
       </TouchableOpacity>
-      <Text style={styles.signupText}>
+      <Text style={[styles.signupText, textStyle]}>
         {languagePackages?.DonnotHaveAnAccount}{" "}
-        <Text style={styles.signup} onPress={props.signup}>
+        <Text style={[styles.signup, textStyle]} onPress={props.signup}>
           {languagePackages?.Signup}
         </Text>
       </Text>
