@@ -11,14 +11,14 @@ const Arrived = ({tripStatus, handleStatus}) => {
 
   const [rating, setRating] = useState(0);
 
-  useEffect(() => {
-    if (tripStatus === "pickUp") {
-      const test = setTimeout(() => handleStatus("arrived"), 5000);
-      return () => clearTimeout(test);
-    } else {
-      return;
-    }
-  }, [handleStatus]);
+  // useEffect(() => {
+  //   if (tripStatus === "pickUp") {
+  //     const test = setTimeout(() => handleStatus("arrived"), 5000);
+  //     return () => clearTimeout(test);
+  //   } else {
+  //     return;
+  //   }
+  // }, [handleStatus]);
 
   if(tripStatus === 'arrived') {
     return (

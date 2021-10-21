@@ -3,12 +3,37 @@ import { Text, View, StyleSheet, Modal, SafeAreaView, Button, Pressable } from '
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import PlaceRow from '../components/PlaceRow.jsx';
 import API from '../config.js';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import RadioGroup from 'react-native-radio-buttons-group';
 
+const radioButtonsData = [
+  {
+    id: '1', // acts as primary key, should be unique and non-empty string
+    label: '',
+    value: 'option1'
+  },
+  {
+    id: '2',
+    label: '',
+    value: 'option2'
+  },
+  {
+    id: '3',
+    label: '',
+    value: 'option3'
+  }
+]
 
 const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
 
   let departure = {}
   let destination = {}
+  const [radioButtons, setRadioButtons] = useState(radioButtonsData)
+
+  const onPressRadioButton = (radioButtonsArray) => {
+    setRadioButtons(radioButtonsArray);
+  }
 
   if(tripStatus === 'searchTrip') {
     return (
@@ -38,8 +63,9 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
             }}
             placeholder='From'
             onPress={(data, details = null) => {
-              console.log(details.geometry.location);
+              console.log(details.name);
               departure = {
+                name: details.name,
                 latitude: details.geometry.location.lat,
                 longitude: details.geometry.location.lng,
               }
@@ -80,6 +106,7 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
             onPress={(data, details = null) => {
               // console.log(data, details);
               destination = {
+                name: details.name,
                 latitude: details.geometry.location.lat,
                 longitude: details.geometry.location.lng,
               }
@@ -95,6 +122,22 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
               return <PlaceRow data={data} />
             }}
           />
+        </View>
+        <View style={styles.passengersContainer}>
+          <MaterialCommunityIcons name='car-convertible' size={35} color={'black'} />
+          <Ionicons name='ios-car' size={30} color={'black'} />
+          <MaterialCommunityIcons name='car-estate' size={35} color={'black'} />
+        </View>
+        <RadioGroup
+          containerStyle={styles.radioGroup}
+          radioButtons={radioButtons}
+          onPress={onPressRadioButton}
+          layout='row'
+        />
+        <View style={styles.capacityGroup}>
+          <Text style={styles.luxury}>1</Text>
+          <Text style={styles.sedan}>4</Text>
+          <Text style={styles.suv}>5+</Text>
         </View>
         <View style={styles.button} >
           <Button color="black" title="SUBMIT" onPress={() => handleTrip(departure, destination)} />
@@ -130,5 +173,43 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#B3E5FD'
+  },
+  passengersContainer: {
+    flexDirection: 'row',
+    position: 'relative',
+    bottom: 125,
+    height: 175,
+    marginRight: 40,
+    marginLeft: 40,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: '#B3E5FD',
+  },
+  radioGroup: {
+    position: 'relative',
+    bottom: 190,
+    marginRight: 40,
+    marginLeft: 40,
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
+  },
+  capacityGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    position: 'relative',
+    bottom: 190,
+  },
+  luxury: {
+    position: 'relative',
+    left: 14
+  },
+  sedan: {
+    position: 'relative',
+    left: 6
+  },
+  suv: {
+    position: 'relative',
+    right: 4
   }
 });

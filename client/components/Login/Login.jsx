@@ -1,20 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Picker, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, Image, LogBox } from 'react-native';
 import { auth } from '../../../firebase';
 import axios from 'axios';
+import { useTheme } from '../../../theme/themeProvider.js';
+import { LanguageContext } from "../../languages/index";
+import LanguageSelecter from "../Login/DropdownLanguage";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { macIP } from '../../../ip.js';
 
 const Login = (props) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const Roles = { rider: "riders", driver: "drivers",};
+  const riderTip = languagePackages?.IAmARider;
+  const driverTip = languagePackages?.IAmADriver;
   const [items, setItems] = useState([
-    { value: Roles.rider, label: "I am a rider" },
-    { value: Roles.driver, label: "I am a driver" },
+    { value: Roles.rider, label: riderTip },
+    { value: Roles.driver, label: driverTip },
   ]);
   const [open, setOpen] = useState(false);
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [profile, setProfile] = useState({});
+
+  const { children } = props;
+  const { colors, isDark } = useTheme();
+
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background
+  }
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, [])
+
+  useEffect(() => {
+    setItems([
+      { value: Roles.rider, label: languagePackages?.IAmARider },
+      {
+        value: Roles.driver, label: languagePackages?.IAmADriver
+      },
+    ]);
+  }, [languagePackages]);
+
 
   const handleLogin = () => {
     auth
@@ -34,12 +66,13 @@ const Login = (props) => {
           }
         }
         // get postgres user information where firebase email matches postgres email
-        axios.get('http://192.168.1.130:3000/profile', profile)
+        axios.get(`http://${macIP}:3000/profile`, profile)
         .then((response) => {
-          console.log(response.data[0]);
           response.data[0].role = role;
           // return postgres information for more chaining
+          setProfile(response.data[0]);
           return response.data[0];
+          // console.warn(props.auth);
         })
         .then(data => {
           // render next page according to profile role
@@ -49,20 +82,25 @@ const Login = (props) => {
             props.driverHome();
           }
         })
+        //axois catch
         .catch(err => {
           alert(err);
         })
       })
+      //auth catch
       .catch(error => alert(error.message))
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container, safeStyle]}>
+        <LanguageSelecter />
       <View style={styles.logoBox}>
         <Image style={styles.logo} source={logo}/>
         <Text style={styles.text}>Cruze</Text>
       </View>
-
+      <KeyboardAwareScrollView keyboardShouldPersistTaps={'always'}
+          style={{flex:1}}
+          showsVerticalScrollIndicator={false}>
       <DropDownPicker
           style={styles.roleSelecter}
           open={open}
@@ -73,30 +111,34 @@ const Login = (props) => {
           setItems={setItems}
           containerStyle={{width: 320}}
         />
-
-
       <TextInput style = {styles.input}
         autoCapitalize = "none"
         textContentType='emailAddress'
-        placeholder = "Email"
-        placeholderTextColor = "black"
+        placeholder={languagePackages?.Email}
+        placeholderTextColor = 'black'
         value={email}
         onChangeText={(text) => setEmail(text)}/>
       <TextInput style = {styles.input}
         secureTextEntry={true}
         textContentType='password'
-        placeholder = "Password"
-        placeholderTextColor = "black"
+        placeholder={languagePackages?.Password}
+        placeholderTextColor = 'black'
         autoCapitalize = "none"
         value={password}
         onChangeText = {(text) => setPassword(text)}/>
       <TouchableOpacity
         style={styles.login}
         onPress={handleLogin}>
-        <Text style={styles.loginText}>Log in</Text>
+        <Text style={styles.loginText}>{languagePackages?.LogIn}</Text>
       </TouchableOpacity>
-      <Text style={styles.signupText}>Don't have an account? <Text style={styles.signup} onPress={props.signup}>Sign up</Text></Text>
-  </View>
+      <Text style={[styles.signupText, textStyle]}>
+        {languagePackages?.DonnotHaveAnAccount}{" "}
+        <Text style={[styles.signup, textStyle]} onPress={props.signup}>
+          {languagePackages?.Signup}
+        </Text>
+      </Text>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -108,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    marginTop: 200,
+    marginTop: 100,
     flexDirection: 'row'
   },
   logo: {
@@ -160,7 +202,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     fontSize: 12,
     position: "relative",
-    borderColor: 'white'
+    borderWidth: 0
   },
 });
 
