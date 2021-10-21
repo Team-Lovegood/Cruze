@@ -13,6 +13,13 @@ import { LanguageWrapper } from "./client/languages/index";
 const AuthStack = createStackNavigator();
 
 export default function App() {
+
+  const [communication, setCommunication] = useState(true);
+
+  const handleCommunication = () => {
+    setCommunication(!communication);
+  }
+
   return (
     <>
      <LanguageWrapper>
@@ -21,7 +28,7 @@ export default function App() {
         <StatusBar style="auto" />
       </View> */}
 
-      <AppearanceProvider>
+      {/* <AppearanceProvider>
       <ThemeProvider>
       <NavigationContainer>
         <AuthStack.Navigator>
@@ -32,10 +39,10 @@ export default function App() {
         </AuthStack.Navigator>
       </NavigationContainer>
       </ThemeProvider>
-      </AppearanceProvider>
+      </AppearanceProvider> */}
 
       <View style={styles.container}>
-        <RiderHome />
+        <RiderHome communication={communication} handleCommunication={handleCommunication} />
         <StatusBar style="auto" />
       </View>
 
