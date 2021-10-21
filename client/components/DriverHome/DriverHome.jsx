@@ -18,20 +18,16 @@ const DriverHome = () => {
     longitude: -73.9927213});
   const [origin, setOrigin] = useState({});
   const [destination, setDestination] = useState(null);
+  const [trip, setTrip] = useState({});
+  const socket = io('http://127.0.0.1:3000');
 
   useEffect(() => {
-    // const requestingRider = () => {
-    //   socket.emit('new trip', {
-    //     origin: origin,
-    //     destination: destination
-    //   });
+    socket.on('new trip', trip => {
+      setTrip(trip);
+    });
+    socket.on('tripStatus', tripStatus => {
 
-    // };
-    const socket = io('http://127.0.0.1:3000');
-    socket.emit('tripStatus', status);
-    socket.on('tripStatus', status => {
-      console.log(status);
-    })
+    });
   }, []);
 
   const changeRider = async (rider) => {
@@ -40,18 +36,21 @@ const DriverHome = () => {
     //   setDriverLocation({latitude: loc.latitude, longitude: loc.longitude});
     // });
     setOrigin(driverLocation);
-    setDestination(rider.location)
-    setStatus('pickup')
+    setDestination(rider.location);
+    socket.emit('tripStatus', 'onTheWay');
+    setStatus('pickup');
   }
 
   const onTheWay = () => {
     setOrigin(driverLocation);
-    setDestination(rider.destination)
+    setDestination(rider.destination);
+    socket.emit('tripStatus', 'pickUp');
     setStatus('onTheWay');
   }
 
   const arrivedToDestination = () => {
     setDestination(null);
+    socket.emit('tripStatus', 'arrived');
     setStatus('arrived');
   }
 
@@ -91,6 +90,7 @@ const DriverHome = () => {
       {(status === 'rideList' || status === 'backToRiderList') &&
         <RiderList
           changeRider={changeRider}
+          trip={trip}
       />}
       {status === 'pickup' &&
         <DriverPickup rider={rider} onTheWay={onTheWay}/>
