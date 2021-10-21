@@ -22,8 +22,8 @@ io.on('connection', (socket) => {
 
 
 
-// const landingPage = require('./routes/landingPage.js');
-// app.use('/', landingPage);
+const landingPage = require('./routes/landingPage.js');
+app.use('/', landingPage);
 
 
 
