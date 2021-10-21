@@ -14,6 +14,14 @@ const AuthStack = createStackNavigator();
 
 export default function App() {
 
+
+  const [communication, setCommunication] = useState(true);
+
+  const handleCommunication = () => {
+    setCommunication(!communication);
+  }
+
+
   return (
     <>
      <LanguageWrapper>
@@ -35,10 +43,11 @@ export default function App() {
       </ThemeProvider>
       </AppearanceProvider> */}
 
-      {/* <View style={styles.container}>
-        <RiderHome />
-        <StatusBar style="auto" />
-      </View> */}
+
+//       <View style={styles.container}>
+//         <RiderHome communication={communication} handleCommunication={handleCommunication} />
+//         <StatusBar style="auto" />
+//       </View> 
 
 
     {/* <View style={styles.container}>

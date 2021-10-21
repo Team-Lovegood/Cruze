@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 
-const ToDestination = ({tripStatus, distance, duration, handleStatus}) => {
+const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpen}) => {
   const distanceRate = 1.5;
   const durationRate = 0.1;
   const price = Number(distanceRate*distance.value/1000 + durationRate*duration.value/60).toFixed(2);
@@ -18,7 +18,7 @@ const ToDestination = ({tripStatus, distance, duration, handleStatus}) => {
   // }, [handleStatus]);
 
 
-  if(tripStatus === 'onTheWay' || tripStatus === 'pickUp') {
+  if ((tripStatus === 'onTheWay' && !profileOpen) || (tripStatus === 'pickUp' && !profileOpen)) {
     return (
       <View style={styles.topContainer}>
         <View style={styles.driverContainer}>

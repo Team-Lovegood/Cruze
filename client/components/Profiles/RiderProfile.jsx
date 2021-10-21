@@ -13,38 +13,39 @@ const RiderProfile = (props) => {
     color: colors.text
   };
   const safeStyle = {
-    flex: 1,
-    backgroundColor: colors.background
+    flex: 1.5,
+    backgroundColor: colors.background,
   }
 
-  return (
-  <SafeAreaView style={safeStyle}>
-    <View style={styles.map}></View>
-    <View style = {safeStyle}>
-      <View style = {styles.top}>
-        <Text style={textStyle}>Tim E Tim</Text>
-        <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
-      </View>
-      <View style = {styles.top}>
-        <Text style={textStyle}>Theme</Text>
-        <Theme />
-      </View>
-    </View>
-  </SafeAreaView>
-  )
+  if (props.profileOpen) {
+    return (
+      <>
+        <View View style={safeStyle} >
+          <View style={styles.top}>
+            <Text style={textStyle}>Tim E Tim</Text>
+            <Text style={textStyle}>4.9<Text style={{ color: '#B3E5FD', fontSize: 18 }}>&#9733;</Text></Text>
+          </View>
+          <View style={styles.top}>
+            <Text style={textStyle}>Theme</Text>
+            <Theme />
+          </View>
+        </View >
+      </>
+    )
+  } else {
+    return null
+  }
 }
-
 
 const styles = StyleSheet.create({
   map: {
-    flex: 4,
     backgroundColor: '#B3E5FD'
   },
-   top: {
-     flexDirection: 'row',
-     justifyContent: 'space-evenly',
-     margin: 25,
-   }
+  top: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    margin: 25,
+  }
 });
 
 

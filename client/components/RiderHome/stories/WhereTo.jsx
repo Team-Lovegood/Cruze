@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, StyleSheet, Modal, View, SafeAreaView, TextInput, Pressable } from 'react-native';
 
-const WhereTo = ({tripStatus, handleStatus }) => {
-  if(tripStatus === 'whereTo') {
+const WhereTo = ({tripStatus, handleStatus, profileOpen }) => {
+  if(tripStatus === 'whereTo' && !profileOpen) {
     return (
       <View style={styles.container}>
         <Text style={styles.welcomeMessage}>Hello Rider</Text>
