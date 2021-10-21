@@ -13,6 +13,7 @@ import { LanguageWrapper } from "./client/languages/index";
 const AuthStack = createStackNavigator();
 
 export default function App() {
+
   return (
     <>
      <LanguageWrapper>
@@ -27,8 +28,8 @@ export default function App() {
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
           <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}/>
-          <AuthStack.Screen name='RiderHome' component={RiderHomeScreen} options={{headerShown: false}}/>
-          <AuthStack.Screen name='DriverHome' component={DriverHomeScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='RiderHome' component={RiderProfileScreen} options={{headerShown: false}}/>
+          <AuthStack.Screen name='DriverHome' component={DriverProfileScreen} options={{headerShown: false}}/>
         </AuthStack.Navigator>
       </NavigationContainer>
       </ThemeProvider>
