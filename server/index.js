@@ -28,8 +28,8 @@ io.on('connection', (socket) => {
 
 
 
-const languageRouter = require("./languages/routes");
-app.use("/languages", languageRouter);
+// const languageRouter = require("./languages/routes");
+// app.use("/languages", languageRouter);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, function() {
