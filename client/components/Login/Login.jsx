@@ -23,8 +23,6 @@ const Login = (props) => {
   const [role, setRole] = useState(Roles.rider);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [profile, setProfile] = useState({});
-
   const { children } = props;
   const { colors, isDark } = useTheme();
 
@@ -52,10 +50,8 @@ const Login = (props) => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        //Sign in with firebase, pass user info for Postgres get.
         const user = userCredential.user;
         user.role = role;
-        // return user information for promise chaining
         return user;
       })
       .then(user => {
@@ -65,30 +61,30 @@ const Login = (props) => {
             email: user.email
           }
         }
-        // get postgres user information where firebase email matches postgres email
         axios.get(`http://${macIP}:3000/profile`, profile)
-        .then((response) => {
-          response.data[0].role = role;
-          // return postgres information for more chaining
-          setProfile(response.data[0]);
-          return response.data[0];
-          // console.warn(props.auth);
+        .then(({data}) => {
+          data[0].role = role;
+          props.updateProfile(data[0]);
+          return props.userProfile;
         })
-        .then(data => {
-          // render next page according to profile role
-          if (data.role  === 'riders') {
-            props.riderHome();
-          } else if (data.role === 'drivers') {
-            props.driverHome();
-          }
+        .then(profile => {
+          console.warn(profile);
+          // if (profile.role === 'riders') {
+          //   props.riderHome();
+          // } else if (profile.role === 'drivers') {
+          //   props.driverHome();
+          // }
         })
-        //axois catch
         .catch(err => {
           alert(err);
         })
       })
       //auth catch
       .catch(error => alert(error.message))
+  }
+
+  const showUser = () => {
+    console.warn(props.userProfile);
   }
 
   return (

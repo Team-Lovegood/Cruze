@@ -7,7 +7,7 @@ import DriverArrived from './DriverArrived.jsx';
 import OnTheWay from './OnTheWay.jsx';
 import * as Location from 'expo-location';
 
-const DriverHome = () => {
+const DriverHome = (props) => {
   const [rider, setRider] = useState({});
   const [dollarAmount, setDollarAmount] = useState('');
   const [miles, setMiles] = useState('');
