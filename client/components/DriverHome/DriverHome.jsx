@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import RiderList from './RiderList.jsx';
 import Map from './Map.jsx';
 import DriverPickup from './DriverPickup.jsx';
@@ -62,7 +62,6 @@ const DriverHome = () => {
 
   const toDriverProfile = () => {
     setProfileToggle(!profileToggle);
-    // setStatus('driverProfile');
   }
 
   const getCurrentLocation = async () => {
@@ -89,7 +88,7 @@ const DriverHome = () => {
 
 
   return (
-    <>
+    <SafeAreaView style={styles.container}>
       <View style={styles.menu}>
         <Icon
           name="bars"
@@ -118,11 +117,14 @@ const DriverHome = () => {
           <DriverProfile />
         </View>
       }
-    </>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   driverPick: {
     flex: 1
   },
