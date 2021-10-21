@@ -7,7 +7,7 @@ import DriverArrived from './DriverArrived.jsx';
 import OnTheWay from './OnTheWay.jsx';
 import * as Location from 'expo-location';
 
-const DriverHome = (props) => {
+const DriverHome = ({userProfile}) => {
   const [rider, setRider] = useState({});
   const [dollarAmount, setDollarAmount] = useState('');
   const [miles, setMiles] = useState('');
@@ -70,6 +70,7 @@ const DriverHome = (props) => {
       {(status === 'rideList' || status === 'backToRiderList') &&
         <RiderList
           changeRider={changeRider}
+          userProfile = {userProfile}
       />}
       {status === 'pickup' &&
         <DriverPickup rider={rider} onTheWay={onTheWay}/>

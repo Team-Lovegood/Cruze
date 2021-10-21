@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const RiderList = ({ changeRider }) => {
+const RiderList = ({ changeRider, userProfile }) => {
 
   const handlePress = (item) => {
     changeRider(item);

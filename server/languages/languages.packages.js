@@ -22,8 +22,11 @@ const Languages = {
     CarModel: "CarModel",
     CarColor: "CarColor",
     CarCapacity: "CarCapacity",
-    LicensePlate: "LicensePlate"
-
+    LicensePlate: "LicensePlate",
+    Theme: "Theme",
+    SelectARole: "SelectARole",
+    Languages:"Languages",
+    Logout:"Logout",
 
   };
 
@@ -46,6 +49,10 @@ const Languages = {
     [LanguagePackages.CarColor]: "Car color",
     [LanguagePackages.CarCapacity]: "Car capacity",
     [LanguagePackages.LicensePlate]: "License plate",
+    [LanguagePackages.Theme]: "Theme",
+    [LanguagePackages.SelectARole]: "Select a role",
+    [LanguagePackages.Languages]: "Languages",
+    [LanguagePackages.Logout]: "Logout",
 
   };
 
@@ -68,7 +75,10 @@ const Languages = {
     [LanguagePackages.CarColor]: "汽车颜色",
     [LanguagePackages.CarCapacity]: "汽车载客量",
     [LanguagePackages.LicensePlate]: "汽车牌照",
-
+    [LanguagePackages.Theme]: "主题",
+    [LanguagePackages.SelectARole]: "选择角色",
+    [LanguagePackages.Languages]: "语言",
+    [LanguagePackages.Logout]: "登出",
   };
 
   const EsPackage = {
@@ -90,6 +100,11 @@ const Languages = {
     [LanguagePackages.CarColor]: "Color del coche",
     [LanguagePackages.CarCapacity]: "Capacidad del coche",
     [LanguagePackages.LicensePlate]: "Placa",
+    [LanguagePackages.Theme]: "Tema",
+    [LanguagePackages.SelectARole]: "Seleccionar un rol",
+    [LanguagePackages.Languages]: "Idioma",
+    [LanguagePackages.Logout]: "Cerrar sesión",
+
   };
 
   module.exports = {

@@ -1,34 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Theme from './SwitchTheme.jsx';
 import { useTheme } from '../../../theme/themeProvider.js';
 import Language from '../Login/DropdownLanguage.jsx';
+import LanguageSelecter from "../Login/DropdownLanguage";
+import { LanguageContext } from "../../languages/index";
 
 const RiderProfile = (props) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const { children } = props;
   const { colors, isDark } = useTheme();
   const textStyle = {
-    fontSize: 24,
+    fontSize: 18,
     color: colors.text
   };
   const safeStyle = {
     flex: 1,
     backgroundColor: colors.background
   }
-
   return (
   <SafeAreaView style={safeStyle}>
-    <View style={styles.map}></View>
-    <View style = {safeStyle}>
+    {/* <View style={styles.map}></View> */}
+      {/* <View style = {styles.top}>
+        <Text style={textStyle}>{props.userProfile.firstname}{' '}{props.userProfile.lastname}</Text>
+        <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
+      </View> */}
       <View style = {styles.top}>
         <Text style={textStyle}>First Last</Text>
         <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
       </View>
       <View style = {styles.top}>
-        <Text style={textStyle}>Theme</Text>
+          <Text style={[textStyle, {marginRight: -215}]}>{languagePackages?.Languages}</Text>
+          <Language/>
+        </View>
+      <View style = {styles.top}>
+        <Text style={textStyle}>{languagePackages?.Theme}</Text>
         <Theme />
       </View>
-    </View>
+      <View style = {styles.top}>
+        <Text
+          style={[textStyle, {textDecorationLine: 'underline'}]}
+          onPress={props.logout}
+          >{languagePackages?.Logout}</Text>
+      </View>
   </SafeAreaView>
   )
 }
@@ -36,14 +50,19 @@ const RiderProfile = (props) => {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 4,
+    flex: 3,
     backgroundColor: '#B3E5FD'
   },
    top: {
      flexDirection: 'row',
-     justifyContent: 'space-evenly',
-     margin: 25,
-   }
+     justifyContent: 'space-between',
+     margin: 10,
+   },
+   languageSelecterBox: {
+    position: "absolute",
+    right: 50,
+    top: 100,
+  },
 });
 
 

@@ -14,7 +14,7 @@ import SearchTrip from './stories/SearchTrip';
 import FindingDriver from './stories/FindingDriver';
 import ToDestination from './stories/ToDestination';
 
-const RiderHome = (props) => {
+const RiderHome = () => {
 
   const [departure, setDeparture] = useState({name:'Empire State Building',latitude: 40.748817, longitude: -73.985428});
   const [destination, setDestination] = useState(departure);

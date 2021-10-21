@@ -19,10 +19,10 @@ export default function App() {
 
   return (
     <>
-     <LanguageWrapper>
+    <LanguageWrapper>
+    <ThemeProvider>
 
       <AppearanceProvider>
-      <ThemeProvider>
       <NavigationContainer>
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}
@@ -39,7 +39,6 @@ export default function App() {
 
         </AuthStack.Navigator>
       </NavigationContainer>
-      </ThemeProvider>
       </AppearanceProvider>
 
       {/* <View style={styles.container}>
@@ -51,7 +50,8 @@ export default function App() {
         <DriverHome />
         <StatusBar style="auto" />
       </View>*/}
-    </LanguageWrapper>
+      </ThemeProvider>
+      </LanguageWrapper>
     </>
   );
 }

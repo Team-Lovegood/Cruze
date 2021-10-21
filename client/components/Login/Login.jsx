@@ -20,11 +20,21 @@ const Login = (props) => {
     { value: Roles.driver, label: driverTip },
   ]);
   const [open, setOpen] = useState(false);
-  const [role, setRole] = useState(Roles.rider);
+  const [role, setRole] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { children } = props;
   const { colors, isDark } = useTheme();
+
+  const [userLoggedIn, setLoggedIn] = useState({});
+
+  useEffect(() => {
+    if (role === 'riders') {
+      props.riderHome();
+    } else if (role === 'drivers') {
+      props.driverHome();
+    }
+  }, [userLoggedIn])
 
   const textStyle = {
     color: colors.text
@@ -33,7 +43,7 @@ const Login = (props) => {
     backgroundColor: colors.background
   }
   useEffect(() => {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested', 'Unhandled promise rejection: Error: timeout exceeded', 'Unhandled promise rejection: Error: Network Error']);
   }, [])
 
   useEffect(() => {
@@ -65,21 +75,12 @@ const Login = (props) => {
         .then(({data}) => {
           data[0].role = role;
           props.updateProfile(data[0]);
-          return props.userProfile;
-        })
-        .then(profile => {
-          console.warn(profile);
-          // if (profile.role === 'riders') {
-          //   props.riderHome();
-          // } else if (profile.role === 'drivers') {
-          //   props.driverHome();
-          // }
+          setLoggedIn(data[0]);
         })
         .catch(err => {
           alert(err);
         })
       })
-      //auth catch
       .catch(error => alert(error.message))
   }
 
@@ -98,6 +99,7 @@ const Login = (props) => {
           style={{flex:1}}
           showsVerticalScrollIndicator={false}>
       <DropDownPicker
+          placeholder={languagePackages?.SelectARole}
           style={styles.roleSelecter}
           open={open}
           setOpen={setOpen}
