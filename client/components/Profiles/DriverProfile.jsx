@@ -19,7 +19,7 @@ const DriverProfile = (props) => {
   return (
     <SafeAreaView style={safeStyle}>
 
-      <View style={styles.map}></View>
+      {/* <View style={styles.map}></View> */}
 
       <View style = {styles.profile}>
         <View style = {styles.top}>
