@@ -43,15 +43,17 @@ export default function App() {
       </ThemeProvider>
       </AppearanceProvider> */}
 
-      <View style={styles.container}>
-        <RiderHome communication={communication} handleCommunication={handleCommunication} />
-        <StatusBar style="auto" />
-      </View>
 
-    {/*<View style={styles.container}>
+//       <View style={styles.container}>
+//         <RiderHome communication={communication} handleCommunication={handleCommunication} />
+//         <StatusBar style="auto" />
+//       </View> 
+
+
+    {/* <View style={styles.container}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
     </LanguageWrapper>
     </>
   );
