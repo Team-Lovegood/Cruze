@@ -17,6 +17,14 @@ export default function App() {
   // pass user profile to rider and driver home
   // need to swtich to app stack after login
 
+
+  const [communication, setCommunication] = useState(true);
+
+  const handleCommunication = () => {
+    setCommunication(!communication);
+  }
+
+
   return (
     <>
     <LanguageWrapper>
@@ -31,27 +39,30 @@ export default function App() {
           <AuthStack.Screen name='Signup' component={SignupScreen} options={{headerShown: false}}
           />
 
-          <AuthStack.Screen name='RiderHome' component={RiderProfileScreen} options={{headerShown: false}}
+          <AuthStack.Screen name='RiderHome' component={RiderHomeScreen} options={{headerShown: false}}
           />
 
-          <AuthStack.Screen name='DriverHome' component={DriverProfileScreen} options={{headerShown: false}}
+          <AuthStack.Screen name='DriverHome' component={DriverHomeScreen} options={{headerShown: false}}
           />
 
         </AuthStack.Navigator>
       </NavigationContainer>
       </AppearanceProvider>
 
-      {/* <View style={styles.container}>
-        <RiderHome />
-        <StatusBar style="auto" />
-      </View> */}
 
-    {/*<View style={styles.container}>
+    {/* <View style={styles.container}>
+      <RiderHome communication={communication} handleCommunication={handleCommunication} />
+      <StatusBar style="auto" />
+    </View>  */}
+
+
+    {/* <View style={styles.container}>
         <DriverHome />
         <StatusBar style="auto" />
       </View>*/}
-      </ThemeProvider>
-      </LanguageWrapper>
+
+    </ThemeProvider>
+    </LanguageWrapper>
     </>
   );
 }

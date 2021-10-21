@@ -15,38 +15,46 @@ const RiderProfile = (props) => {
     color: colors.text
   };
   const safeStyle = {
-    flex: 1,
-    backgroundColor: colors.background
+    flex: 1.5,
+    backgroundColor: colors.background,
   }
-  return (
-  <SafeAreaView style={safeStyle}>
-    {/* <View style={styles.map}></View> */}
-      {/* <View style = {styles.top}>
-        <Text style={textStyle}>{props.userProfile.firstname}{' '}{props.userProfile.lastname}</Text>
-        <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
-      </View> */}
-      <View style = {styles.top}>
-        <Text style={textStyle}>First Last</Text>
-        <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
-      </View>
-      <View style = {styles.top}>
-          <Text style={[textStyle, {marginRight: -215}]}>{languagePackages?.Languages}</Text>
-          <Language/>
-        </View>
-      <View style = {styles.top}>
-        <Text style={textStyle}>{languagePackages?.Theme}</Text>
-        <Theme />
-      </View>
-      <View style = {styles.top}>
-        <Text
-          style={[textStyle, {textDecorationLine: 'underline'}]}
-          onPress={props.logout}
-          >{languagePackages?.Logout}</Text>
-      </View>
-  </SafeAreaView>
-  )
-}
 
+  if (props.profileOpen) {
+    return (
+      <>
+        <View View style={safeStyle} >
+        {/* <View style={styles.map}></View> */}
+        {/* <View style = {styles.top}>
+          <Text style={textStyle}>{props.userProfile.firstname}{' '}{props.userProfile.lastname}</Text>
+          <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
+        </View> */}
+          <View style={styles.top}>
+            <Text style={textStyle}>Tim E Tim</Text>
+            <Text style={textStyle}>4.9<Text style={{ color: '#B3E5FD', fontSize: 18 }}>&#9733;</Text></Text>
+          </View>
+
+          <View style = {styles.top}>
+            <Text style={[textStyle, {marginRight: -215}]}>{languagePackages?.Languages}</Text>
+            <Language/>
+          </View>
+
+          <View style = {styles.top}>
+            <Text style={textStyle}>{languagePackages?.Theme}</Text>
+            <Theme />
+          </View>
+          <View style = {styles.top}>
+            <Text
+              style={[textStyle, {textDecorationLine: 'underline'}]}
+              onPress={props.logout}
+              >{languagePackages?.Logout}</Text>
+          </View>
+        </View >
+      </>
+    )
+  } else {
+    return null
+  }
+}
 
 const styles = StyleSheet.create({
   map: {
@@ -58,11 +66,6 @@ const styles = StyleSheet.create({
      justifyContent: 'space-between',
      margin: 10,
    },
-   languageSelecterBox: {
-    position: "absolute",
-    right: 50,
-    top: 100,
-  },
 });
 
 
