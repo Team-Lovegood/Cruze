@@ -83,10 +83,12 @@ const Login = (props) => {
             props.driverHome();
           }
         })
+        //axois catch
         .catch(err => {
           alert(err);
         })
       })
+      //auth catch
       .catch(error => alert(error.message))
   }
 

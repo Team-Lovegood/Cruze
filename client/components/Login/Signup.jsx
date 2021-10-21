@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useTheme } from '../../../theme/themeProvider.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { macIP } from '../../../ip.js';
+import LanguageSelecter from "../Login/DropdownLanguage";
+import { LanguageContext } from "../../languages/index";
 
 
 const styles = StyleSheet.create({
@@ -99,6 +101,9 @@ const Roles = {
 
 import logo from "../../../assets/logo.png";
 const Signup = (props) => {
+  const { languagePackages } = React.useContext(LanguageContext);
+  const riderTip = languagePackages?.IAmARider;
+  const driverTip = languagePackages?.IAmADriver;
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     { value: Roles.rider, label: "I want to ride" },
@@ -129,6 +134,16 @@ const Signup = (props) => {
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, [])
+
+  useEffect(() => {
+    setItems([
+      { value: Roles.rider, label: languagePackages?.IWantToRide },
+      {
+        value: Roles.driver,
+        label: languagePackages?.IWantToDrive,
+      },
+    ]);
+  }, [languagePackages]);
 
   const handleSignup = () => {
     auth
@@ -171,8 +186,6 @@ const Signup = (props) => {
           profile.params.carCapacity = user.carCapacity
         }
         //axios post
-        let macIP = '192.168.1.130';
-
         axios.post(`http://${macIP}:3000/${user.role}`, profile)
           .then((response) => {
             // return profile to render next page
@@ -207,6 +220,7 @@ const Signup = (props) => {
   }
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
+      <LanguageSelecter />
         <View style={styles.logoBox}>
           <Image style={styles.logo} source={logo} />
           <Text style={styles.appName}>Cruze</Text>
@@ -230,14 +244,14 @@ const Signup = (props) => {
               value={firstName}
               placeholderTextColor = "black"
               onChangeText={(text) => setFirstName(text)}
-              placeholder="First name"
+              placeholder={languagePackages?.FirstName}
             />
             <TextInput
               style={styles.doubleInput}
               value={lastName}
               placeholderTextColor = "black"
               onChangeText={(text) => setLastName(text)}
-              placeholder="Last name"
+              placeholder={languagePackages?.LastName}
             />
         </View>
         <View style={styles.doubleInputBox}>
@@ -245,14 +259,14 @@ const Signup = (props) => {
             style={styles.doubleInput}
             textContentType="emailAddress"
             autoCapitalize = "none"
-            placeholder="Email"
+            placeholder={languagePackages?.Email}
             placeholderTextColor = "black"
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
           <TextInput
             style={styles.doubleInput}
-            placeholder="Phone"
+            placeholder={languagePackages?.Phone}
             placeholderTextColor = "black"
             value={phone}
             onChangeText={(text) => setPhone(text)}
@@ -267,7 +281,7 @@ const Signup = (props) => {
             value={password}
             placeholderTextColor = "black"
             onChangeText={(text) => setPassword(text)}
-            placeholder="Password"
+            placeholder={languagePackages?.Password}
           />
         </View>
         {role === Roles.driver && (
@@ -278,14 +292,14 @@ const Signup = (props) => {
                 value={carMake}
                 placeholderTextColor = "black"
                 onChangeText={(text) => setCarMake(text)}
-                placeholder="Car make"
+                placeholder={languagePackages?.carMake}
               />
               <TextInput
                 style={styles.doubleInput}
                 value={carModel}
                 placeholderTextColor = "black"
                 onChangeText={(text) => setCarModel(text)}
-                placeholder="Car model"
+                placeholder={languagePackages?.carModel}
               />
             </View>
             <View style={styles.doubleInputBox}>
@@ -294,14 +308,14 @@ const Signup = (props) => {
                 value={carColor}
                 placeholderTextColor = "black"
                 onChangeText={(text) => setCarColor(text)}
-                placeholder="Car color"
+                placeholder={languagePackages?.carColor}
               />
               <TextInput
                 style={styles.doubleInput}
                 value={carCapacity}
                 onChangeText={(text) => setCarCapacity(text)}
                 placeholderTextColor = "black"
-                placeholder="Car capacity"
+                placeholder={languagePackages?.carCapacity}
               />
             </View>
             <View style={styles.singleInputBox}>
@@ -310,7 +324,7 @@ const Signup = (props) => {
                 value={licensePlate}
                 onChangeText={(text) => setLicensePlate(text)}
                 placeholderTextColor = "black"
-                placeholder="License plate"
+                placeholder={languagePackages?.licensePlate}
               />
             </View>
           </>
@@ -318,10 +332,10 @@ const Signup = (props) => {
         <TouchableOpacity
           style={styles.signup}
           onPress={handleSignup}>
-          <Text style={styles.signupText}>Sign up</Text>
+          <Text style={styles.signupText}>{languagePackages?.Signup}</Text>
         </TouchableOpacity>
         <View>
-          <Text style={[styles.loginText, textStyle]}>Already have an account? <Text style={[styles.login, textStyle]} onPress={props.login}>Log in</Text></Text>
+          <Text style={[styles.loginText, textStyle]}>{languagePackages?.AlreadyHaveAnAccount} <Text style={[styles.login, textStyle]} onPress={props.login}>{languagePackages?.LogIn}</Text></Text>
         </View>
         </KeyboardAwareScrollView>
     </SafeAreaView>
