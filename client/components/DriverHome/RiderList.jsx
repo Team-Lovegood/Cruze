@@ -81,7 +81,7 @@ const RiderList = ({ changeRider, trip }) => {
   if (trip.name) {
     const temp = {
       name: trip.name,
-      address: trip.destination.name ,
+      address: trip.destination.name,
       distance: 2.2,
       amount: 10,
       location: trip.departure,

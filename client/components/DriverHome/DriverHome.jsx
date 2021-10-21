@@ -5,9 +5,11 @@ import Map from './Map.jsx';
 import DriverPickup from './DriverPickup.jsx';
 import DriverArrived from './DriverArrived.jsx';
 import OnTheWay from './OnTheWay.jsx';
+import DriverProfile from '../Profiles/DriverProfile.jsx';
 import * as Location from 'expo-location';
 import io from 'socket.io-client';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const DriverHome = () => {
   const [rider, setRider] = useState({});
@@ -58,6 +60,19 @@ const DriverHome = () => {
     setStatus('backToRiderList');
   }
 
+  const myButton = (
+    <Icon.Button
+      name="bars"
+      backgroundColor="black"
+      onPress={toDriverProfile}
+    >
+    </Icon.Button>
+  );
+
+  const toDriverProfile = () => {
+    setStatus('driverProfile');
+  }
+
   const getCurrentLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
@@ -84,7 +99,12 @@ const DriverHome = () => {
   return (
     <>
       <View style={styles.menu}>
-        <FontAwesome name='bars' size={30} color={'black'} />
+        <Icon.Button
+          name="bars"
+          backgroundColor="black"
+          onPress={toDriverProfile}
+        >
+        </Icon.Button>
       </View>
       <Map destination={destination} origin={origin} driverLocation={driverLocation}/>
       {(status === 'rideList' || status === 'backToRiderList') &&
@@ -101,11 +121,12 @@ const DriverHome = () => {
       {status === 'arrived' &&
         <DriverArrived backToRideList={backToRideList} />
       }
-      {/* {status === 'backToRiderList' &&
-        <RiderList
-          changeRider={changeRider}
-        />
-      } */}
+      {status === 'driverProfile' &&
+        <View style={styles.DriverProfile}>
+          <DriverProfile />
+        </View>
+      }
+
     </>
   );
 };
@@ -122,6 +143,9 @@ const styles = StyleSheet.create({
     top: 80,
     left: 20,
     zIndex: 1
+  },
+  DriverProfile: {
+    flex: 2
   }
 });
 
