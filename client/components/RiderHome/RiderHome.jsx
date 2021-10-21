@@ -8,6 +8,7 @@ import io from 'socket.io-client';
 import API from './config.js';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
+import RiderProfile from '../Profiles/RiderProfile.jsx';
 import WhereTo from './stories/WhereTo';
 import Arrived from './stories/Arrived';
 import SearchTrip from './stories/SearchTrip';
@@ -25,6 +26,7 @@ const RiderHome = ({ communication }) => {
 
 
   const [tripStatus, setTripStatus] = useState('whereTo');
+  const [profileOpen, setProfileOpen] = useState(false);
   const mapRef = useRef(null);
 
   const handleStatus = (status) => {
@@ -102,9 +104,11 @@ const RiderHome = ({ communication }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.menu}>
-        <FontAwesome name='bars' size={30} color={'black'} />
-      </View>
+      {tripStatus !== 'findDriver' && <View style={styles.menu}>
+        <FontAwesome name='bars' size={30} color={'black'} onPress={() => {
+          setProfileOpen(!profileOpen);
+        }} />
+      </View>}
       <MapView
         style={StyleSheet.absoluteFillObject}
         scrollEnabled={true}
@@ -125,11 +129,12 @@ const RiderHome = ({ communication }) => {
         </View>
       </MapView>
       {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
-      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} />
+      <RiderProfile profileOpen={profileOpen} />
+      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
       <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip}/>
       <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
-      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} />
-      <Arrived tripStatus={tripStatus} handleStatus={handleStatus} />
+      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen}/>
+      <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
     </SafeAreaView>
   )
 }

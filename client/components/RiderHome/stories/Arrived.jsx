@@ -7,7 +7,7 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faStar } from '@fortawesome/free-regular-svg-icons';
 
-const Arrived = ({tripStatus, handleStatus}) => {
+const Arrived = ({tripStatus, handleStatus, profileOpen}) => {
 
   const [rating, setRating] = useState(0);
 
@@ -20,7 +20,7 @@ const Arrived = ({tripStatus, handleStatus}) => {
   //   }
   // }, [handleStatus]);
 
-  if(tripStatus === 'arrived') {
+  if (tripStatus === 'arrived' && !profileOpen) {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Arrived at destination</Text>
@@ -36,7 +36,7 @@ const Arrived = ({tripStatus, handleStatus}) => {
             />
           </View>
           <View style={styles.button}>
-            <Button color="black" title="SUBMIT" onPress={() => handleStatus('whereTo')}/>
+            <Button color="black" title="SUBMIT" onPress={() => {handleStatus('whereTo')}} />
           </View>
         </View>
       </View>
@@ -44,7 +44,6 @@ const Arrived = ({tripStatus, handleStatus}) => {
   } else {
     return null
   }
-
 }
 
 export default Arrived;
