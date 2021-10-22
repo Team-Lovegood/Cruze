@@ -12,7 +12,11 @@ config.js
 # macOS
 .DS_Store
 # package json
+<<<<<<< HEAD
 # package-lock.json
+=======
+./package-lock.json
+>>>>>>> 022f7d4c3e406723e2c81fb76c4517453398b968
 # Rider Home Google API
 client/components/RiderHome/config.js
 ./config.js

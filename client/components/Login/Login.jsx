@@ -20,13 +20,21 @@ const Login = (props) => {
     { value: Roles.driver, label: driverTip },
   ]);
   const [open, setOpen] = useState(false);
-  const [role, setRole] = useState(Roles.rider);
+  const [role, setRole] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [profile, setProfile] = useState({});
-
   const { children } = props;
   const { colors, isDark } = useTheme();
+
+  const [userLoggedIn, setLoggedIn] = useState({});
+
+  useEffect(() => {
+    if (role === 'riders') {
+      props.riderHome();
+    } else if (role === 'drivers') {
+      props.driverHome();
+    }
+  }, [userLoggedIn])
 
   const textStyle = {
     color: colors.text
@@ -35,7 +43,7 @@ const Login = (props) => {
     backgroundColor: colors.background
   }
   useEffect(() => {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested', 'Unhandled promise rejection: Error: timeout exceeded', 'Unhandled promise rejection: Error: Network Error']);
   }, [])
 
   useEffect(() => {
@@ -52,10 +60,8 @@ const Login = (props) => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        //Sign in with firebase, pass user info for Postgres get.
         const user = userCredential.user;
         user.role = role;
-        // return user information for promise chaining
         return user;
       })
       .then(user => {
@@ -65,30 +71,21 @@ const Login = (props) => {
             email: user.email
           }
         }
-        // get postgres user information where firebase email matches postgres email
         axios.get(`http://${macIP}:3000/profile`, profile)
-        .then((response) => {
-          response.data[0].role = role;
-          // return postgres information for more chaining
-          setProfile(response.data[0]);
-          return response.data[0];
-          // console.warn(props.auth);
+        .then(({data}) => {
+          data[0].role = role;
+          props.updateProfile(data[0]);
+          setLoggedIn(data[0]);
         })
-        .then(data => {
-          // render next page according to profile role
-          if (data.role  === 'riders') {
-            props.riderHome();
-          } else if (data.role === 'drivers') {
-            props.driverHome();
-          }
-        })
-        //axois catch
         .catch(err => {
           alert(err);
         })
       })
-      //auth catch
       .catch(error => alert(error.message))
+  }
+
+  const showUser = () => {
+    console.warn(props.userProfile);
   }
 
   return (
@@ -102,6 +99,7 @@ const Login = (props) => {
           style={{flex:1}}
           showsVerticalScrollIndicator={false}>
       <DropDownPicker
+          placeholder={languagePackages?.SelectARole}
           style={styles.roleSelecter}
           open={open}
           setOpen={setOpen}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { LanguageContext } from "../../languages/index";
+import { LanguageContext, getLanFromLocal, setLanToLocal} from "../../languages/index";
 import axios from "axios";
 import { macIP } from '../../../ip.js';
 
@@ -15,6 +15,12 @@ function Language() {
     {label: 'Español', value: Languages.esp},
     {label: '中文', value: Languages.mand}
   ]);
+
+  useEffect(() => {
+    getLanFromLocal().then((lan) => {
+      setValue(lan);
+    });
+  }, []);
 
   useEffect(() => {
     let lan = "en";
@@ -32,6 +38,7 @@ function Language() {
       if (res && res.data && res.data.data) {
         if (setLanguagesPackages) {
           setLanguagesPackages(res.data.data);
+          // setLanToLocal(lan);
         }
       }
     };
@@ -40,6 +47,7 @@ function Language() {
 
   return (
     <DropDownPicker
+      placeholder="English"
       style={styles.dropdown}
       open={open}
       value={value}
@@ -56,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
     borderColor: "white",
     borderWidth: 0,
-    zIndex: 1000,
+
     height: 40,
     fontSize: 12,
   }

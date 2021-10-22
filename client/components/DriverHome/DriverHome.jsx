@@ -10,7 +10,7 @@ import * as Location from 'expo-location';
 import io from 'socket.io-client';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const DriverHome = () => {
+const DriverHome = ({userProfile}) => {
   const [rider, setRider] = useState({});
   const [dollarAmount, setDollarAmount] = useState('');
   const [miles, setMiles] = useState('');
@@ -114,6 +114,7 @@ const DriverHome = () => {
       {(status === 'rideList' || status === 'backToRiderList') && !profileToggle &&
         <RiderList
           changeRider={changeRider}
+          //userProfile = {userProfile}
           trip={trip}
       />}
       {status === 'pickup' && !profileToggle &&

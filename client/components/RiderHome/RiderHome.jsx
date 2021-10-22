@@ -8,15 +8,17 @@ import io from 'socket.io-client';
 import API from './config.js';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
+import RiderProfile from '../Profiles/RiderProfile.jsx';
 import WhereTo from './stories/WhereTo';
 import Arrived from './stories/Arrived';
 import SearchTrip from './stories/SearchTrip';
 import FindingDriver from './stories/FindingDriver';
 import ToDestination from './stories/ToDestination';
 
-const RiderHome = () => {
+const RiderHome = ({ communication }) => {
 
-  const [departure, setDeparture] = useState({name:'Empire State Building',latitude: 40.748817, longitude: -73.985428});
+  const defaultAddress = {name:'Empire State Building',latitude: 40.748817, longitude: -73.985428};
+  const [departure, setDeparture] = useState(defaultAddress);
   const [destination, setDestination] = useState(departure);
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
@@ -24,10 +26,17 @@ const RiderHome = () => {
 
 
   const [tripStatus, setTripStatus] = useState('whereTo');
+  const [profileOpen, setProfileOpen] = useState(false);
   const mapRef = useRef(null);
 
   const handleStatus = (status) => {
-    setTripStatus(status);
+    if(status === 'whereTo') {
+      setDeparture(defaultAddress);
+      setDestination(defaultAddress);
+      setTripStatus(status);
+    } else {
+      setTripStatus(status);
+    }
   };
 
   const handleTrip = (departure, destination) => {
@@ -95,9 +104,11 @@ const RiderHome = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.menu}>
-        <FontAwesome name='bars' size={30} color={'black'} />
-      </View>
+      {tripStatus !== 'findDriver' && <View style={styles.menu}>
+        <FontAwesome name='bars' size={30} color={'black'} onPress={() => {
+          setProfileOpen(!profileOpen);
+        }} />
+      </View>}
       <MapView
         style={StyleSheet.absoluteFillObject}
         scrollEnabled={true}
@@ -112,19 +123,18 @@ const RiderHome = () => {
         }}
       >
         {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={2} strokeColor="black" mode="DRIVING" />}
-        {/* <BlurView style={styles.blurContainer} intensity={tripStatus === 'findDriver' ? 60 : 0} tint='light'/> */}
         <View style={styles.markerContainer}>
           <MapView.Marker coordinate={departure} identifier="departure" />
           {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
-          {/* {tripStatus === 'findDriver' && <BlurView style={styles.blurContainer} intensity={60} tint='light'/>} */}
         </View>
       </MapView>
       {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
-      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} />
+      <RiderProfile profileOpen={profileOpen} />
+      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
       <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip}/>
       <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
-      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} />
-      <Arrived tripStatus={tripStatus} handleStatus={handleStatus} />
+      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen}/>
+      <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
     </SafeAreaView>
   )
 }
