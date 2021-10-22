@@ -30,10 +30,10 @@ const Arrived = ({tripStatus, handleStatus, profileOpen}) => {
 
   if (tripStatus === 'arrived' && !profileOpen) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Arrived at destination</Text>
-        <Text style={styles.rateText}>How was your trip?</Text>
-        <View style={styles.subContainer}>
+      <View style={[styles.container, safeStyle]}>
+        <Text style={[styles.text, textStyle]}>Arrived at destination</Text>
+        <Text style={[styles.rateText, textStyle]}>How was your trip?</Text>
+        <View style={[styles.subContainer, textStyle]}>
           <View style={styles.stars}>
             <Rating
               type="custom"
