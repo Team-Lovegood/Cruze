@@ -32,6 +32,7 @@ const RiderHome = ({ communication, logout, userProfile }) => {
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
   const [socket, setSocket] = useState('')
+  const [carInfo, setCarInfo] = useState({});
 
 
   const [tripStatus, setTripStatus] = useState('whereTo');
@@ -54,7 +55,7 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       setDeparture(departure);
       setDestination(destination);
       socket.emit('new trip', {
-        name: '22-year-old Sebas',
+        name: userProfile.firstname,
         departure: departure,
         destination: destination
       });
@@ -73,10 +74,13 @@ const RiderHome = ({ communication, logout, userProfile }) => {
     if (socket) {
       socket.on("tripStatus", (status) => {
         if (status !== "searchTrip") {
-          console.log(status);
+          // console.log(status);
           setTripStatus(status);
         }
       });
+      socket.on("carInfo", (info) => {
+        setCarInfo(info);
+      })
     }
   });
 
@@ -148,7 +152,7 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip} name={userProfile.firstname}/>
 
       <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
-      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen}/>
+      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen} carInfo={carInfo}/>
       <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
     </SafeAreaView>
   );

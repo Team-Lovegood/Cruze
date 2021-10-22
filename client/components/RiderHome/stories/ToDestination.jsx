@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../../../theme/themeProvider.js';
 
-const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpen}) => {
+const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpen, carInfo}) => {
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -38,9 +38,9 @@ const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpe
           <Text style={[styles.tripInfo, textStyle]}>{duration.text}</Text>
         </View>
         <View style={styles.carContainer}>
-          <Text style={styles.carInfo}>Tim E Tim{"\n"}Toyota Camry</Text>
+          <Text style={styles.carInfo}>{carInfo.firstname}{"\n"}{carInfo.carmodel}</Text>
           <FontAwesomeIcon style={styles.car} size={40} icon={faCar} />
-          <Text style={styles.carInfo}>AE876NG9</Text>
+          <Text style={styles.carInfo}>{carInfo.licenseplate}</Text>
         </View>
       </View>
     );

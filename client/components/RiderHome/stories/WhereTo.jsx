@@ -29,7 +29,7 @@ const WhereTo = ({ tripStatus, handleStatus, profileOpen, name }) => {
           <View pointerEvents="none">
             <TextInput
               style={styles.textInput}
-              placeholder="Where to ?"
+              placeholder={languagePackages?.WhereToGo}
               placeholderTextColor={textStyle.color}
             />
           </View>
