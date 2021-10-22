@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppearanceProvider } from 'react-native-appearance';
@@ -23,6 +23,9 @@ export default function App() {
   const handleCommunication = () => {
     setCommunication(!communication);
   }
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested', 'Unhandled promise rejection: Error: timeout exceeded', 'Unhandled promise rejection: Error: Network Error']);
+  }, [])
 
 
   return (
@@ -30,7 +33,7 @@ export default function App() {
     <LanguageWrapper>
     <ThemeProvider>
 
-      {/* <AppearanceProvider>
+      <AppearanceProvider>
       <NavigationContainer>
         <AuthStack.Navigator>
           <AuthStack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}
@@ -47,7 +50,7 @@ export default function App() {
 
         </AuthStack.Navigator>
       </NavigationContainer>
-      </AppearanceProvider> */}
+      </AppearanceProvider>
 
 
     {/* <View style={styles.container}>
@@ -55,11 +58,11 @@ export default function App() {
       <StatusBar style="auto" />
     </View>  */}
 
-
+{/*
     <View style={styles.container}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>
+      </View> */}
 
     </ThemeProvider>
     </LanguageWrapper>

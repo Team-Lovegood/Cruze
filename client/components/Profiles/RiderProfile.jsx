@@ -24,14 +24,14 @@ const RiderProfile = (props) => {
       <>
         <View View style={safeStyle} >
         {/* <View style={styles.map}></View> */}
-        {/* <View style = {styles.top}>
+        <View style = {styles.top}>
           <Text style={textStyle}>{props.userProfile.firstname}{' '}{props.userProfile.lastname}</Text>
           <Text style={textStyle}>4.9<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
-        </View> */}
-          <View style={styles.top}>
+        </View>
+          {/* <View style={styles.top}>
             <Text style={textStyle}>Tim E Tim</Text>
             <Text style={textStyle}>4.9<Text style={{ color: '#B3E5FD', fontSize: 18 }}>&#9733;</Text></Text>
-          </View>
+          </View> */}
 
           <View style = {styles.top}>
             <Text style={[textStyle, {marginRight: -215}]}>{languagePackages?.Languages}</Text>
@@ -64,7 +64,10 @@ const styles = StyleSheet.create({
    top: {
      flexDirection: 'row',
      justifyContent: 'space-between',
-     margin: 10,
+     marginLeft: 25,
+     marginRight: 25,
+     marginBottom: 10,
+     marginTop: 10
    },
 });
 

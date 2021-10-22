@@ -31,6 +31,7 @@ export const RiderHomeScreen = ({ navigation, route }) => {
   return (
   <RiderHome
     userProfile={userProfile}
+    logout={()=> navigation.popToTop()}
   />
   )
 };
@@ -39,6 +40,7 @@ export const DriverHomeScreen = ({ navigation, route }) => {
   return (
   <DriverHome
     userProfile={userProfile}
+    logout={()=> navigation.popToTop()}
   />
   )
 };

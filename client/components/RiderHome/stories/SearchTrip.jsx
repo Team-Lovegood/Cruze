@@ -6,6 +6,7 @@ import API from '../config.js';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
+import { useTheme } from '../../../../theme/themeProvider.js';
 
 const radioButtonsData = [
   {
@@ -25,8 +26,14 @@ const radioButtonsData = [
   }
 ]
 
-const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
-
+const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   let departure = {}
   let destination = {}
   const [radioButtons, setRadioButtons] = useState(radioButtonsData)
@@ -37,9 +44,9 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
 
   if(tripStatus === 'searchTrip') {
     return (
-      <Modal>
-        <View style={styles.container}>
-          <Text style={styles.welcomeMessage}>Hello Rider</Text>
+      <Modal transparent={true}>
+        <View>
+          <Text style={[styles.welcomeMessage, safeStyle, textStyle]}>Hello {name}</Text>
           <GooglePlacesAutocomplete
             suppressDefaultStyles
             styles={{
@@ -47,10 +54,11 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
                 position: 'relative',
                 top: 10,
                 left: 15,
-                marginRight: 25
+                marginRight: 25,
               },
               textInput: {
-                fontSize: 15
+                fontSize: 15,
+                color: textStyle.color
               },
               listView: {
                 position: 'absolute',
@@ -91,7 +99,8 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
                 marginRight: 25
               },
               textInput: {
-                fontSize: 15
+                fontSize: 15,
+                color: textStyle.color
               },
               listView: {
                 position: 'absolute',
@@ -123,10 +132,10 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
             }}
           />
         </View>
-        <View style={styles.passengersContainer}>
-          <MaterialCommunityIcons name='car-convertible' size={35} color={'black'} />
-          <Ionicons name='ios-car' size={30} color={'black'} />
-          <MaterialCommunityIcons name='car-estate' size={35} color={'black'} />
+        <View style={[styles.passengersContainer]}>
+          <MaterialCommunityIcons name='car-convertible' size={35} color={textStyle.color} />
+          <Ionicons name='ios-car' size={30} color={textStyle.color} />
+          <MaterialCommunityIcons name='car-estate' size={35} color={textStyle.color} />
         </View>
         <RadioGroup
           containerStyle={styles.radioGroup}
@@ -135,12 +144,14 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
           layout='row'
         />
         <View style={styles.capacityGroup}>
-          <Text style={styles.luxury}>1</Text>
-          <Text style={styles.sedan}>4</Text>
-          <Text style={styles.suv}>5+</Text>
+          <Text style={[styles.luxury, textStyle]}>1</Text>
+          <Text style={[styles.sedan, textStyle]}>4</Text>
+          <Text style={[styles.suv, textStyle]}>5+</Text>
         </View>
         <View style={styles.button} >
           <Button color="black" title="SUBMIT" onPress={() => handleTrip(departure, destination)} />
+        </View>
+        <View style={[safeStyle, {height: '100%', zIndex: -1, bottom: 300}]}>
         </View>
       </Modal>
     )
@@ -153,56 +164,53 @@ export default SearchTrip;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: 50,
+
   },
   welcomeMessage: {
     paddingTop: 15,
     paddingLeft: 15,
     fontSize: 30,
     marginBottom: 15,
-    fontWeight: 'bold'
+    marginTop: 50,
+    fontWeight: 'bold',
   },
   button: {
     position: 'relative',
-    bottom: 100,
     height: 50,
     marginLeft: 100,
     marginRight: 100,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#B3E5FD'
+    backgroundColor: '#B3E5FD',
+    bottom: -300
   },
   passengersContainer: {
     flexDirection: 'row',
     position: 'relative',
-    bottom: 125,
-    height: 175,
-    marginRight: 40,
-    marginLeft: 40,
+    top: 200,
+    height: 50,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: '#B3E5FD',
+
   },
   radioGroup: {
     position: 'relative',
-    bottom: 190,
-    marginRight: 40,
-    marginLeft: 40,
+    marginRight: 10,
+    marginLeft: 10,
     alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    bottom: -200
   },
   capacityGroup: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     position: 'relative',
-    bottom: 190,
+    bottom: -215
   },
   luxury: {
     position: 'relative',
-    left: 14
+    left: 0
   },
   sedan: {
     position: 'relative',
@@ -210,6 +218,6 @@ const styles = StyleSheet.create({
   },
   suv: {
     position: 'relative',
-    right: 4
+    right: -9
   }
 });

@@ -25,7 +25,7 @@ const DriverProfile = (props) => {
 
       {/* <View style={styles.map}></View> */}
 
-      {/* <View style = {styles.profile}>
+      <View style = {styles.profile}>
         <View style = {styles.top}>
           <Text style={textStyle}>{props.userProfile.firstname}{' '}{props.userProfile.lastname}</Text>
           <Text style={textStyle}>4.8<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
@@ -33,9 +33,9 @@ const DriverProfile = (props) => {
       <View style={styles.top}>
         <Text style={textStyle}>{props.userProfile.carcolor}{' '}{props.userProfile.carmake}{' '}{props.userProfile.carmodel}{' '}</Text>
         <Text style={textStyle}>{props.userProfile.licenseplate}</Text>
-      </View> */}
+      </View>
 
-      <View style = {styles.profile}>
+      {/* <View style = {styles.profile}>
         <View style = {styles.top}>
           <Text style={textStyle}>First Last</Text>
           <Text style={textStyle}>4.8<Text style={{color: '#B3E5FD', fontSize: 18}}>&#9733;</Text></Text>
@@ -43,7 +43,7 @@ const DriverProfile = (props) => {
         <View style={styles.top}>
           <Text style={textStyle}>Color Make Model</Text>
           <Text style={textStyle}>Plate</Text>
-        </View>
+        </View> */}
 
         <View style = {styles.top}>
           <Text style={[textStyle, {marginRight: -215}]}>{languagePackages?.Languages}</Text>
@@ -76,7 +76,10 @@ const styles = StyleSheet.create({
   top: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    marginBottom: 10,
+    marginTop: 10
   },
   languageSelecterBox: {
     position: "absolute",
