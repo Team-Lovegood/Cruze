@@ -141,10 +141,10 @@ const EsPackage = {
   [LanguagePackages.SelectARole]: "Seleccionar un rol",
   [LanguagePackages.Languages]: "Idioma",
   [LanguagePackages.Logout]: "Cerrar sesión",
-  [LanguagePackages.ArrivedAtDestination]: "Ha llegado al final",
+  [LanguagePackages.ArrivedAtDestination]: "Has llegado a tu destino",
   [LanguagePackages.HowWasYourTrip]: "Cómo fue su viaje",
-  [LanguagePackages.PickingUp]: "Pago...",
-  [LanguagePackages.PickedUp]: "Pago completado",
+  [LanguagePackages.PickingUp]: "Recogiendo",
+  [LanguagePackages.PickedUp]: "Completa",
   [LanguagePackages.OnTheWay]: "En camino...",
   [LanguagePackages.Arrived]: "Llegó",
   [LanguagePackages.LookingForNearbyDrivers]:

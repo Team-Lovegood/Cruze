@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTheme } from '../../../theme/themeProvider.js';
+import { LanguageContext } from "../../languages/index";
 
 const RiderList = ({ changeRider, trip, name }) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -99,7 +101,7 @@ const RiderList = ({ changeRider, trip, name }) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.title, textStyle]}>
-      {languagePackages?.Hello},{name}
+      {languagePackages?.Hello} {name}
       </Text>
       <FlatList
         data={dummyData}
