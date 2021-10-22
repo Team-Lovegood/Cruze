@@ -45,7 +45,7 @@ const RiderHome = ({ communication, userProfile }) => {
       setDeparture(departure);
       setDestination(destination);
       socket.emit('new trip', {
-        name: '22 years Sebas',
+        name: '22-year-old Sebas',
         departure: departure,
         destination: destination
       });
