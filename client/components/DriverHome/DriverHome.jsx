@@ -10,8 +10,10 @@ import * as Location from 'expo-location';
 import io from 'socket.io-client';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from '../../../theme/themeProvider.js';
+import { LanguageContext } from "../../languages/index";
 
 const DriverHome = ({userProfile, logout}) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -46,6 +48,8 @@ const DriverHome = ({userProfile, logout}) => {
     });
   }, []);
 
+  //send userProfile.firstname, .carmodel, .licenseplate
+
   const changeRider = async (rider) => {
     setRider(rider);
     // getCurrentLocation().then((loc) => {
@@ -54,6 +58,8 @@ const DriverHome = ({userProfile, logout}) => {
     setOrigin(driverLocation);
     setDestination(rider.location);
     socket.emit('tripStatus', 'onTheWay');
+    const {firstname, carmodel, licenseplate} = userProfile;
+    socket.emit('carInfo', {firstname, carmodel, licenseplate});
     setStatus('pickup');
   }
 

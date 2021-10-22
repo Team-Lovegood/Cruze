@@ -41,6 +41,8 @@ const LanguagePackages = {
   // SearchTrip
   Hello: "Hello",
   Mi: "Mi",
+  Submit: "Submit",
+  WhereToGo: "WhereToGo",
 };
 
 const EnPackage = {
@@ -75,6 +77,8 @@ const EnPackage = {
   [LanguagePackages.LookingForNearbyDrivers]: "Looking for near by drivers",
   [LanguagePackages.Hello]: "Hello",
   [LanguagePackages.Mi]: "mi",
+  [LanguagePackages.Submit]: "Submit",
+  [LanguagePackages.WhereToGo]: "Where to?",
 };
 
 const CnPackage = {
@@ -101,14 +105,16 @@ const CnPackage = {
   [LanguagePackages.Languages]: "语言",
   [LanguagePackages.Logout]: "登出",
   [LanguagePackages.ArrivedAtDestination]: "已到达终点",
-  [LanguagePackages.HowWasYourTrip]: "旅途怎么样？",
-  [LanguagePackages.PickingUp]: "正在支付中...",
-  [LanguagePackages.PickedUp]: "支付完成",
-  [LanguagePackages.OnTheWay]: "正在路上...",
+  [LanguagePackages.HowWasYourTrip]: "请对本次旅程做出评价",
+  [LanguagePackages.PickingUp]: "正在路上.",
+  [LanguagePackages.PickedUp]: "已接到",
+  [LanguagePackages.OnTheWay]: "在路途中...",
   [LanguagePackages.Arrived]: "已到达",
   [LanguagePackages.LookingForNearbyDrivers]: "正在寻找附近的司机...",
   [LanguagePackages.Hello]: "你好",
   [LanguagePackages.Mi]: "英里",
+  [LanguagePackages.Submit]: "提交",
+  [LanguagePackages.WhereToGo]: "去哪里",
 };
 
 const EsPackage = {
@@ -134,16 +140,18 @@ const EsPackage = {
   [LanguagePackages.SelectARole]: "Seleccionar un rol",
   [LanguagePackages.Languages]: "Idioma",
   [LanguagePackages.Logout]: "Cerrar sesión",
-  [LanguagePackages.ArrivedAtDestination]: "Ha llegado al final",
+  [LanguagePackages.ArrivedAtDestination]: "Has llegado a tu destino",
   [LanguagePackages.HowWasYourTrip]: "Cómo fue su viaje",
-  [LanguagePackages.PickingUp]: "Pago...",
-  [LanguagePackages.PickedUp]: "Pago completado",
+  [LanguagePackages.PickingUp]: "Recogiendo",
+  [LanguagePackages.PickedUp]: "Completa",
   [LanguagePackages.OnTheWay]: "En camino...",
   [LanguagePackages.Arrived]: "Llegó",
   [LanguagePackages.LookingForNearbyDrivers]:
     "Buscando un conductor cercano ...",
   [LanguagePackages.Hello]: "Hola",
-  [LanguagePackages.Mi]: "milla",
+  [LanguagePackages.Mi]: "millas",
+  [LanguagePackages.Submit]: "Enviar",
+  [LanguagePackages.WhereToGo]: "A donde",
 };
 
 module.exports = {

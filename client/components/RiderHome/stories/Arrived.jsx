@@ -53,7 +53,7 @@ const Arrived = ({ tripStatus, handleStatus, profileOpen }) => {
           <View style={styles.button}>
             <Button
               color="black"
-              title="SUBMIT"
+              title={languagePackages?.Submit}
               onPress={() => {
                 handleStatus("whereTo");
               }}
