@@ -2,8 +2,16 @@ import React, { useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
+import { useTheme } from '../../../../theme/themeProvider.js';
 
 const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpen}) => {
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   const distanceRate = 1.5;
   const durationRate = 0.1;
   const price = Number(distanceRate*distance.value/1000 + durationRate*duration.value/60).toFixed(2);

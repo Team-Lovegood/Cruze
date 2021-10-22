@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 // import StarRating from 'react-native-star-rating';
+import { useTheme } from '../../../../theme/themeProvider.js';
 
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
@@ -8,6 +9,13 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 // import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 const Arrived = ({tripStatus, handleStatus, profileOpen}) => {
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
 
   const [rating, setRating] = useState(0);
 

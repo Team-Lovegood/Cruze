@@ -118,6 +118,7 @@ const RiderHome = ({ communication, logout, userProfile }) => {
           setProfileOpen(!profileOpen);
         }} />
       </View>}
+
       <MapView
         style={StyleSheet.absoluteFillObject}
         scrollEnabled={true}
@@ -142,7 +143,9 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
       <RiderProfile profileOpen={profileOpen} userProfile={userProfile} logout={logout}/>
       <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen} name={userProfile.firstname}/>
+
       <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip} name={userProfile.firstname}/>
+
       <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
       <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen}/>
       <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
