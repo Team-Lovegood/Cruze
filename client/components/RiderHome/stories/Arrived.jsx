@@ -41,11 +41,13 @@ const Arrived = ({ tripStatus, handleStatus, profileOpen }) => {
         <View style={[styles.subContainer, textStyle]}>
           <View style={styles.stars}>
             <Rating
-              type="custom"
-              ratingColor="#B3E5FD"
-              onStartRating={(rating) => setRating(rating)}
-              imageSize={35}
-              startingValue={0}
+            type="custom"
+            ratingColor="#B3E5FD"
+            onStartRating={(rating) => setRating(rating)}
+            imageSize={35}
+            startingValue={0}
+            ratingBackgroundColor={textStyle.color}
+            tintColor={safeStyle.backgroundColor}
             />
           </View>
           <View style={styles.button}>
