@@ -16,7 +16,7 @@ import FindingDriver from './stories/FindingDriver';
 import ToDestination from './stories/ToDestination';
 import { useTheme } from '../../../theme/themeProvider.js';
 
-const RiderHome = ({ communication, logout }) => {
+const RiderHome = ({ communication, logout, userProfile }) => {
 
   const { colors, isDark } = useTheme();
   const textStyle = {
@@ -139,9 +139,9 @@ const RiderHome = ({ communication, logout }) => {
         </View>
       </MapView>
       {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
-      <RiderProfile profileOpen={profileOpen} logout={logout}/>
-      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
-      <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip}/>
+      <RiderProfile profileOpen={profileOpen} userProfile={userProfile} logout={logout}/>
+      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen} name={userProfile.firstname}/>
+      <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip} name={userProfile.firstname}/>
       <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
       <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen}/>
       <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>

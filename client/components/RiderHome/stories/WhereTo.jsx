@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, Modal, View, SafeAreaView, TextInput, Pressable } from 'react-native';
 import { useTheme } from '../../../../theme/themeProvider.js';
 
-const WhereTo = ({tripStatus, handleStatus, profileOpen }) => {
+const WhereTo = ({tripStatus, handleStatus, profileOpen, name }) => {
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -13,7 +13,7 @@ const WhereTo = ({tripStatus, handleStatus, profileOpen }) => {
   if(tripStatus === 'whereTo' && !profileOpen) {
     return (
       <View style={[styles.container, safeStyle]}>
-        <Text style={[styles.welcomeMessage, textStyle]}>Hello Rider</Text>
+        <Text style={[styles.welcomeMessage, textStyle]}>Hello {name}</Text>
         <Pressable onPress={() => handleStatus('searchTrip')}>
           <View pointerEvents="none">
               <TextInput

@@ -111,7 +111,7 @@ const DriverHome = ({userProfile, logout}) => {
       {(status === 'rideList' || status === 'backToRiderList') && !profileToggle &&
         <RiderList
           changeRider={changeRider}
-          //userProfile = {userProfile}
+          name = {userProfile.firstname}
           trip={trip}
       />}
       {status === 'pickup' && !profileToggle &&
@@ -125,7 +125,7 @@ const DriverHome = ({userProfile, logout}) => {
       }
       {profileToggle &&
         <View style={{flex: 3}}>
-          <DriverProfile logout={logout}/>
+          <DriverProfile logout={logout} userProfile={userProfile}/>
         </View>
       }
     </SafeAreaView>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTheme } from '../../../theme/themeProvider.js';
 
-const RiderList = ({ changeRider, trip }) => {
+const RiderList = ({ changeRider, trip, name }) => {
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -99,7 +99,7 @@ const RiderList = ({ changeRider, trip }) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.title, textStyle]}>
-        Hello, Tim
+        Hello, {name}
       </Text>
       <FlatList
         data={dummyData}

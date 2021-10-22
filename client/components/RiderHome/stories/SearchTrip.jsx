@@ -25,7 +25,7 @@ const radioButtonsData = [
   }
 ]
 
-const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
+const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
 
   let departure = {}
   let destination = {}
@@ -39,7 +39,7 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip }) => {
     return (
       <Modal>
         <View style={styles.container}>
-          <Text style={styles.welcomeMessage}>Hello Rider</Text>
+          <Text style={styles.welcomeMessage}>Hello {name}</Text>
           <GooglePlacesAutocomplete
             suppressDefaultStyles
             styles={{
