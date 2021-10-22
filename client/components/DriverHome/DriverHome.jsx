@@ -20,8 +20,10 @@ const DriverHome = ({userProfile}) => {
   const [origin, setOrigin] = useState({});
   const [destination, setDestination] = useState(null);
   const [trip, setTrip] = useState({});
-  const socket = io('http://127.0.0.1:3000');
+  const socket = io('http://18.216.63.227');
   const [profileToggle, setProfileToggle] = useState(false);
+  const [distance, setDistance] = useState('');
+  const [duration, setDuration] = useState('');
 
   useEffect(() => {
     socket.on('new trip', trip => {
@@ -44,13 +46,14 @@ const DriverHome = ({userProfile}) => {
   }
 
   const onTheWay = () => {
-    setOrigin(driverLocation);
+    setOrigin(rider.location);
     setDestination(rider.destination);
     socket.emit('tripStatus', 'pickUp');
     setStatus('onTheWay');
   }
 
   const arrivedToDestination = () => {
+    setDriverLocation(destination);
     setDestination(null);
     socket.emit('tripStatus', 'arrived');
     setStatus('arrived');
@@ -62,6 +65,11 @@ const DriverHome = ({userProfile}) => {
 
   const toDriverProfile = () => {
     setProfileToggle(!profileToggle);
+  }
+
+  const setDistAndDirection = (object) => {
+    setDistance(object.distance.toFixed(1));
+    setDuration(object.duration);
   }
 
   const getCurrentLocation = async () => {
@@ -97,7 +105,12 @@ const DriverHome = ({userProfile}) => {
         >
         </Icon>
       </View>
-      <Map destination={destination} origin={origin} driverLocation={driverLocation}/>
+      <Map
+        destination={destination}
+        origin={origin}
+        driverLocation={driverLocation}
+        setDistAndDirection={setDistAndDirection}
+      />
       {(status === 'rideList' || status === 'backToRiderList') && !profileToggle &&
         <RiderList
           changeRider={changeRider}
@@ -105,10 +118,10 @@ const DriverHome = ({userProfile}) => {
           trip={trip}
       />}
       {status === 'pickup' && !profileToggle &&
-        <DriverPickup rider={rider} onTheWay={onTheWay}/>
+        <DriverPickup rider={rider} onTheWay={onTheWay} distance={distance} />
       }
       {status === 'onTheWay' && !profileToggle &&
-        <OnTheWay rider={rider} arrivedToDestination={arrivedToDestination} />
+        <OnTheWay rider={rider} arrivedToDestination={arrivedToDestination} distance={distance} />
       }
       {status === 'arrived' && !profileToggle &&
         <DriverArrived backToRideList={backToRideList} />

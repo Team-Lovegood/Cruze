@@ -4,7 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import config from '../../../config.js';
 
-const Map = ({ destination, driverLocation, origin }) => {
+const Map = ({ destination, driverLocation, origin, setDistAndDirection }) => {
   let mapView = null;
   const { width, height } = Dimensions.get('window');
 
@@ -36,8 +36,8 @@ const Map = ({ destination, driverLocation, origin }) => {
 
       {destination && <MapViewDirections
         origin={{
-          latitude: driverLocation.latitude,
-          longitude: driverLocation.longitude
+          latitude: origin.latitude,
+          longitude: origin.longitude
         }}
         destination={{
           latitude: destination.latitude,
@@ -47,6 +47,7 @@ const Map = ({ destination, driverLocation, origin }) => {
         strokeWidth={4}
         strokeColor="#4A89F3"
         onReady={result => {
+          setDistAndDirection({distance: result.distance, duration: result.duration});
           mapView.fitToCoordinates(result.coordinates, {
             edgePadding: {
               right: (width / 20),
