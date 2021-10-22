@@ -28,9 +28,7 @@ const WhereTo = ({ tripStatus, handleStatus, profileOpen, name }) => {
         <Pressable onPress={() => handleStatus("searchTrip")}>
           <View pointerEvents="none">
             <TextInput
-              style={styles.textInput}
-              placeholder="Where to ?"
-              placeholderTextColor={textStyle.color}
+              placeholder={languagePackages?.WhereToGo}
             />
           </View>
         </Pressable>

@@ -170,7 +170,7 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
         <View style={styles.button}>
           <Button
             color="black"
-            title="SUBMIT"
+            title={languagePackages?.Submit}
             onPress={() => handleTrip(departure, destination)}
           />
         </View>

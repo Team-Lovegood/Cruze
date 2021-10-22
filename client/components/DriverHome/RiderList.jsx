@@ -99,7 +99,7 @@ const RiderList = ({ changeRider, trip, name }) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.title, textStyle]}>
-        Hello, {name}
+      {languagePackages?.Hello},{name}
       </Text>
       <FlatList
         data={dummyData}

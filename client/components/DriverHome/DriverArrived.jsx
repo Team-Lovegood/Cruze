@@ -41,7 +41,7 @@ const DriverArrived = ({ backToRideList }) => {
           />
         </View>
         <View style={styles.submitBtn}>
-          <Button color="black" onPress={handleArrived} title="SUBMIT" />
+          <Button color="black" onPress={handleArrived} title={languagePackages?.Submit} />
         </View>
       </View>
     </View>
