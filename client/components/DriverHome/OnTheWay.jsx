@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
-
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   const handleArrivedPress = () => {
     arrivedToDestination();
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, safeStyle]}>
       <View style={styles.text}>
-        <Text style={styles.onTheWay}>
+        <Text style={[styles.onTheWay, textStyle]}>
           On the way
         </Text>
-        <Text style={styles.distance}>
+        <Text style={[styles.distance, textStyle]}>
           {distance} mi
         </Text>
       </View>
@@ -29,7 +36,7 @@ const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
               source={require('../../../assets/arrive.png')}
               style={{ width: 45, height: 45, marginLeft: 3 }}
             />
-          <Text style={{fontWeight: '600', marginTop: -5}}>Arrived</Text>
+          <Text style={{fontWeight: '600', marginTop: -5, color: textStyle.color}}>Arrived</Text>
           </TouchableOpacity>
 
         </View>
