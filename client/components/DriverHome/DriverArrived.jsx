@@ -16,9 +16,9 @@ const DriverArrived = ({ backToRideList }) => {
         <View style={styles.starRating}>
           <Rating
             type="custom"
-            ratingColor='#FDCC0D'
+            ratingColor='#B3E5FD'
             onStartRating={(rating) => setRating(rating)}
-            imageSize={30}
+            imageSize={35}
             startingValue={0}
           />
         </View>
