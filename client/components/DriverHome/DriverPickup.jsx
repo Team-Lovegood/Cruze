@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '../../../theme/themeProvider.js';
 
-const DriverPickup = ({ rider, onTheWay }) => {
+const DriverPickup = ({ rider, onTheWay, distance }) => {
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -24,7 +24,7 @@ const DriverPickup = ({ rider, onTheWay }) => {
           $ {rider.amount}
         </Text>
         <Text style={[styles.name, textStyle]}>
-          {rider.distance} mi
+          {distance} mi
         </Text>
       </View>
       <View style={styles.addressContainer}>
@@ -38,7 +38,7 @@ const DriverPickup = ({ rider, onTheWay }) => {
             >
           <Image
             source={require('../../../assets/car-xxl.png')}
-            style={{ width: 45, height: 45, marginLeft: 8, color: textStyle.color }}
+            style={{ width: 45, height: 45, marginLeft: 8}}
           />
           <Text style={{fontWeight: '600', marginTop: -5, color: textStyle.color}}>Picked Up</Text>
           </TouchableOpacity>
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
   },
   address: {
     width: '70%',
-    fontSize: 16,
-    paddingVertical: 8,
+    fontSize: 25,
+    paddingVertical: 11,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
     // shadowColor: '#000',

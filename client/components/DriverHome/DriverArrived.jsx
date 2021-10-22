@@ -29,7 +29,7 @@ const DriverArrived = ({ backToRideList }) => {
             type="custom"
             ratingColor='#B3E5FD'
             onStartRating={(rating) => setRating(rating)}
-            imageSize={30}
+            imageSize={35}
             startingValue={0}
             ratingBackgroundColor={textStyle.color}
             tintColor={safeStyle.backgroundColor}

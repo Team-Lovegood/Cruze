@@ -58,11 +58,11 @@ export default function App() {
       <StatusBar style="auto" />
     </View>  */}
 
-
-    {/* <View style={styles.container}>
+{/*
+    <View style={styles.container}>
         <DriverHome />
         <StatusBar style="auto" />
-      </View>*/}
+      </View> */}
 
     </ThemeProvider>
     </LanguageWrapper>

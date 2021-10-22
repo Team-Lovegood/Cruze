@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '../../../theme/themeProvider.js';
 
-const OnTheWay = ({ rider, arrivedToDestination }) => {
+const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -17,11 +17,11 @@ const OnTheWay = ({ rider, arrivedToDestination }) => {
   return (
     <View style={[styles.container, safeStyle]}>
       <View style={styles.text}>
-        <Text style={[styles.pickupName, textStyle]}>
+        <Text style={[styles.onTheWay, textStyle]}>
           On the way
         </Text>
-        <Text style={[styles.name, textStyle]}>
-          {rider.distance} mi
+        <Text style={[styles.distance, textStyle]}>
+          {distance} mi
         </Text>
       </View>
       <View style={styles.addressContainer}>
@@ -52,22 +52,24 @@ const styles = StyleSheet.create({
   text: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     marginTop: 10
   },
-  pickupName: {
+  onTheWay: {
+    marginLeft: 40,
     fontWeight: '600',
     fontSize: 25
   },
-  name: {
+  distance: {
+    marginRight: 40,
     marginTop: 6,
     fontWeight: '600',
     fontSize: 22,
   },
   address: {
     width: '70%',
-    fontSize: 16,
-    paddingVertical: 8,
+    fontSize: 25,
+    paddingVertical: 11,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
     // shadowColor: '#000',

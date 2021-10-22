@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { BlurView } from 'expo-blur';
@@ -25,7 +25,6 @@ const RiderHome = ({ communication, logout, userProfile }) => {
   const safeStyle = {
     backgroundColor: colors.background,
   }
-
 
   const defaultAddress = {name:'Empire State Building',latitude: 40.748817, longitude: -73.985428};
   const [departure, setDeparture] = useState(defaultAddress);
@@ -55,7 +54,7 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       setDeparture(departure);
       setDestination(destination);
       socket.emit('new trip', {
-        name: 'Tim E Tim',
+        name: '22-year-old Sebas',
         departure: departure,
         destination: destination
       });
@@ -134,7 +133,9 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       >
         {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={2} strokeColor="black" mode="DRIVING" />}
         <View style={styles.markerContainer}>
-          <MapView.Marker coordinate={departure} identifier="departure" />
+          <MapView.Marker coordinate={departure} identifier="departure">
+            <Image source={departure !== destination ? require('../../../assets/rider.png') : null} style={{ width: 30, height: 30}} resizeMode='center' resizeMethod='resize'  />
+          </MapView.Marker>
           {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
         </View>
       </MapView>

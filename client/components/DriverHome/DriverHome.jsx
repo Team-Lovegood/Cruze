@@ -30,9 +30,13 @@ const DriverHome = ({userProfile, logout}) => {
   const [trip, setTrip] = useState({});
   const socket = io('http://18.216.63.227');
   const [profileToggle, setProfileToggle] = useState(false);
+  const [distance, setDistance] = useState('');
+  const [duration, setDuration] = useState('');
+
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested', 'Unhandled promise rejection: Error: timeout exceeded', 'Unhandled promise rejection: Error: Network Error', 'Possible Unhandled Promise Rejection']);
   }, [])
+
   useEffect(() => {
     socket.on('new trip', trip => {
       setTrip(trip);
@@ -54,13 +58,14 @@ const DriverHome = ({userProfile, logout}) => {
   }
 
   const onTheWay = () => {
-    setOrigin(driverLocation);
+    setOrigin(rider.location);
     setDestination(rider.destination);
     socket.emit('tripStatus', 'pickUp');
     setStatus('onTheWay');
   }
 
   const arrivedToDestination = () => {
+    setDriverLocation(destination);
     setDestination(null);
     socket.emit('tripStatus', 'arrived');
     setStatus('arrived');
@@ -72,6 +77,11 @@ const DriverHome = ({userProfile, logout}) => {
 
   const toDriverProfile = () => {
     setProfileToggle(!profileToggle);
+  }
+
+  const setDistAndDirection = (object) => {
+    setDistance(object.distance.toFixed(1));
+    setDuration(object.duration);
   }
 
   const getCurrentLocation = async () => {
@@ -107,18 +117,23 @@ const DriverHome = ({userProfile, logout}) => {
         >
         </Icon>
       </View>
-      <Map destination={destination} origin={origin} driverLocation={driverLocation}/>
+      <Map
+        destination={destination}
+        origin={origin}
+        driverLocation={driverLocation}
+        setDistAndDirection={setDistAndDirection}
+      />
       {(status === 'rideList' || status === 'backToRiderList') && !profileToggle &&
         <RiderList
           changeRider={changeRider}
-          name = {userProfile.firstname}
+          name={userProfile.firstname}
           trip={trip}
       />}
       {status === 'pickup' && !profileToggle &&
-        <DriverPickup rider={rider} onTheWay={onTheWay}/>
+        <DriverPickup rider={rider} onTheWay={onTheWay} distance={distance} />
       }
       {status === 'onTheWay' && !profileToggle &&
-        <OnTheWay rider={rider} arrivedToDestination={arrivedToDestination} />
+        <OnTheWay rider={rider} arrivedToDestination={arrivedToDestination} distance={distance} />
       }
       {status === 'arrived' && !profileToggle &&
         <DriverArrived backToRideList={backToRideList} />
