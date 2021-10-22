@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
-const DriverPickup = ({ rider, onTheWay }) => {
+const DriverPickup = ({ rider, onTheWay, distance }) => {
 
   const handleOnTheWayPress = () => {
     onTheWay();
@@ -17,7 +17,7 @@ const DriverPickup = ({ rider, onTheWay }) => {
           $ {rider.amount}
         </Text>
         <Text style={styles.name}>
-          {rider.distance} mi
+          {distance} mi
         </Text>
       </View>
       <View style={styles.addressContainer}>
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   },
   address: {
     width: '70%',
-    fontSize: 16,
-    paddingVertical: 8,
+    fontSize: 25,
+    paddingVertical: 11,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
     // shadowColor: '#000',
