@@ -3,8 +3,10 @@ import { Text, View, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../../../theme/themeProvider.js';
+import { LanguageContext } from "../../../languages/index";
 
 const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpen, carInfo}) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const { colors, isDark } = useTheme();
   const textStyle = {
     color: colors.text
@@ -30,7 +32,7 @@ const ToDestination = ({tripStatus, distance, duration, handleStatus, profileOpe
     return (
       <View style={[styles.topContainer, safeStyle]}>
         <View style={[styles.driverContainer, safeStyle]}>
-          <Text style={[styles.driverStatus, textStyle]}>{tripStatus === 'onTheWay' ? 'Driver on the way' : 'Heading to destination'}</Text>
+          <Text style={[styles.driverStatus, textStyle]}>{tripStatus === 'onTheWay' ? languagePackages?.DriverOnTheWay : languagePackages?.HeadingToDestination}</Text>
           <Text style={[styles.bill, textStyle]}>${price}</Text>
         </View>
         <View style={[styles.driverContainer, safeStyle]}>

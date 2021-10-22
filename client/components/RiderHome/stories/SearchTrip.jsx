@@ -80,7 +80,7 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
                 backgroundColor: "#eaeaea",
               },
             }}
-            placeholder="From"
+            placeholder={languagePackages?.From}
             onPress={(data, details = null) => {
               console.log(details.name);
               departure = {
@@ -122,7 +122,7 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
                 backgroundColor: "#eaeaea",
               },
             }}
-            placeholder="To"
+            placeholder={languagePackages?.To}
             onPress={(data, details = null) => {
               // console.log(data, details);
               destination = {

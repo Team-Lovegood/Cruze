@@ -54,12 +54,11 @@ CREATE TABLE drivers (
 -- ---
 
 INSERT INTO riders (firstName,lastName,email,phone) VALUES
-('Isaac','F','isaac@test.com', 1234567890);
+('Isaac','Favila','isaac@test.com', 1234567890);
 INSERT INTO riders (firstName,lastName,email,phone) VALUES
-('Tim','T','tim@demo.com', 1234567890);
+('Tim','E Tim','tim@demo.com', 1234567890);
 
 INSERT INTO drivers (firstName,lastName,email,carMake,carModel,carColor,carCapacity, licensePlate) VALUES
-('David','D','david@test.com','BMW','M2','Blue', 4, '2FAST4U');
-
+('David','Du','david@test.com','BMW','M2','Blue', 4, '2FAST4U');
 INSERT INTO drivers (firstName,lastName,email,carMake,carModel,carColor,carCapacity, licensePlate) VALUES
-('Jake','A','jake@demo.com','Nissan','GT-R','Silver', 4, '3FAST5U');
+('Jake','Ascher','jake@demo.com','Nissan','GT-R','Silver', 4, '3FAST5U');
