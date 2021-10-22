@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Button } from "react-native";
 // import StarRating from 'react-native-star-rating';
-import { useTheme } from '../../../../theme/themeProvider.js';
+import { useTheme } from "../../../../theme/themeProvider.js";
 
-import { Rating, AirbnbRating } from 'react-native-ratings';
-
+import { Rating, AirbnbRating } from "react-native-ratings";
+import { LanguageContext } from "../../../languages/index";
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faStar } from '@fortawesome/free-regular-svg-icons';
 
-const Arrived = ({tripStatus, handleStatus, profileOpen}) => {
+const Arrived = ({ tripStatus, handleStatus, profileOpen }) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const { colors, isDark } = useTheme();
   const textStyle = {
-    color: colors.text
+    color: colors.text,
   };
   const safeStyle = {
     backgroundColor: colors.background,
-  }
+  };
 
   const [rating, setRating] = useState(0);
 
@@ -28,31 +29,41 @@ const Arrived = ({tripStatus, handleStatus, profileOpen}) => {
   //   }
   // }, [handleStatus]);
 
-  if (tripStatus === 'arrived' && !profileOpen) {
+  if (tripStatus === "arrived" && !profileOpen) {
     return (
       <View style={[styles.container, safeStyle]}>
-        <Text style={[styles.text, textStyle]}>Arrived at destination</Text>
-        <Text style={[styles.rateText, textStyle]}>How was your trip?</Text>
+        <Text style={[styles.text, textStyle]}>
+          {languagePackages?.ArrivedAtDestination}
+        </Text>
+        <Text style={[styles.rateText, textStyle]}>
+          {languagePackages?.HowWasYourTrip}
+        </Text>
         <View style={[styles.subContainer, textStyle]}>
           <View style={styles.stars}>
             <Rating
               type="custom"
-              ratingColor='#B3E5FD'
+              ratingColor="#B3E5FD"
               onStartRating={(rating) => setRating(rating)}
               imageSize={35}
               startingValue={0}
             />
           </View>
           <View style={styles.button}>
-            <Button color="black" title="SUBMIT" onPress={() => {handleStatus('whereTo')}} />
+            <Button
+              color="black"
+              title="SUBMIT"
+              onPress={() => {
+                handleStatus("whereTo");
+              }}
+            />
           </View>
         </View>
       </View>
-    )
+    );
   } else {
-    return null
+    return null;
   }
-}
+};
 
 export default Arrived;
 
@@ -63,25 +74,25 @@ const styles = StyleSheet.create({
   text: {
     padding: 15,
     fontSize: 25,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   rateText: {
     fontSize: 20,
-    paddingLeft: 15
+    paddingLeft: 15,
   },
   subContainer: {
     marginTop: 10,
     marginLeft: 30,
     marginRight: 30,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   stars: {
-    flexDirection: 'row'
+    flexDirection: "row",
   },
   button: {
-    backgroundColor: '#B3E5FD',
+    backgroundColor: "#B3E5FD",
     borderRadius: 10,
-  }
+  },
 });

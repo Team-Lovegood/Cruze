@@ -21,12 +21,14 @@ export const getLanFromLocal = async () => {
   }
 };
 
-
 const useLangages = () => {
   const [languagePackages, setLanguagesPackages] = React.useState();
+  const [lan, setLan] = React.useState();
   return {
     languagePackages,
     setLanguagesPackages,
+    lan,
+    setLan,
   };
 };
 
@@ -37,6 +39,7 @@ export const LanguageWrapper = ({ children }) => {
     const fetchLanguagePackage = async () => {
       try {
         const localLan = await getLanFromLocal();
+        langaugeState.setLan(localLan);
         const res = await axios.get(
           `http://${macIP}:3000/languages/${localLan}`
         );
