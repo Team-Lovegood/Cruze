@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const DriverPickup = ({ rider, onTheWay }) => {
-
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   const handleOnTheWayPress = () => {
     onTheWay();
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, safeStyle]}>
       <View style={styles.text}>
-        <Text style={styles.pickupName}>
+        <Text style={[styles.pickupName, textStyle]}>
           Picking Up: {rider.name}
         </Text>
-        <Text style={styles.name}>
+        <Text style={[styles.name, textStyle]}>
           $ {rider.amount}
         </Text>
-        <Text style={styles.name}>
+        <Text style={[styles.name, textStyle]}>
           {rider.distance} mi
         </Text>
       </View>
@@ -31,9 +38,9 @@ const DriverPickup = ({ rider, onTheWay }) => {
             >
           <Image
             source={require('../../../assets/car-xxl.png')}
-            style={{ width: 45, height: 45, marginLeft: 8  }}
+            style={{ width: 45, height: 45, marginLeft: 8, color: textStyle.color }}
           />
-          <Text style={{fontWeight: '600', marginTop: -5}}>Picked Up</Text>
+          <Text style={{fontWeight: '600', marginTop: -5, color: textStyle.color}}>Picked Up</Text>
           </TouchableOpacity>
 
 

@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const DriverArrived = ({ backToRideList }) => {
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
+  const handleArrivedPress = () => {
+    arrivedToDestination();
+  }
   const [rating, setRating] = useState(0);
   const handleArrived = () => {
     backToRideList();
@@ -10,16 +21,19 @@ const DriverArrived = ({ backToRideList }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.pickupName}>Arrived at destination</Text>
-      <Text style={styles.text}>How was your trip?</Text>
-      <View style={styles.starContainer}>
-        <View style={styles.starRating}>
+      <Text style={[styles.pickupName, textStyle]}>Arrived at destination</Text>
+      <Text style={[styles.text, textStyle]}>How was your trip?</Text>
+      <View style={[styles.starContainer, safeStyle]}>
+        <View style={[styles.starRating, safeStyle]}>
           <Rating
             type="custom"
-            ratingColor='#FDCC0D'
+            ratingColor='#B3E5FD'
             onStartRating={(rating) => setRating(rating)}
             imageSize={30}
             startingValue={0}
+            ratingBackgroundColor={textStyle.color}
+            tintColor={safeStyle.backgroundColor}
+
           />
         </View>
         <View style={styles.submitBtn}>

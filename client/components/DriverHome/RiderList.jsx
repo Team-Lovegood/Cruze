@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useTheme } from '../../../theme/themeProvider.js';
 
 const RiderList = ({ changeRider, trip }) => {
-
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   const handlePress = (item) => {
     changeRider(item);
   }
@@ -91,7 +98,7 @@ const RiderList = ({ changeRider, trip }) => {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
+      <Text style={[styles.title, textStyle]}>
         Hello, Tim
       </Text>
       <FlatList

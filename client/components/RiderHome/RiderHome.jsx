@@ -14,8 +14,18 @@ import Arrived from './stories/Arrived';
 import SearchTrip from './stories/SearchTrip';
 import FindingDriver from './stories/FindingDriver';
 import ToDestination from './stories/ToDestination';
+import { useTheme } from '../../../theme/themeProvider.js';
 
-const RiderHome = ({ communication }) => {
+const RiderHome = ({ communication, logout }) => {
+
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
+
 
   const defaultAddress = {name:'Empire State Building',latitude: 40.748817, longitude: -73.985428};
   const [departure, setDeparture] = useState(defaultAddress);
@@ -103,7 +113,7 @@ const RiderHome = ({ communication }) => {
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, safeStyle]}>
       {tripStatus !== 'findDriver' && <View style={styles.menu}>
         <FontAwesome name='bars' size={30} color={'black'} onPress={() => {
           setProfileOpen(!profileOpen);
@@ -129,7 +139,7 @@ const RiderHome = ({ communication }) => {
         </View>
       </MapView>
       {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
-      <RiderProfile profileOpen={profileOpen} />
+      <RiderProfile profileOpen={profileOpen} logout={logout}/>
       <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
       <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip}/>
       <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
@@ -146,7 +156,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
-    flex: 5,
+    flex: 4,
   },
   markerContainer: {
     position: 'absolute',

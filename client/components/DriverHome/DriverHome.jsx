@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, LogBox } from 'react-native';
 import RiderList from './RiderList.jsx';
 import Map from './Map.jsx';
 import DriverPickup from './DriverPickup.jsx';
@@ -9,8 +9,16 @@ import DriverProfile from '../Profiles/DriverProfile.jsx';
 import * as Location from 'expo-location';
 import io from 'socket.io-client';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useTheme } from '../../../theme/themeProvider.js';
 
-const DriverHome = ({userProfile}) => {
+const DriverHome = ({userProfile, logout}) => {
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   const [rider, setRider] = useState({});
   const [dollarAmount, setDollarAmount] = useState('');
   const [miles, setMiles] = useState('');
@@ -22,7 +30,9 @@ const DriverHome = ({userProfile}) => {
   const [trip, setTrip] = useState({});
   const socket = io('http://18.216.63.227');
   const [profileToggle, setProfileToggle] = useState(false);
-
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested', 'Unhandled promise rejection: Error: timeout exceeded', 'Unhandled promise rejection: Error: Network Error', 'Possible Unhandled Promise Rejection']);
+  }, [])
   useEffect(() => {
     socket.on('new trip', trip => {
       setTrip(trip);
@@ -88,7 +98,7 @@ const DriverHome = ({userProfile}) => {
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, safeStyle]}>
       <View style={styles.menu}>
         <Icon
           name="bars"
@@ -115,7 +125,7 @@ const DriverHome = ({userProfile}) => {
       }
       {profileToggle &&
         <View style={{flex: 3}}>
-          <DriverProfile />
+          <DriverProfile logout={logout}/>
         </View>
       }
     </SafeAreaView>
