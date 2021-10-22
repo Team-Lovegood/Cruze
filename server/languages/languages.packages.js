@@ -40,6 +40,7 @@ const LanguagePackages = {
   LookingForNearbyDrivers: "LookingForNearbyDrivers",
   // SearchTrip
   Hello: "Hello",
+  Mi: "Mi",
 };
 
 const EnPackage = {
@@ -73,6 +74,7 @@ const EnPackage = {
   [LanguagePackages.Arrived]: "Arrived",
   [LanguagePackages.LookingForNearbyDrivers]: "Looking for near by drivers",
   [LanguagePackages.Hello]: "Hello",
+  [LanguagePackages.Mi]: "mi",
 };
 
 const CnPackage = {
@@ -105,7 +107,8 @@ const CnPackage = {
   [LanguagePackages.OnTheWay]: "正在路上...",
   [LanguagePackages.Arrived]: "已到达",
   [LanguagePackages.LookingForNearbyDrivers]: "正在寻找附近的司机...",
-  [LanguagePackages.Hello]: "你好啊",
+  [LanguagePackages.Hello]: "你好",
+  [LanguagePackages.Mi]: "英里",
 };
 
 const EsPackage = {
@@ -140,6 +143,7 @@ const EsPackage = {
   [LanguagePackages.LookingForNearbyDrivers]:
     "Buscando un conductor cercano ...",
   [LanguagePackages.Hello]: "Hola",
+  [LanguagePackages.Mi]: "milla",
 };
 
 module.exports = {

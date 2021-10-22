@@ -21,6 +21,9 @@ const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
         <Text style={[styles.onTheWay, textStyle]}>
           {languagePackages?.OnTheWay}
         </Text>
+        <Text style={[styles.distance, textStyle]}>
+          {distance} {languagePackages?.Mi}
+        </Text>
         <Text style={[styles.distance, textStyle]}>{distance} mi</Text>
       </View>
       <View style={styles.addressContainer}>
