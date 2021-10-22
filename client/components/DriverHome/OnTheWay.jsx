@@ -22,7 +22,7 @@ const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
           {languagePackages?.OnTheWay}
         </Text>
         <Text style={[styles.distance, textStyle]}>
-          {distance} {languagePackages?.Mi}
+          {distance} {languagePackages?.Km}
         </Text>
       </View>
       <View style={styles.addressContainer}>
