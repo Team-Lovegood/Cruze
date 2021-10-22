@@ -10,15 +10,15 @@ const firebaseConfig = {
   projectId: "cruze-auth",
   storageBucket: "cruze-auth.appspot.com",
   messagingSenderId: "804047206744",
-  appId: "1:804047206744:web:7d6fab795b9a6428454d2d"
+  appId: "1:804047206744:web:7d6fab795b9a6428454d2d",
 };
 
 // Initialize Firebase
 let app;
-if (firebase.apps.length === 0) {
+if (firebase && firebase.apps && firebase.apps.length === 0) {
   app = firebase.initializeApp(firebaseConfig);
 } else {
-  app = firebase.app()
+  app = firebase.app();
 }
 
 const auth = firebase.auth();

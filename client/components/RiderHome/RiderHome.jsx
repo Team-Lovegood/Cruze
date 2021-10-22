@@ -81,35 +81,36 @@ const RiderHome = ({ communication, logout, userProfile }) => {
   });
 
   useEffect(() => {
-    if(!departure || !destination) {
+    if (!departure || !destination) {
       return;
     }
-    mapRef.current.fitToSuppliedMarkers(['departure', 'destination'], {
-      edgePadding: { top: 50, right: 50, bottom: 50, left: 50}
+    mapRef.current.fitToSuppliedMarkers(["departure", "destination"], {
+      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
     });
   }, [departure, destination, tripStatus]);
 
   useEffect(() => {
-    if(!departure || !destination) {
+    if (!departure || !destination) {
       return;
-    };
+    }
 
     var config = {
-      method: 'get',
-      url: `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${departure.latitude.toString()},${departure.longitude.toString()}&destinations=${destination.latitude.toString()},${departure.longitude.toString()}&key=${API.API}`,
-      headers: {}
+      method: "get",
+      url: `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${departure.latitude.toString()},${departure.longitude.toString()}&destinations=${destination.latitude.toString()},${departure.longitude.toString()}&key=${
+        API.API
+      }`,
+      headers: {},
     };
     axios(config)
-    .then((res) => {
-      const info = res.data.rows[0].elements[0];
-      setDistance(info.distance);
-      setDuration(info.duration);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        const info = res.data.rows[0].elements[0];
+        setDistance(info.distance);
+        setDuration(info.duration);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [departure, destination]);
-
 
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
@@ -150,22 +151,22 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen}/>
       <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default RiderHome;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   map: {
     flex: 4,
   },
   markerContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 100,
-    left: 50
+    left: 50,
   },
   menu: {
     position: 'absolute',
@@ -178,24 +179,24 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0
+    right: 0,
   },
   modalContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   searchTrip: {
-    textAlign: 'center',
-    fontWeight: '600',
-    fontSize:24
+    textAlign: "center",
+    fontWeight: "600",
+    fontSize: 24,
   },
 
   car: {
-    marginLeft: 'auto',
-    marginRight: 'auto'
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 
   spinnerTextStyle: {
-    color: 'black'
+    color: "black",
   },
 });

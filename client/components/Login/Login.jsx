@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import logo from "../../../assets/logo.png";
 import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, Image, LogBox } from 'react-native';
@@ -56,6 +56,16 @@ const Login = (props) => {
   }, [languagePackages]);
 
 
+  React.useEffect(() => {
+    setItems([
+      { value: Roles.rider, label: languagePackages?.IAmARider },
+      {
+        value: Roles.driver,
+        label: languagePackages?.IAmADriver,
+      },
+    ]);
+  }, [languagePackages]);
+
   const handleLogin = () => {
     auth
       .signInWithEmailAndPassword(email, password)
@@ -64,7 +74,7 @@ const Login = (props) => {
         user.role = role;
         return user;
       })
-      .then(user => {
+      .then((user) => {
         var profile = {
           params: {
             role: user.role,
@@ -92,7 +102,7 @@ const Login = (props) => {
     <SafeAreaView style={[styles.container, safeStyle]}>
         <LanguageSelecter />
       <View style={styles.logoBox}>
-        <Image style={styles.logo} source={logo}/>
+        <Image style={styles.logo} source={logo} />
         <Text style={styles.text}>Cruze</Text>
       </View>
       <KeyboardAwareScrollView keyboardShouldPersistTaps={'always'}
@@ -115,8 +125,10 @@ const Login = (props) => {
         placeholder={languagePackages?.Email}
         placeholderTextColor = 'black'
         value={email}
-        onChangeText={(text) => setEmail(text)}/>
-      <TextInput style = {styles.input}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        style={styles.input}
         secureTextEntry={true}
         textContentType='password'
         placeholder={languagePackages?.Password}
@@ -138,9 +150,14 @@ const Login = (props) => {
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
+  lan: {
+    position: "absolute",
+    right: 100,
+    top: 100,
+  },
   container: {
     flex: 1,
     padding: 10,
@@ -155,41 +172,41 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
-    marginRight: -55
+    marginRight: -55,
   },
   text: {
-    color: '#B3E5FD',
+    color: "#B3E5FD",
     fontSize: 36,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   input: {
-    backgroundColor: '#B3E5FD',
+    backgroundColor: "#B3E5FD",
     padding: 10,
     marginBottom: 20,
     borderRadius: 8,
     fontSize: 12,
     height: 40,
-    width: 320
+    width: 320,
   },
   login: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'gainsboro',
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: "gainsboro",
     borderRadius: 8,
     height: 30,
-    width: 150
+    width: 150,
   },
   loginText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 12,
   },
   signupText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 10,
-    marginTop: 5
+    marginTop: 5,
   },
   signup: {
-    textDecorationLine: 'underline'
+    textDecorationLine: "underline",
   },
   roleSelecter: {
     overflow: "hidden",

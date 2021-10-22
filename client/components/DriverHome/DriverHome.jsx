@@ -106,7 +106,6 @@ const DriverHome = ({userProfile, logout}) => {
     })();
   }, [setDriverLocation]);
 
-
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
       <View style={styles.menu}>

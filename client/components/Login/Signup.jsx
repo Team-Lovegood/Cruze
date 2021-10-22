@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
-    marginRight: -55
+    marginRight: -55,
   },
   appName: {
     color: "#B3E5FD",
     fontSize: 36,
-    alignSelf: 'center'
+    alignSelf: "center",
   },
   roleSelecter: {
     overflow: "hidden",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     width: 320,
     flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   doubleInput: {
     padding: 10,
@@ -73,24 +73,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#B3E5FD",
   },
   signup: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'gainsboro',
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: "gainsboro",
     borderRadius: 8,
     height: 30,
     width: 150,
   },
   signupText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 12,
   },
   loginText: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 10,
-    marginTop: 5
+    marginTop: 5,
   },
   login: {
-    textDecorationLine: 'underline'
+    textDecorationLine: "underline",
   },
 });
 
@@ -153,10 +153,12 @@ const Signup = (props) => {
   }, [languagePackages]);
 
   const handleSignup = () => {
+    console.log("signup");
     auth
       //Create firebase account
       .createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
+      .then((userCredential) => {
+        console.log("firebase", userCredential);
         const user = userCredential.user;
         user.firstName = firstName;
         user.lastName = lastName;
@@ -214,8 +216,10 @@ const Signup = (props) => {
             alert(err);
           })
       })
-      .catch(error => alert(error.message))
-  }
+      .catch((error) => {
+        console.log("firebase err", error);
+      });
+  };
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
       <LanguageSelecter />

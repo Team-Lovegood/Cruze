@@ -1,44 +1,46 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { useTheme } from '../../../theme/themeProvider.js';
-
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { useTheme } from "../../../theme/themeProvider.js";
+import { LanguageContext } from "../../languages/index";
 const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
+  const { languagePackages } = React.useContext(LanguageContext);
   const { colors, isDark } = useTheme();
   const textStyle = {
-    color: colors.text
+    color: colors.text,
   };
   const safeStyle = {
     backgroundColor: colors.background,
-  }
+  };
   const handleArrivedPress = () => {
     arrivedToDestination();
-  }
+  };
 
   return (
     <View style={[styles.container, safeStyle]}>
       <View style={styles.text}>
         <Text style={[styles.onTheWay, textStyle]}>
-          On the way
+          {languagePackages?.OnTheWay}
         </Text>
-        <Text style={[styles.distance, textStyle]}>
-          {distance} mi
-        </Text>
+        <Text style={[styles.distance, textStyle]}>{distance} mi</Text>
       </View>
       <View style={styles.addressContainer}>
-        <Text style={styles.address}>
-          {rider.address}
-        </Text>
+        <Text style={styles.address}>{rider.address}</Text>
         <View>
-          <TouchableOpacity
-            onPress={handleArrivedPress}
-          >
+          <TouchableOpacity onPress={handleArrivedPress}>
             <Image
-              source={require('../../../assets/arrive.png')}
+              source={require("../../../assets/arrive.png")}
               style={{ width: 45, height: 45, marginLeft: 3 }}
             />
-          <Text style={{fontWeight: '600', marginTop: -5, color: textStyle.color}}>Arrived</Text>
+            <Text
+              style={{
+                fontWeight: "600",
+                marginTop: -5,
+                color: textStyle.color,
+              }}
+            >
+              {languagePackages?.Arrived}
+            </Text>
           </TouchableOpacity>
-
         </View>
       </View>
     </View>
@@ -47,27 +49,27 @@ const OnTheWay = ({ rider, arrivedToDestination, distance }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1.5
+    flex: 1.5,
   },
   text: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
   },
   onTheWay: {
     marginLeft: 40,
-    fontWeight: '600',
-    fontSize: 25
+    fontWeight: "600",
+    fontSize: 25,
   },
   distance: {
     marginRight: 40,
     marginTop: 6,
-    fontWeight: '600',
+    fontWeight: "600",
     fontSize: 22,
   },
   address: {
-    width: '70%',
+    width: "70%",
     fontSize: 25,
     paddingVertical: 11,
     paddingLeft: 20,
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     // shadowOpacity: 0.8,
     // shadowRadius: 2,
     borderRadius: 10,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   // hereBtn: {
   //   width: 28,
@@ -90,13 +92,13 @@ const styles = StyleSheet.create({
   //   backgroundColor: '#C4C4C4',
   // },
   addressContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
     marginTop: 16,
     paddingVertical: 8,
     paddingLeft: 20,
-  }
+  },
 });
 
 export default OnTheWay;
