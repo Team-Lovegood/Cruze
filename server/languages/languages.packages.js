@@ -43,6 +43,10 @@ const LanguagePackages = {
   Mi: "Mi",
   Submit: "Submit",
   WhereToGo: "WhereToGo",
+  DriverOnTheWay: "DriverOnTheWay",
+  HeadingToDestination: "HeadingToDestination",
+  From: "From",
+  To: "To",
 };
 
 const EnPackage = {
@@ -79,7 +83,13 @@ const EnPackage = {
   [LanguagePackages.Mi]: "mi",
   [LanguagePackages.Submit]: "Submit",
   [LanguagePackages.WhereToGo]: "Where to?",
+  [LanguagePackages.DriverOnTheWay]: 'Driver on the way',
+  [LanguagePackages.HeadingToDestination]:  "Heading to destination",
+  [LanguagePackages.From]: 'From',
+  [LanguagePackages.To]:  "To",
 };
+
+
 
 const CnPackage = {
   [LanguagePackages.IAmARider]: "我是乘客",
@@ -90,8 +100,8 @@ const CnPackage = {
   [LanguagePackages.DonnotHaveAnAccount]: "还没有账号？",
   [LanguagePackages.Signup]: "注册",
   [LanguagePackages.Phone]: "手机号",
-  [LanguagePackages.IWantToDrive]: "我想驾驶",
-  [LanguagePackages.IWantToRide]: "我想乘坐",
+  [LanguagePackages.IWantToDrive]: "我是司机",
+  [LanguagePackages.IWantToRide]: "我是乘客",
   [LanguagePackages.FirstName]: "名",
   [LanguagePackages.LastName]: "姓",
   [LanguagePackages.AlreadyHaveAnAccount]: "已经有账号？",
@@ -106,7 +116,7 @@ const CnPackage = {
   [LanguagePackages.Logout]: "登出",
   [LanguagePackages.ArrivedAtDestination]: "已到达终点",
   [LanguagePackages.HowWasYourTrip]: "请对本次旅程做出评价",
-  [LanguagePackages.PickingUp]: "正在路上.",
+  [LanguagePackages.PickingUp]: "司机正在路上",
   [LanguagePackages.PickedUp]: "已接到",
   [LanguagePackages.OnTheWay]: "在路途中...",
   [LanguagePackages.Arrived]: "已到达",
@@ -115,6 +125,10 @@ const CnPackage = {
   [LanguagePackages.Mi]: "英里",
   [LanguagePackages.Submit]: "提交",
   [LanguagePackages.WhereToGo]: "去哪里",
+  [LanguagePackages.DriverOnTheWay]: '司机正在路上',
+  [LanguagePackages.HeadingToDestination]: "即将抵达目的地",
+  [LanguagePackages.From]: '当前位置',
+  [LanguagePackages.To]: "目的地",
 };
 
 const EsPackage = {
@@ -137,21 +151,24 @@ const EsPackage = {
   [LanguagePackages.CarCapacity]: "Capacidad del coche",
   [LanguagePackages.LicensePlate]: "Placa",
   [LanguagePackages.Theme]: "Tema",
-  [LanguagePackages.SelectARole]: "Seleccionar un rol",
+  [LanguagePackages.SelectARole]: "Seleccione un rol",
   [LanguagePackages.Languages]: "Idioma",
   [LanguagePackages.Logout]: "Cerrar sesión",
   [LanguagePackages.ArrivedAtDestination]: "Has llegado a tu destino",
-  [LanguagePackages.HowWasYourTrip]: "Cómo fue su viaje",
+  [LanguagePackages.HowWasYourTrip]: "¿Cómo fue su viaje?",
   [LanguagePackages.PickingUp]: "Recogiendo",
   [LanguagePackages.PickedUp]: "Completa",
   [LanguagePackages.OnTheWay]: "En camino...",
   [LanguagePackages.Arrived]: "Llegó",
-  [LanguagePackages.LookingForNearbyDrivers]:
-    "Buscando un conductor cercano ...",
+  [LanguagePackages.LookingForNearbyDrivers]: "Buscando un conductor cercano ...",
   [LanguagePackages.Hello]: "Hola",
   [LanguagePackages.Mi]: "millas",
   [LanguagePackages.Submit]: "Enviar",
-  [LanguagePackages.WhereToGo]: "A donde",
+  [LanguagePackages.WhereToGo]: "¿A donde?",
+  [LanguagePackages.DriverOnTheWay]: 'Conductor en camino',
+  [LanguagePackages.HeadingToDestination]:  "Yendo a destino",
+  [LanguagePackages.From]: '¿De donde?',
+  [LanguagePackages.To]: "¿A donde?",
 };
 
 module.exports = {
