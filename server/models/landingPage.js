@@ -1,8 +1,8 @@
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: "isaacmfavila",
+  user: "",
   database: "cruze",
-  host: "",
+  host: "localhost",
   port: 5432,
 });
 pool.connect((err) => {
