@@ -6,11 +6,11 @@
 - [Technologies Used](#technologies-used)
 
 ## Team Members
-- [David Du](https://github.com/EndlessDavidDu) - UI Owner | [LinkedIn](https://www.linkedin.com/in/david-duy/)
+- [David Du](https://github.com/EndlessDavidDu) - UI Team | [LinkedIn](https://www.linkedin.com/in/david-duy/)
 - [Luna Zheng](https://github.com/luna-moon-1216) - Project Manager | [LinkedIn](https://www.linkedin.com/in/luna-zheng/)
-- [Isaac Favila](https://github.com/IsaacFavila) - Architecture Owner | [LinkedIn](https://www.linkedin.com/in/isaacmfavila/)
-- [Jordan Villacorta](https://github.com/jordanvillacorta) - UI Owner | [LinkedIn](https://www.linkedin.com/in/jordan-villacorta/)
-- [Jin Cheng](https://github.com/jincheng411) - Architecture Owner | [LinkedIn](https://www.linkedin.com/in/jincheng411/)
+- [Isaac Favila](https://github.com/IsaacFavila) - Architecture Team | [LinkedIn](https://www.linkedin.com/in/isaacmfavila/)
+- [Jordan Villacorta](https://github.com/jordanvillacorta) - UI Team | [LinkedIn](https://www.linkedin.com/in/jordan-villacorta/)
+- [Jin Cheng](https://github.com/jincheng411) - Architecture Team | [LinkedIn](https://www.linkedin.com/in/jincheng411/)
 - [Sebastian Carazo](https://github.com/SebasCC99) - Project Manager | [LinkedIn](https://www.linkedin.com/in/sebastian-carazo/)
 
 ## Description
