@@ -30,7 +30,9 @@ const DriverHome = ({userProfile, logout}) => {
   const [origin, setOrigin] = useState({});
   const [destination, setDestination] = useState(null);
   const [trip, setTrip] = useState({});
-  const socket = io('http://18.216.63.227');
+
+  const socket = io('http://localhost:3000');
+
   const [profileToggle, setProfileToggle] = useState(false);
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
