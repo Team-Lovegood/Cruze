@@ -1,15 +1,15 @@
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: "isaacmfavila",
+  user: "",
   database: "cruze",
-  host: "",
+  host: "localhost",
   port: 5432,
 });
 pool.connect((err) => {
   if (err) {
     console.error("connection error", err.stack);
   } else {
-    console.log("connected to databse");
+    console.log("connected to database");
   }
 });
 
