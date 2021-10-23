@@ -25,6 +25,9 @@ JavaScript <img align="left" alt="JavaScript" width="30px" src="https://raw.gith
 React Native<img align="left" alt="React" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />
 <br />
 
+React Navigation<img align="left" width="30px" src="https://reactnavigation.org/img/spiro.svg" />
+<br />
+
 CSS <img align="left" alt="CSS3" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" />
 <br />
 
@@ -37,6 +40,9 @@ Express.js <img align="left" alt="Express" width="30px" src="https://github.com/
 <br />
 
 PostgreSQL <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" />
+<br />
+
+AWS EC2 <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" />
 <br />
 
 
