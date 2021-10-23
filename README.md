@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Team Members](#team-members-&-roles)
 - [Description](#description)
+- [Demonstration](#demonstration)
 - [How to View](#how-to-view)
 - [Technologies Used](#technologies-used)
 
@@ -17,7 +18,10 @@
 ## Description
 Cruze is a mobile ride-hailing app that provides language and dark mode support. Riders and drivers are able to communicate with each other to progress the status of the trip.
 
-## How to View
+## Demonstration
+...
+
+## How to run on local machine
 To view on a local machine, please follow these instructions:
 1. Fork the repository and clone to your local machine using: `git clone https://github.com/Team-Lovegood/Cruze.git`
 2. Run `npm install` to download dependencies.
