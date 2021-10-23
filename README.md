@@ -42,14 +42,19 @@ Express.js <img align="left" alt="Express" width="30px" src="https://github.com/
 PostgreSQL <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" />
 <br />
 
-AWS EC2 <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" />
-<br />
 
-
-### Misc
+### Services
 Firebase <img align="left" height="30px" width="30px" src="https://seeklogo.com/images/F/firebase-logo-402F407EE0-seeklogo.com.png" />
 <br />
 
+AWS EC2 <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" />
+<br />
+
+Google Cloud API <img align="left" width="30px" src="https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png" />
+<br />
+
+
+### Development
 Expo Go <img align="left" width="30px" src="https://seeklogo.com/images/E/expo-logo-01BB2BCFC3-seeklogo.com.png" />
 <br />
 
@@ -59,13 +64,15 @@ Xcode <img align="left" width="30px" src="https://static.wikia.nocookie.net/logo
 Babel <img align="left" width="30px" src="https://user-images.githubusercontent.com/3025322/87547253-bf050400-c6a2-11ea-950a-280311bc6cc8.png" />
 <br />
 
+Postman <img align="left" width="30px" src="https://seeklogo.com/images/P/postman-logo-F43375A2EB-seeklogo.com.png" />
+<br />
+
 
 ### Project Management
 Notion <img align="left" width="30px" src="https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg" />
 <br />
 
-Figma <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" />
-<br />
+Figma <img align="left" width="30px" height="30px" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" />
 <br />
 
 Slack <img align="left" alt="Slack" width="30px" src="https://github.com/devicons/devicon/blob/master/icons/slack/slack-original.svg" />
