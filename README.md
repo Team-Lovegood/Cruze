@@ -44,7 +44,10 @@ PostgreSQL <img align="left" width="30px" src="https://upload.wikimedia.org/wiki
 Firebase <img align="left" height="30px" width="30px" src="https://seeklogo.com/images/F/firebase-logo-402F407EE0-seeklogo.com.png" />
 <br />
 
-Expo Go <img align="left" alt="Webpack" width="30px" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5N472VlU--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://repository-images.githubusercontent.com/65750241/79017180-d4ce-11e9-9955-3f0a7be00c7a" />
+Expo Go <img align="left" width="30px" src="https://seeklogo.com/images/E/expo-logo-01BB2BCFC3-seeklogo.com.png" />
+<br />
+
+Xcode <img align="left" width="30px" src="https://static.wikia.nocookie.net/logopedia/images/d/da/Icon_512x512_Normal%402xxcode.png/revision/latest/scale-to-width-down/250?cb=20200917151913" />
 <br />
 
 Babel <img align="left" width="30px" src="https://user-images.githubusercontent.com/3025322/87547253-bf050400-c6a2-11ea-950a-280311bc6cc8.png" />
