@@ -4,6 +4,7 @@
 - [Team Members](#team-members-&-roles)
 - [Description](#description)
 - [Technologies Used](#technologies-used)
+- [How to View](#how-to-view)
 
 ## Team Members
 - [David Du](https://github.com/EndlessDavidDu) - UI Team | [LinkedIn](https://www.linkedin.com/in/david-duy/)
@@ -81,4 +82,10 @@ Slack <img align="left" alt="Slack" width="30px" src="https://github.com/devicon
 Trello <img align="left" alt="Trello" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg" />
 <br />
 <br />
+
+## How to View
+To view on a local machine, please follow these instructions:
+1. Fork the repository and clone to your local machine using.
+2. Run `npm install` to download dependencies.
+
 
