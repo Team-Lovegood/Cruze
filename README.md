@@ -64,10 +64,13 @@ Babel <img align="left" width="30px" src="https://user-images.githubusercontent.
 Notion <img align="left" width="30px" src="https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg" />
 <br />
 
-Trello <img align="left" alt="Trello" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg" />
+Figma <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" />
 <br />
 
 Slack <img align="left" alt="Slack" width="30px" src="https://github.com/devicons/devicon/blob/master/icons/slack/slack-original.svg" />
+<br />
+
+Trello <img align="left" alt="Trello" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg" />
 <br />
 <br />
 
