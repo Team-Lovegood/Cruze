@@ -3,8 +3,8 @@
 ## Table of Contents
 - [Team Members](#team-members-&-roles)
 - [Description](#description)
-- [Technologies Used](#technologies-used)
 - [How to View](#how-to-view)
+- [Technologies Used](#technologies-used)
 
 ## Team Members
 - [David Du](https://github.com/EndlessDavidDu) - UI Team | [LinkedIn](https://www.linkedin.com/in/david-duy/)
@@ -16,6 +16,19 @@
 
 ## Description
 Cruze is a mobile ride-hailing app that provides language and dark mode support. Riders and drivers are able to communicate with each other to progress the status of the trip.
+
+## How to View
+To view on a local machine, please follow these instructions:
+1. Fork the repository and clone to your local machine using: `git clone https://github.com/Team-Lovegood/Cruze.git`
+2. Run `npm install` to download dependencies.
+3. Add system IP address into /ip.js.
+4. Enter postgreSQL user in /server/models/landingPage.
+5. Run `\i schema.sql` after opening Postgres in /database.
+6. Make Google API key with places, directions, and distance matrix enabled.
+7. Insert Google API key in /config.js and /client/components/RiderHome/config.js.
+8. Run `expo start` and `npm run server` in separate terminals.
+9. Scan Expo QR code.
+
 
 ## Tech Stack
 
@@ -83,9 +96,5 @@ Trello <img align="left" alt="Trello" width="30px" src="https://raw.githubuserco
 <br />
 <br />
 
-## How to View
-To view on a local machine, please follow these instructions:
-1. Fork the repository and clone to your local machine using.
-2. Run `npm install` to download dependencies.
 
 
