@@ -66,6 +66,7 @@ Notion <img align="left" width="30px" src="https://cdn.worldvectorlogo.com/logos
 
 Figma <img align="left" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" />
 <br />
+<br />
 
 Slack <img align="left" alt="Slack" width="30px" src="https://github.com/devicons/devicon/blob/master/icons/slack/slack-original.svg" />
 <br />
