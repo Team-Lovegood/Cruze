@@ -14,7 +14,7 @@
 - [Sebastian Carazo](https://github.com/SebasCC99) - [LinkedIn](https://www.linkedin.com/in/sebastian-carazo/)
 
 ## Description
-Project Cadence
+Cruze is a mobile ride-hailing app that provides language and dark mode support. Riders and drivers are able to communicate with each other to progress the status of the trip.
 
 ## Tech Stack
 
@@ -22,7 +22,7 @@ Project Cadence
 JavaScript <img align="left" alt="JavaScript" width="30px" src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/javascript.svg" />
 <br />
 
-React <img align="left" alt="React" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />
+React Native<img align="left" alt="React" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />
 <br />
 
 CSS <img align="left" alt="CSS3" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" />
@@ -30,7 +30,7 @@ CSS <img align="left" alt="CSS3" width="30px" src="https://raw.githubusercontent
 
 
 ### Back-End
-Node.js <img align="left" alt="Node JS" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
+Socket.io <img align="left" alt="Node JS" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Socket-io.svg" />
 <br />
 
 Express.js <img align="left" alt="Express" width="30px" src="https://github.com/devicons/devicon/blob/master/icons/express/express-original.svg" />
