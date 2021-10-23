@@ -29,7 +29,7 @@ To view on a local machine, please follow these instructions:
 4. Enter postgreSQL user in /server/models/landingPage.
 5. Run `\i schema.sql` after opening Postgres in /database.
 6. Make Google API key with places, directions, and distance matrix enabled.
-7. Insert Google API key in /config.js and /client/components/RiderHome/config.js.
+7. Create /config.js and /client/components/RiderHome/config.js and insert Google API key
 8. Run `expo start` and `npm run server` in separate terminals.
 9. Scan Expo QR code.
 
