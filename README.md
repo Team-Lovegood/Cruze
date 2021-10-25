@@ -19,7 +19,7 @@
 Cruze is a mobile ride-hailing app that provides language and dark mode support. Riders and drivers are able to communicate with each other to progress the status of the trip.
 
 ## Demonstration
-<a href="https://player.vimeo.com/video/638202196"><img src="./assets/demo.png"></a>
+<a href="https://player.vimeo.com/video/638202196" target="_blank"><img src="./assets/demo.png" width="350px"></a> <br>
 Video link: https://player.vimeo.com/video/638202196
 
 ## How to run on local machine
