@@ -31,7 +31,6 @@ const DriverPickup = ({ rider, onTheWay, distance }) => {
         <View>
           <TouchableOpacity
             onPress={handleOnTheWayPress}
-            // style={styles.hereBtn}
           >
             <Image
               source={require("../../../assets/car-xxl.png")}
@@ -78,24 +77,9 @@ const styles = StyleSheet.create({
     paddingVertical: 11,
     paddingLeft: 20,
     backgroundColor: "#B3E5FD",
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 1 },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
     borderRadius: 10,
     overflow: "hidden",
   },
-  // hereBtn: {
-  //   width: 48,
-  //   height: 28,
-  //   // justifyContent: 'center',
-  //   // alignItems: 'center',
-  //   marginTop: 5,
-  //   // padding: 10,
-  //   borderRadius: 20,
-  //   marginLeft: 8,
-  //   backgroundColor: '#C4C4C4',
-  // },
   addressContainer: {
     display: "flex",
     flexDirection: "row",
