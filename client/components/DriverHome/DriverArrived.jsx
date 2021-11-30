@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { useTheme } from "../../../theme/themeProvider.js";
 import { LanguageContext } from "../../languages/index";
+
 const DriverArrived = ({ backToRideList }) => {
   const { languagePackages } = React.useContext(LanguageContext);
   const { colors, isDark } = useTheme();
@@ -56,8 +57,6 @@ const styles = StyleSheet.create({
   },
   starContainer: {
     marginTop: 10,
-    // marginLeft: 30,
-    // marginRight: 30,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
