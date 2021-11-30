@@ -50,13 +50,8 @@ const DriverHome = ({userProfile, logout}) => {
     });
   }, []);
 
-  //send userProfile.firstname, .carmodel, .licenseplate
-
   const changeRider = async (rider) => {
     setRider(rider);
-    // getCurrentLocation().then((loc) => {
-    //   setDriverLocation({latitude: loc.latitude, longitude: loc.longitude});
-    // });
     setOrigin(driverLocation);
     setDestination(rider.location);
     socket.emit('tripStatus', 'onTheWay');
@@ -103,12 +98,6 @@ const DriverHome = ({userProfile, logout}) => {
   }
   useEffect(() => {
     (async () => {
-      // let { status } = await Location.requestForegroundPermissionsAsync();
-      // if (status !== 'granted') {
-      //   setErrorMsg('Permission to access location was denied');
-      //   return;
-      // }
-      // let {coords} = await Location.getCurrentPositionAsync({});
       const coords = await getCurrentLocation()
       setDriverLocation({latitude: coords.latitude, longitude: coords.longitude});
     })();
