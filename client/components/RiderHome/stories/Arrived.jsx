@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-// import StarRating from 'react-native-star-rating';
 import { useTheme } from "../../../../theme/themeProvider.js";
 
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { LanguageContext } from "../../../languages/index";
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 const Arrived = ({ tripStatus, handleStatus, profileOpen }) => {
   const { languagePackages } = React.useContext(LanguageContext);
@@ -19,15 +16,6 @@ const Arrived = ({ tripStatus, handleStatus, profileOpen }) => {
   };
 
   const [rating, setRating] = useState(0);
-
-  // useEffect(() => {
-  //   if (tripStatus === "pickUp") {
-  //     const test = setTimeout(() => handleStatus("arrived"), 5000);
-  //     return () => clearTimeout(test);
-  //   } else {
-  //     return;
-  //   }
-  // }, [handleStatus]);
 
   if (tripStatus === "arrived" && !profileOpen) {
     return (

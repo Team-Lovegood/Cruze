@@ -5,14 +5,6 @@ import { faCar } from "@fortawesome/free-solid-svg-icons";
 import { LanguageContext } from "../../../languages/index";
 const FindingDriver = ({ tripStatus, handleStatus }) => {
   const { languagePackages } = React.useContext(LanguageContext);
-  // useEffect(() => {
-  //   if (tripStatus === "findDriver") {
-  //     const test = setTimeout(() => handleStatus("onTheWay"), 5000);
-  //     return () => clearTimeout(test);
-  //   } else {
-  //     return;
-  //   }
-  // }, [handleStatus]);
 
   if (tripStatus === "findDriver") {
     return (
