@@ -24,12 +24,8 @@ io.on('connection', (socket) => {
   });
 });
 
-
-
 const landingPage = require('./routes/landingPage.js');
 app.use('/', landingPage);
-
-
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, function() {
