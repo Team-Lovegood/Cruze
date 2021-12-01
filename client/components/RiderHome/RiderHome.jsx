@@ -74,7 +74,6 @@ const RiderHome = ({ communication, logout, userProfile }) => {
     if (socket) {
       socket.on("tripStatus", (status) => {
         if (status !== "searchTrip") {
-          // console.log(status);
           setTripStatus(status);
         }
       });

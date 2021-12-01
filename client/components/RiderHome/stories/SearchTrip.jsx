@@ -124,7 +124,6 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
             }}
             placeholder={languagePackages?.To}
             onPress={(data, details = null) => {
-              // console.log(data, details);
               destination = {
                 name: details.name,
                 latitude: details.geometry.location.lat,
