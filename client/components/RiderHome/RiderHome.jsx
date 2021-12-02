@@ -1,46 +1,48 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Text, View, StyleSheet, SafeAreaView, Image } from 'react-native';
-import MapView from 'react-native-maps';
-import MapViewDirections from 'react-native-maps-directions';
-import { BlurView } from 'expo-blur';
-import axios from 'axios';
-import io from 'socket.io-client';
-import API from './config.js';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import React, { useState, useRef, useEffect } from "react";
+import { Text, View, StyleSheet, SafeAreaView, Image } from "react-native";
+import MapView from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
+import { BlurView } from "expo-blur";
+import axios from "axios";
+import io from "socket.io-client";
+import API from "./config.js";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-import RiderProfile from '../Profiles/RiderProfile.jsx';
-import WhereTo from './stories/WhereTo';
-import Arrived from './stories/Arrived';
-import SearchTrip from './stories/SearchTrip';
-import FindingDriver from './stories/FindingDriver';
-import ToDestination from './stories/ToDestination';
-import { useTheme } from '../../../theme/themeProvider.js';
+import RiderProfile from "../Profiles/RiderProfile.jsx";
+import WhereTo from "./stories/WhereTo";
+import Arrived from "./stories/Arrived";
+import SearchTrip from "./stories/SearchTrip";
+import FindingDriver from "./stories/FindingDriver";
+import ToDestination from "./stories/ToDestination";
+import { useTheme } from "../../../theme/themeProvider.js";
 
 const RiderHome = ({ communication, logout, userProfile }) => {
-
   const { colors, isDark } = useTheme();
   const textStyle = {
-    color: colors.text
+    color: colors.text,
   };
   const safeStyle = {
     backgroundColor: colors.background,
-  }
+  };
 
-  const defaultAddress = {name:'Empire State Building',latitude: 40.748817, longitude: -73.985428};
+  const defaultAddress = {
+    name: "Empire State Building",
+    latitude: 40.748817,
+    longitude: -73.985428,
+  };
   const [departure, setDeparture] = useState(defaultAddress);
   const [destination, setDestination] = useState(departure);
-  const [distance, setDistance] = useState('');
-  const [duration, setDuration] = useState('');
-  const [socket, setSocket] = useState('')
+  const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
+  const [socket, setSocket] = useState("");
   const [carInfo, setCarInfo] = useState({});
 
-
-  const [tripStatus, setTripStatus] = useState('whereTo');
+  const [tripStatus, setTripStatus] = useState("whereTo");
   const [profileOpen, setProfileOpen] = useState(false);
   const mapRef = useRef(null);
 
   const handleStatus = (status) => {
-    if(status === 'whereTo') {
+    if (status === "whereTo") {
       setDeparture(defaultAddress);
       setDestination(defaultAddress);
       setTripStatus(status);
@@ -50,25 +52,27 @@ const RiderHome = ({ communication, logout, userProfile }) => {
   };
 
   const handleTrip = (departure, destination) => {
-
-    if(Object.values(departure).length !== 0 && Object.values(destination).length !== 0) {
+    if (
+      Object.values(departure).length !== 0 &&
+      Object.values(destination).length !== 0
+    ) {
       setDeparture(departure);
       setDestination(destination);
-      socket.emit('new trip', {
+      socket.emit("new trip", {
         name: userProfile.firstname,
         departure: departure,
-        destination: destination
+        destination: destination,
       });
-      socket.emit('tripStatus', tripStatus);
-      setTripStatus('findDriver');
+      socket.emit("tripStatus", tripStatus);
+      setTripStatus("findDriver");
     } else {
-      setTripStatus('whereTo');
+      setTripStatus("whereTo");
     }
   };
 
   useEffect(() => {
-      setSocket(io('http://localhost:3000'));
-  },[]);
+    setSocket(io("http://localhost:3000"));
+  }, []);
 
   useEffect(() => {
     if (socket) {
@@ -79,7 +83,7 @@ const RiderHome = ({ communication, logout, userProfile }) => {
       });
       socket.on("carInfo", (info) => {
         setCarInfo(info);
-      })
+      });
     }
   });
 
@@ -117,11 +121,18 @@ const RiderHome = ({ communication, logout, userProfile }) => {
 
   return (
     <SafeAreaView style={[styles.container, safeStyle]}>
-      {tripStatus !== 'findDriver' && <View style={styles.menu}>
-        <FontAwesome name='bars' size={30} color={'black'} onPress={() => {
-          setProfileOpen(!profileOpen);
-        }} />
-      </View>}
+      {tripStatus !== "findDriver" && (
+        <View style={styles.menu}>
+          <FontAwesome
+            name="bars"
+            size={30}
+            color={"black"}
+            onPress={() => {
+              setProfileOpen(!profileOpen);
+            }}
+          />
+        </View>
+      )}
 
       <MapView
         style={StyleSheet.absoluteFillObject}
@@ -136,23 +147,78 @@ const RiderHome = ({ communication, logout, userProfile }) => {
           longitudeDelta: 0.005,
         }}
       >
-        {departure && destination && <MapViewDirections origin={departure} destination={destination} apikey={API.API} strokeWidth={2} strokeColor="black" mode="DRIVING" />}
+        {departure && destination && (
+          <MapViewDirections
+            origin={departure}
+            destination={destination}
+            apikey={API.API}
+            strokeWidth={2}
+            strokeColor="black"
+            mode="DRIVING"
+          />
+        )}
         <View style={styles.markerContainer}>
           <MapView.Marker coordinate={departure} identifier="departure">
-            <Image source={departure !== destination ? require('../../../assets/rider.png') : null} style={{ width: 30, height: 30}} resizeMode='center' resizeMethod='resize'  />
+            <Image
+              source={
+                departure !== destination
+                  ? require("../../../assets/rider.png")
+                  : null
+              }
+              style={{ width: 30, height: 30 }}
+              resizeMode="center"
+              resizeMethod="resize"
+            />
           </MapView.Marker>
-          {destination && <MapView.Marker coordinate={destination} identifier="destination" />}
+          {destination && (
+            <MapView.Marker coordinate={destination} identifier="destination" />
+          )}
         </View>
       </MapView>
-      {tripStatus === 'findDriver' && <BlurView style={StyleSheet.absoluteFillObject} intensity={60} tint='light'/>}
-      <RiderProfile profileOpen={profileOpen} userProfile={userProfile} logout={logout}/>
-      <WhereTo tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen} name={userProfile.firstname}/>
+      {tripStatus === "findDriver" && (
+        <BlurView
+          style={StyleSheet.absoluteFillObject}
+          intensity={60}
+          tint="light"
+        />
+      )}
+      <RiderProfile
+        profileOpen={profileOpen}
+        userProfile={userProfile}
+        logout={logout}
+      />
+      <WhereTo
+        tripStatus={tripStatus}
+        handleStatus={handleStatus}
+        profileOpen={profileOpen}
+        name={userProfile.firstname}
+      />
 
-      <SearchTrip tripStatus={tripStatus} handleStatus={handleStatus} handleTrip={handleTrip} name={userProfile.firstname}/>
+      <SearchTrip
+        tripStatus={tripStatus}
+        handleStatus={handleStatus}
+        handleTrip={handleTrip}
+        name={userProfile.firstname}
+      />
 
-      <FindingDriver tripStatus={tripStatus} handleStatus={handleStatus} />
-      <ToDestination tripStatus={tripStatus} distance={distance} duration={duration} handleStatus={handleStatus} profileOpen={profileOpen} carInfo={carInfo}/>
-      <Arrived tripStatus={tripStatus} handleStatus={handleStatus} profileOpen={profileOpen}/>
+      <FindingDriver
+        tripStatus={tripStatus}
+        handleStatus={handleStatus}
+      />
+
+      <ToDestination
+        tripStatus={tripStatus}
+        distance={distance}
+        duration={duration}
+        handleStatus={handleStatus}
+        profileOpen={profileOpen}
+        carInfo={carInfo}
+      />
+      <Arrived
+        tripStatus={tripStatus}
+        handleStatus={handleStatus}
+        profileOpen={profileOpen}
+      />
     </SafeAreaView>
   );
 };
@@ -172,10 +238,10 @@ const styles = StyleSheet.create({
     left: 50,
   },
   menu: {
-    position: 'absolute',
+    position: "absolute",
     top: 80,
     left: 20,
-    zIndex: 1
+    zIndex: 1,
   },
   absolute: {
     position: "absolute",
