@@ -158,7 +158,10 @@ const RiderHome = ({ communication, logout, userProfile }) => {
           />
         )}
         <View style={styles.markerContainer}>
-          <MapView.Marker coordinate={departure} identifier="departure">
+          <MapView.Marker
+            coordinate={departure}
+            identifier="departure"
+          >
             <Image
               source={
                 departure !== destination
@@ -171,7 +174,10 @@ const RiderHome = ({ communication, logout, userProfile }) => {
             />
           </MapView.Marker>
           {destination && (
-            <MapView.Marker coordinate={destination} identifier="destination" />
+            <MapView.Marker
+              coordinate={destination}
+              identifier="destination"
+            />
           )}
         </View>
       </MapView>

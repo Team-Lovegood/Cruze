@@ -153,7 +153,6 @@ const Signup = (props) => {
   }, [languagePackages]);
 
   const handleSignup = () => {
-    console.log("signup");
     auth
       //Create firebase account
       .createUserWithEmailAndPassword(email, password)

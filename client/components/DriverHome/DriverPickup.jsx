@@ -21,6 +21,7 @@ const DriverPickup = ({ rider, onTheWay, distance }) => {
         <Text style={[styles.pickupName, textStyle]}>
           {languagePackages?.PickingUp}: {rider.name}
         </Text>
+
         <Text style={[styles.name, textStyle]}>$ {rider.amount}</Text>
         <Text style={[styles.name, textStyle]}>
           {distance} {languagePackages?.Km}

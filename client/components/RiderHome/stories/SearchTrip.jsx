@@ -18,7 +18,7 @@ import { useTheme } from "../../../../theme/themeProvider.js";
 import { LanguageContext } from "../../../languages/index";
 const radioButtonsData = [
   {
-    id: "1", // acts as primary key, should be unique and non-empty string
+    id: "1",
     label: "",
     value: "option1",
   },
@@ -82,7 +82,6 @@ const SearchTrip = ({ tripStatus, handleStatus, handleTrip, name }) => {
             }}
             placeholder={languagePackages?.From}
             onPress={(data, details = null) => {
-              console.log(details.name);
               departure = {
                 name: details.name,
                 latitude: details.geometry.location.lat,

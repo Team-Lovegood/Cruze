@@ -60,13 +60,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   onTheWay: {
-    marginLeft: 40,
+    marginLeft: 45,
     fontWeight: "600",
     fontSize: 25,
   },
   distance: {
     marginRight: 40,
-    marginTop: 6,
+    marginTop: 3,
     fontWeight: "600",
     fontSize: 22,
   },
