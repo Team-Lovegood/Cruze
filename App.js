@@ -20,10 +20,6 @@ import { LanguageWrapper } from "./client/languages/index";
 const AuthStack = createStackNavigator();
 
 export default function App() {
-  // things we need to do:
-  // pass user profile to rider and driver home
-  // need to swtich to app stack after login
-
   const [communication, setCommunication] = useState(true);
 
   const handleCommunication = () => {
@@ -71,16 +67,6 @@ export default function App() {
             </NavigationContainer>
           </AppearanceProvider>
         </ThemeProvider>
-        {/* <View style={styles.container}>
-      <RiderHome communication={communication} handleCommunication={handleCommunication} />
-      <StatusBar style="auto" />
-    </View>  */}
-
-        {/*
-    <View style={styles.container}>
-        <DriverHome />
-        <StatusBar style="auto" />
-      </View> */}
       </LanguageWrapper>
     </>
   );
@@ -89,8 +75,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    backgroundColor: "#fff"
   },
 });
