@@ -59,7 +59,7 @@ const RiderList = ({ changeRider, trip, name }) => {
       }
     },
     {
-      name: 'Isaac',
+      name: 'Samantha',
       address: '134 main st',
       distance: 2.2,
       amount: 10,
