@@ -16,7 +16,7 @@
 - [Sebastian Carazo](https://github.com/SebasCC99) - Project Manager | [LinkedIn](https://www.linkedin.com/in/sebastian-carazo/)
 
 ## Description
-Cruze is a mobile ride-hailing app that provides language and dark mode support. Riders and drivers are able to communicate with each other to progress the status of the trip.
+Cruze is a mobile ride-sharing app that provides language and dark mode support. Riders and drivers are able to communicate with each other to progress the status of the trip.
 
 ## Demonstration
 ...
