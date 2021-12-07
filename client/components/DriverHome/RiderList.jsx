@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { FlatList, Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useTheme } from '../../../theme/themeProvider.js';
+import { LanguageContext } from "../../languages/index";
 
-const RiderList = ({ changeRider, trip }) => {
-
+const RiderList = ({ changeRider, trip, name }) => {
+  const { languagePackages } = React.useContext(LanguageContext);
+  const { colors, isDark } = useTheme();
+  const textStyle = {
+    color: colors.text
+  };
+  const safeStyle = {
+    backgroundColor: colors.background,
+  }
   const handlePress = (item) => {
     changeRider(item);
   }
@@ -11,7 +20,7 @@ const RiderList = ({ changeRider, trip }) => {
       name: 'Jordan',
       address: '134 main st',
       distance: 2.2,
-      amount: 10,
+      amount: 18,
       location: {
         latitude: 40.7309,  //washington sqs
         longitude: -73.9973
@@ -41,25 +50,25 @@ const RiderList = ({ changeRider, trip }) => {
       distance: 2.2,
       amount: 10,
       location: {
-        latitude: 40.7309,  //washington sqs
+        latitude: 40.7309,
         longitude: -73.9973
       },
       destination: {
-        latitude: 40.7579593,  //time sq
+        latitude: 40.7579593,
         longitude: -73.9855378
       }
     },
     {
-      name: 'Isaac',
+      name: 'Samantha',
       address: '134 main st',
       distance: 2.2,
       amount: 10,
       location: {
-        latitude: 40.7309,  //washington sqs
+        latitude: 40.7309,
         longitude: -73.9973
       },
       destination: {
-        latitude: 40.7579593,  //time sq
+        latitude: 40.7579593,
         longitude: -73.9855378
       }
     },
@@ -69,11 +78,11 @@ const RiderList = ({ changeRider, trip }) => {
       distance: 2.2,
       amount: 10,
       location: {
-        latitude: 40.7309,  //washington sqs
+        latitude: 40.7309,
         longitude: -73.9973
       },
       destination: {
-        latitude: 40.7579593,  //time sq
+        latitude: 40.7579593,
         longitude: -73.9855378
       }
     },
@@ -91,8 +100,8 @@ const RiderList = ({ changeRider, trip }) => {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Hello, Tim
+      <Text style={[styles.title, textStyle]}>
+      {languagePackages?.Hello} {name}
       </Text>
       <FlatList
         data={dummyData}

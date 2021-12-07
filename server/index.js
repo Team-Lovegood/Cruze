@@ -18,16 +18,14 @@ io.on('connection', (socket) => {
     console.log(status);
     io.emit('tripStatus', status);
   });
+  socket.on('carInfo', (info) => {
+    console.log(info);
+    io.emit('carInfo', info);
+  });
 });
-
-
 
 const landingPage = require('./routes/landingPage.js');
 app.use('/', landingPage);
-
-
-
-
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, function() {

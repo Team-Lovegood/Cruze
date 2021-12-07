@@ -1,40 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { LanguageContext, getLanFromLocal, setLanToLocal} from "../../languages/index";
+import { StyleSheet } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
+import { LanguageContext, setLanToLocal } from "../../languages/index";
 import axios from "axios";
-import { macIP } from '../../../ip.js';
+import { macIP } from "../../../ip.js";
 
 function Language() {
-  const { setLanguagesPackages } = React.useContext(LanguageContext);
-  const Languages = { eng: 'eng', esp: 'esp', mand: 'mand'}
+  const { setLanguagesPackages, lan, setLan } =
+    React.useContext(LanguageContext);
+  const Languages = { eng: "eng", esp: "esp", mand: "mand" };
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(Languages.eng);
+  const [value, setValue] = useState(lan);
   const [items, setItems] = useState([
-    {label: 'English', value: Languages.eng},
-    {label: 'Español', value: Languages.esp},
-    {label: '中文', value: Languages.mand}
+    { label: "English", value: Languages.eng },
+    { label: "Español", value: Languages.esp },
+    { label: "中文", value: Languages.mand },
   ]);
+  let lanLabel = items.find((item) => item.value === lan);
+  lanLabel = (lanLabel && lanLabel.label) || "English";
 
   useEffect(() => {
-    getLanFromLocal().then((lan) => {
-      setValue(lan);
-    });
-  }, []);
-
-  useEffect(() => {
-    let lan = "en";
-    if (value === Languages.eng) {
-      lan = "en";
-    } else if (value === Languages.esp) {
-      lan = "es";
-    } else if (value === Languages.mand) {
-      lan = "cn";
+    let lang = "en";
+    if (lan === Languages.eng) {
+      lang = "en";
+    } else if (lan === Languages.esp) {
+      lang = "es";
+    } else if (lan === Languages.mand) {
+      lang = "cn";
     }
+    setValue(lan);
     const fetchLanguagePackage = async () => {
-      const res = await axios.get(
-        `http://${macIP}:3000/languages/${lan}`
-      );
+      const res = await axios.get(`http://${macIP}:3000/languages/${lang}`);
       if (res && res.data && res.data.data) {
         if (setLanguagesPackages) {
           setLanguagesPackages(res.data.data);
@@ -43,19 +39,23 @@ function Language() {
       }
     };
     fetchLanguagePackage();
-  }, [value]);
+  }, [lan]);
 
   return (
     <DropDownPicker
-      placeholder="English"
+      placeholder={lanLabel}
       style={styles.dropdown}
       open={open}
       value={value}
+      setValue={setValue}
       items={items}
       setOpen={setOpen}
-      setValue={setValue}
+      onChangeValue={(val) => {
+        setLanToLocal(val);
+        setLan(val);
+      }}
       setItems={setItems}
-      containerStyle={{width: 105, marginLeft: 215}}
+      containerStyle={{ width: 105, marginLeft: 215 }}
     />
   );
 }
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
 
     height: 40,
     fontSize: 12,
-  }
+  },
 });
-
 
 export default Language;
